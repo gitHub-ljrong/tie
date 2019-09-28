@@ -1,0 +1,245 @@
+/**
+ * Copyright (c) 2017-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+const React = require('react')
+
+const CompLibrary = require('../../core/CompLibrary.js')
+
+const MarkdownBlock = CompLibrary.MarkdownBlock /* Used to read markdown */
+const Container = CompLibrary.Container
+const GridBlock = CompLibrary.GridBlock
+
+class HomeSplash extends React.Component {
+  render() {
+    const { siteConfig, language = '' } = this.props
+    const { baseUrl, docsUrl } = siteConfig
+    const docsPart = `${docsUrl ? `${docsUrl}/` : ''}`
+    const langPart = `${language ? `${language}/` : ''}`
+    const docUrl = doc => `${baseUrl}${docsPart}${langPart}${doc}`
+
+    const SplashContainer = props => (
+      <div className="homeContainer">
+        <div className="homeSplashFade">
+          <div className="wrapper homeWrapper">{props.children}</div>
+        </div>
+      </div>
+    )
+
+    const ProjectTitle = () => (
+      <h2 className="projectTitle">
+        <div className="title">{siteConfig.title}</div>
+        <small>{siteConfig.tagline}</small>
+      </h2>
+    )
+
+    const PromoSection = props => (
+      <div className="section promoSection">
+        <div className="promoRow">
+          <div className="pluginRowBlock">{props.children}</div>
+        </div>
+      </div>
+    )
+
+    const Button = props => (
+      <div className="pluginWrapper buttonWrapper">
+        <a className={`button ${props.className || ''}`} href={props.href} target={props.target}>
+          {props.children}
+        </a>
+      </div>
+    )
+
+    return (
+      <SplashContainer>
+        <div className="inner">
+          <ProjectTitle siteConfig={siteConfig} />
+          <ul className="feature">
+            <li>
+              <a href="https://github.com/expressjs/express" target="_blank">
+                Express
+              </a>
+            </li>
+            <li>
+              <a href="https://www.typescriptlang.org/" target="_blank">
+                TypeScript
+              </a>
+            </li>
+            <li>
+              <a href="/docs/basic/controller" target="_blank">
+                Restful
+              </a>
+            </li>
+            <li>
+              <a href="/docs/basic/graphql" target="_blank">
+                GraphQL
+              </a>
+            </li>
+            <li>
+              <a href="/docs/basic/provider" target="_blank">
+                Dependency Injection
+              </a>
+            </li>
+            <li>
+              <a href="/docs/basic/middleware" target="_blank">
+                Middleware
+              </a>
+            </li>
+            <li>
+              <a href="/docs/basic/plugin" target="_blank">
+                Plugin
+              </a>
+            </li>
+          </ul>
+          <PromoSection>
+            <Button className="started" href={docUrl('intro/quick-start')}>
+              快速开始
+            </Button>
+          </PromoSection>
+        </div>
+      </SplashContainer>
+    )
+  }
+}
+
+class Index extends React.Component {
+  render() {
+    const { config: siteConfig, language = '' } = this.props
+    const { baseUrl } = siteConfig
+
+    const Block = props => (
+      <Container padding={['bottom', 'top']} id={props.id} background={props.background}>
+        <GridBlock align="center" contents={props.children} layout={props.layout} />
+      </Container>
+    )
+
+    const FeatureCallout = () => (
+      <div className="productShowcaseSection paddingBottom" style={{ textAlign: 'center' }}>
+        <h2>Feature Callout</h2>
+        <MarkdownBlock>These are features of this project</MarkdownBlock>
+      </div>
+    )
+
+    const ShowCode = () => (
+      <Block>
+        {[
+          {
+            content: '优雅的数据获取方式',
+            image: `${baseUrl}img/use-fetch.png`,
+            imageAlign: 'left',
+            title: '数据获取',
+          },
+        ]}
+      </Block>
+    )
+
+    const ShowCode2 = () => (
+      <Block>
+        {[
+          {
+            content: 'Talk about trying this out',
+            image: `${baseUrl}img/use-query.png`,
+            imageAlign: 'right',
+            title: 'Try it Out',
+          },
+        ]}
+      </Block>
+    )
+
+    const Description = () => (
+      <Block background="dark">
+        {[
+          {
+            content: 'This is another description of how this project is useful',
+            image: `${baseUrl}img/logo.png`,
+            imageAlign: 'right',
+            title: 'Description',
+          },
+        ]}
+      </Block>
+    )
+
+    const LearnHow = () => (
+      <Block background="light">
+        {[
+          {
+            content: 'Talk about learning how to use this',
+            image: `${baseUrl}img/use-fetch0.png`,
+            imageAlign: 'right',
+            title: 'Learn How',
+          },
+        ]}
+      </Block>
+    )
+
+    const Features = () => (
+      <Block layout="fourColumn">
+        {[
+          {
+            content: '默认使用**TypeScript**，提供良好的开发体验',
+            imageAlign: 'top',
+            title: 'TypeScript',
+          },
+          {
+            content: '使用依赖注入组织代码，易于写出可维护性、可读性、可测试性的代码',
+            imageAlign: 'top',
+            title: 'Dependency Injection',
+          },
+          {
+            content: '强大的插件机制，让框架灵活、易于扩展，又规范统一',
+            imageAlign: 'top',
+            title: 'Extensible',
+          },
+        ]}
+      </Block>
+    )
+
+    const Showcase = () => {
+      if ((siteConfig.users || []).length === 0) {
+        return null
+      }
+
+      const showcase = siteConfig.users
+        .filter(user => user.pinned)
+        .map(user => (
+          <a href={user.infoLink} key={user.infoLink}>
+            <img src={user.image} alt={user.caption} title={user.caption} />
+          </a>
+        ))
+
+      const pageUrl = page => baseUrl + (language ? `${language}/` : '') + page
+
+      return (
+        <div className="productShowcaseSection paddingBottom">
+          <h2>Who is Using This?</h2>
+          <p>This project is used by all these people</p>
+          <div className="logos">{showcase}</div>
+          <div className="more-users">
+            <a className="button" href={pageUrl('users.html')}>
+              More {siteConfig.title} Users
+            </a>
+          </div>
+        </div>
+      )
+    }
+
+    return (
+      <div>
+        <HomeSplash siteConfig={siteConfig} language={language} />
+        <div className="mainContainer">
+          <Features />
+          {/* <FeatureCallout /> */}
+          {/* <LearnHow /> */}
+          {/* <ShowCode /> */}
+          {/* <ShowCode2 /> */}
+          {/* <Description /> */}
+          {/* <Showcase /> */}
+        </div>
+      </div>
+    )
+  }
+}
+
+module.exports = Index

@@ -1,0 +1,37 @@
+{
+  "docs": {
+    "简介": ["intro/quick-start", "intro/about"],
+    "基础": [
+      "basic/controller",
+      "basic/graphql",
+      "basic/provider",
+      "basic/config",
+      "basic/middleware",
+      "basic/plugin"
+    ],
+    "进阶": [
+      "advance/development",
+      "advance/deployment",
+      "advance/testing",
+      "advance/validation",
+      "advance/plugin",
+      "advance/assets",
+      "advance/mvc",
+      "advance/logger",
+      "advance/cookie-and-session",
+      "advance/exception"
+    ],
+
+    "指南": [
+      "guide/typeorm",
+      "guide/mongoose",
+      "guide/file-upload",
+      "guide/mvc",
+      "guide/redis",
+      "guide/security",
+      "guide/",
+      "guide/"
+    ],
+    "FAQ": ["faq"]
+  }
+}
