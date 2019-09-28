@@ -1,0 +1,1 @@
+export { InjectMany } from 'typedi'

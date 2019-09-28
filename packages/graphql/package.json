@@ -1,0 +1,45 @@
+{
+  "name": "@tiejs/graphql",
+  "version": "0.0.0",
+  "description": "Graphql plugin for ",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "tsnl dev",
+    "build": "tsnl build",
+    "test": "tsnl test",
+    "lint": "tsnl lint",
+    "lint:fix": "tsnt lint --fix"
+  },
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "eslintConfig": {
+    "extends": "tie-app"
+  },
+  "prettier": {
+    "semi": false,
+    "tabWidth": 2,
+    "singleQuote": true,
+    "trailingComma": "all",
+    "printWidth": 100
+  },
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "@tiejs/common": "^0.0.0",
+    "@tiejs/config": "^0.0.0",
+    "@tiejs/logger": "^0.0.0",
+    "apollo-server-express": "^2.9.3",
+    "globby": "^10.0.1",
+    "graphql": "^14.5.7",
+    "tslib": "^1.10.0",
+    "type-graphql": "^0.17.5"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.1.1",
+    "tsnl": "1.1.0",
+    "typescript": "^3.4.5"
+  }
+}

@@ -1,0 +1,7 @@
+*.log
+.DS_Store
+node_modules
+package-lock.json
+lerna-debug.log
+coverage/
+build/

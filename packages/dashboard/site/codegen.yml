@@ -1,0 +1,13 @@
+schema:
+  - http://localhost:5001/graphql:
+      headers:
+        Authorization: ''
+generates:
+  ./src/types/types.d.ts:
+    plugins:
+      - typescript
+  ./schema.graphql:
+    plugins:
+      - schema-ast
+
+

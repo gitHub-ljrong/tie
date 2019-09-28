@@ -1,0 +1,44 @@
+{
+  "name": "@tiejs/dashboard",
+  "version": "0.0.0",
+  "description": "Tie dashboard",
+  "scripts": {
+    "dev": "tsnl dev",
+    "build": "tsnl build",
+    "test": "tsnl test",
+    "test:watch": "tsnl test --watch",
+    "test:cov": "tsnl test --coverage",
+    "lint": "tsnl lint",
+    "lint:fix": "tsnt lint --fix"
+  },
+  "eslintConfig": {
+    "extends": "tie-app"
+  },
+  "prettier": {
+    "semi": false,
+    "tabWidth": 2,
+    "singleQuote": true,
+    "trailingComma": "all",
+    "printWidth": 100
+  },
+  "files": [
+    "dist",
+    "site",
+    "views"
+  ],
+  "devDependencies": {
+    "@types/cors": "^2.8.6",
+    "graphql": "^14.5.7",
+    "tsnl": "^1.0.0",
+    "type-graphql": "^0.17.5",
+    "typescript": "^3.4.5"
+  },
+  "dependencies": {
+    "@tiejs/common": "^0.0.0",
+    "@tiejs/config": "^0.0.0",
+    "@tiejs/controller": "^0.0.0",
+    "@tiejs/graphql": "^0.0.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  }
+}

@@ -1,0 +1,57 @@
+"""用户"""
+input CreateUserInput {
+  """用户名"""
+  name: String
+
+  """年龄"""
+  age: Float
+}
+
+"""dev dashboard"""
+type Dashboard {
+  env: String!
+  baseDir: String!
+  pluginStore: [PluginItem!]!
+  middlewareStore: [MiddlewareItem!]!
+  routerStore: [RouteItem!]!
+}
+
+type MiddlewareItem {
+  name: String!
+  enable: Boolean!
+  use: String!
+}
+
+type Mutation {
+  """users"""
+  createUser(input: CreateUserInput!): User!
+}
+
+type PluginItem {
+  name: String!
+  enable: Boolean!
+  package: String!
+}
+
+type Query {
+  user: User
+
+  """users"""
+  users: [User!]!
+  _devDashboard: Dashboard
+}
+
+type RouteItem {
+  method: String!
+  path: String!
+  methodName: String!
+  handler: String!
+  instance: String!
+}
+
+"""user"""
+type User {
+  name: String
+  age: Float
+  email: String
+}

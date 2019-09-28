@@ -1,0 +1,39 @@
+{
+  "name": "@tiejs/view",
+  "version": "0.0.0",
+  "description": "Tie view plugin",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "tsnl dev",
+    "build": "tsnl build",
+    "test": "tsnl test",
+    "test:watch": "tsnl test --watch",
+    "test:cov": "tsnl test --coverage",
+    "lint": "tsnl lint",
+    "lint:fix": "tsnt lint --fix"
+  },
+  "eslintConfig": {
+    "extends": "tie-app"
+  },
+  "prettier": {
+    "semi": false,
+    "tabWidth": 2,
+    "singleQuote": true,
+    "trailingComma": "all",
+    "printWidth": 100
+  },
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "@types/consolidate": "^0.14.0",
+    "@types/hbs": "^4.0.1",
+    "tsnl": "^1.0.0",
+    "typescript": "^3.4.5"
+  },
+  "dependencies": {
+    "@tiejs/common": "^0.0.0",
+    "@tiejs/config": "^0.0.0",
+    "consolidate": "^0.15.1"
+  }
+}

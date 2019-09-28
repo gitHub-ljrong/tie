@@ -1,0 +1,36 @@
+{
+  "name": "tie-framework",
+  "version": "0.0.0",
+  "description": "",
+  "scripts": {
+    "dev": "lerna run --parallel --stream dev",
+    "build": "lerna run --parallel --stream build",
+    "test": "lerna run --parallel --stream test"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tie-team/tie.git"
+  },
+  "author": "@forsigner",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tie-team/tie/issues"
+  },
+  "homepage": "https://github.com/tie-team/tie#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^8.2.0",
+    "@commitlint/config-conventional": "^8.2.0",
+    "husky": "^3.0.7",
+    "lerna": "^3.16.4"
+  }
+}
