@@ -1,4 +1,4 @@
-import { Config } from 'dahlia'
+import { Config } from '@peajs/core'
 
 function handleResponse(result: any) {
   if (typeof result !== 'object') return result

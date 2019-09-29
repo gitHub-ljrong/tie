@@ -6,7 +6,7 @@ import { Dashboard } from './dashboard.type'
 export class DevDashboardResolver {
   private app: Application
   constructor() {
-    const app = Container.get<Application>('LEAF_APP')
+    const app = Container.get<Application>('TIE_APP')
     this.app = app
   }
   @Query(() => Dashboard, { nullable: true })

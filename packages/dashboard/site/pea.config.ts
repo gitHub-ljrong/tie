@@ -1,8 +1,8 @@
-import less from 'dahlia-less'
-import antd from 'dahlia-antd'
-import styledJsx from 'dahlia-styled-jsx'
+import less from 'pea-less'
+import antd from 'pea-antd'
+import styledJsx from 'pea-styled-jsx'
 import darkTheme from '@ant-design/dark-theme'
-import { Configuration } from 'dahlia-scripts'
+import { Configuration } from 'pea-cli'
 import { join } from 'path'
 
  const config: Configuration = {

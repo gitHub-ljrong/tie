@@ -1,7 +1,7 @@
 import React from 'react'
 import { Table } from 'antd'
-import { useQuery } from 'dahlia/graphql'
-import { gql } from 'dahlia'
+import { useQuery } from '@peajs/graphql'
+import { gql } from '@peajs/core'
 import { RouteItem } from '../types/types'
 
 const input = gql`

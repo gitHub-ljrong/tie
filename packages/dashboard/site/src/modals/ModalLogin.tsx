@@ -1,5 +1,5 @@
 import React from 'react'
-import { useFetch } from 'dahlia/rest'
+import { useFetch } from '@peajs/rest'
 import Api from '@services/apiService'
 
 interface Todo {

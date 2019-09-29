@@ -1,6 +1,6 @@
 import React from 'react'
 import { Layout } from 'antd'
-import { observe } from 'dahlia/store'
+import { observe } from '@peajs/store'
 
 // import basicLayoutStore from './basicLayoutStore'
 

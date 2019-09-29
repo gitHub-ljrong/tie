@@ -1,4 +1,4 @@
-import { createStore } from 'dahlia/store'
+import { createStore } from '@peajs/store'
 
 export const basicLayoutStore = createStore({
   collapsed: false,

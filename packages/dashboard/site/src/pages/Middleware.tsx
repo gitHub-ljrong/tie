@@ -1,7 +1,7 @@
 import React from 'react'
 import { Timeline, Icon } from 'antd'
-import { useQuery } from 'dahlia/graphql'
-import { gql } from 'dahlia'
+import { useQuery } from '@peajs/graphql'
+import { gql } from '@peajs/core'
 
 const input = gql`
   {

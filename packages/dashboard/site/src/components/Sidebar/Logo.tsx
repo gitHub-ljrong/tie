@@ -1,5 +1,5 @@
-import { i18n } from 'dahlia/i18n'
-import { Link } from 'dahlia/router'
+import { i18n } from '@peajs/i18n'
+import { Link } from '@peajs/router'
 import React from 'react'
 
 export default () => (

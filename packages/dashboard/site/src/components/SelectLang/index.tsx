@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 
 import { Icon, Menu } from 'antd'
 import classNames from 'classnames'
-import { getLocale, setLocale } from 'dahlia/i18n'
+import { getLocale, setLocale } from '@peajs/i18n'
 import HeaderDropdown from '../HeaderDropdown'
 
 import styles from './index.less'

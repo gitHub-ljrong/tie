@@ -1,6 +1,6 @@
 import { Layout } from 'antd'
 import React from 'react'
-import { Observer } from 'dahlia/store'
+import { Observer } from '@peajs/store'
 
 import Sidebar from '@components/Sidebar'
 import basicLayoutStore from './basicLayoutStore'

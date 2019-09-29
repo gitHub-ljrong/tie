@@ -5,7 +5,7 @@ import { Container, Application } from '@tiejs/common'
 export class DashboardController {
   private app: Application
   constructor() {
-    const app = Container.get<Application>('LEAF_APP')
+    const app = Container.get<Application>('TIE_APP')
     this.app = app
   }
 
@@ -15,7 +15,7 @@ export class DashboardController {
     return `hi dashboard`
   }
 
-  @Get('/-dev-dashboard/api/getConfig')
+  @Get('/tie-dev-dashboard/api/getConfig')
   getConfig() {
     return this.app.config
   }

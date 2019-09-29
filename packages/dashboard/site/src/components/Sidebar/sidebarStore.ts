@@ -1,4 +1,4 @@
-import { createStore } from 'dahlia/store'
+import { createStore } from '@peajs/store'
 
 const getOpenKeys = (): string[] => {
   const key = `/${window.location.pathname.split('/')[1]}`

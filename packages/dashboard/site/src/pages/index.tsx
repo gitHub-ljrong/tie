@@ -1,11 +1,11 @@
 import React from 'react'
-import { modalStore } from 'dahlia/modal'
+import { modalStore } from '@peajs/modal'
 import { Button, Timeline, Icon } from 'antd'
 import '../css/index.css'
 
 export default () => (
   <div>
-    hi dahlia
+    hi Pea
     <div className="home">
       styled
       <span>jsx</span>
