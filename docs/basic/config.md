@@ -45,7 +45,7 @@ export default class Config {
 
 ## 使用配置
 
-```ts
+```js
 import { Controller, Get } from '@tiejs/controller'
 import { InjectConfig } from '@tiejs/config'
 

@@ -8,12 +8,12 @@ Tie 是默认支持 GraphQL 的，你不需任何额外的配置，对于无历�
 
 ## 快速体验
 
-GraphQL 在 Tie 中是开箱即用的，下面我们使用 CLI 工具 `create-tie-app` 快速体验。
+GraphQL 在 Tie 中是开箱即用的，下面我们使用 CLI 工具 `tie-cli` 快速体验。
 
-使用 `create-tie-app` 初始化应用 (选择 minimal-graphql)：
+使用 `tie-cli` 初始化应用 (选择 minimal-graphql)：
 
 ```bash
-npx create-tie-app myapp # 选择 minimal-graphql
+npx tie-cli new myapp # 选择 minimal-graphql
 cd myapp
 npm run dev
 ```

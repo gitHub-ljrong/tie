@@ -6,12 +6,12 @@ sidebar_label: 控制器 (Controller)
 
 ## 快速体验
 
-Controller 功能 在 Tie 中是开箱即用的，下面我们使用 CLI 工具 `create-tie-app` 快速体验。
+Controller 功能 在 Tie 中是开箱即用的，下面我们使用 CLI 工具 `tie-cli` 快速体验。
 
-使用 `create-tie-app` 初始化应用 (选择 minimal-controller)：
+使用 `tie-cli` 初始化应用 (选择 minimal-controller)：
 
 ```bash
-npx create-tie-app myapp # 选择 minimal-controller
+npx tie-cli new myapp # 选择 minimal-controller
 cd myapp
 npm run dev
 ```
