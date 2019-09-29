@@ -30,11 +30,11 @@ export class MiddlewareStoreBuilder {
   loadBasicInfo(name: string): BasicInfo {
     const middlewareFiles = this.getAllMiddlewareFiles()
 
-    const file = middlewareFiles.find(item => item.includes(`/${name}.middleware.ts`))
+    const file = middlewareFiles.find(item => item.includes(`/${name}.middleware`))
 
     if (!file) {
       throw new Error(
-        `Can not find "${name}.middleware.ts" file for middleware: "${name}", please check you config`,
+        `Can not find "${name}.middleware.{js,ts}" file for middleware: "${name}", please check you config`,
       )
     }
 
