@@ -1,6 +1,6 @@
 {
   "name": "@tiejs/controller",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Controller plugin for ",
   "main": "dist/index.js",
   "scripts": {
@@ -30,8 +30,8 @@
     "dist"
   ],
   "dependencies": {
-    "@tiejs/common": "^0.0.2",
-    "@tiejs/config": "^0.0.2",
+    "@tiejs/common": "^0.0.3",
+    "@tiejs/config": "^0.0.3",
     "@tiejs/exception": "^0.0.2",
     "class-transformer": "^0.2.3",
     "class-validator": "^0.10.0",
