@@ -11,8 +11,9 @@ export interface Options {
 
 export class Loader {
   constructor(private app: Application) {
-    this.app.env = process.env.NODE_ENV
+    this.app.env = process.env.NODE_ENV || 'development'
     this.app.baseDir = process.cwd()
+    this.app.port = 5001
 
     this.app.middlewarePattern = '**/*.middleware.{ts,js}'
     this.app.pluginPattern = '**/*.plugin.{ts,js}'

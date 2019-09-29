@@ -26,4 +26,9 @@ export const builtinPlugins: PluginConfig = [
     enable: true,
     package: '@tiejs/dashboard',
   },
+  {
+    name: 'open',
+    enable: true,
+    package: '@tiejs/open',
+  },
 ]

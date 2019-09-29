@@ -39,4 +39,5 @@ export default class TypeormPlugin implements IPlugin {
 
     app.use(cors())
   }
+
 }
