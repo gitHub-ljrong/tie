@@ -8,7 +8,7 @@ export function InjectConfig(key?: string) {
       propertyName,
       index,
       value: () => {
-        const app = Container.get<Application>('LEAF_APP')
+        const app = Container.get<Application>('TIE_APP')
         const config = app.config
         if (!key) return config
         // TODO: should check key

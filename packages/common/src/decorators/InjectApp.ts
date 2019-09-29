@@ -8,7 +8,7 @@ export function InjectApp() {
       propertyName,
       index,
       value: () => {
-        return Container.get<Application>('LEAF_APP')
+        return Container.get<Application>('TIE_APP')
       },
     })
   }

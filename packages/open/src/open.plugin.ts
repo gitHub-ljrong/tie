@@ -10,7 +10,6 @@ export default class OpenPlugin implements IPlugin {
   async serverDidReady(app: Application) {
     const { enable, url = `http://127.0.0.1:${app.port}` } = this.openConfig
     if (enable && app.env === 'development') {
-      console.log('url:', url);
       open(url)
     }
   }

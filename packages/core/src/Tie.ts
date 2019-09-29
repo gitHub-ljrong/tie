@@ -26,7 +26,7 @@ export class Tie {
   }
 
   private static storeApp() {
-    Container.set('LEAF_APP', Tie.app)
+    Container.set('TIE_APP', Tie.app)
   }
 
   static async listen(port = 5001) {
