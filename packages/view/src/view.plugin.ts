@@ -8,9 +8,6 @@ export default class ViewPlugin implements IPlugin {
   constructor(@InjectConfig('view') private viewConfig: ViewConfig) {}
 
   async configDidLoad(app: Application) {
-    console.log('this.viewconfig:', this.viewConfig)
-    if (!this.viewConfig) return
-
     const { dirs, engines } = this.viewConfig
 
     for (const key of Object.keys(engines)) {

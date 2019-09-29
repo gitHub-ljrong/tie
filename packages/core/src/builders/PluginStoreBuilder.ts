@@ -15,7 +15,7 @@ interface BasicInfo {
   instance: any
   pluginClass: any
   path: string
-  middlearePaths: string[]
+  middleareFiles: string[]
 }
 
 @Injectable()
@@ -37,16 +37,16 @@ export class PluginStoreBuilder {
     const middlwarePattern = `**/*/*.middleware.${ext}`
     const pluginPattern = `**/*/*${name}.plugin.${ext}`
     const opt: GlobbyOptions = { ignore: ['**/node_modules/**'], onlyFiles: true, cwd }
-    const pluginPaths = globby.sync(pluginPattern, opt).map(i => join(cwd, i))
-    const middlearePaths = globby.sync(middlwarePattern, opt).map(i => join(cwd, i))
-    const [pluginPath] = pluginPaths
-    if (!pluginPath) {
+    const pluginFiles = globby.sync(pluginPattern, opt).map(i => join(cwd, i))
+    const middleareFiles = globby.sync(middlwarePattern, opt).map(i => join(cwd, i))
+    const [pluginFile] = pluginFiles
+    if (!pluginFile) {
       throw new Error(
         `Can not find "${name}.plugin.{ts,js}" file in ${cwd}, please check you "plugin.ts" config`,
       )
     }
 
-    const pluginClass = this.requireFile(pluginPath)
+    const pluginClass = this.requireFile(pluginFile)
     if (!pluginClass) {
       const unknownReason = `plugin content is not correct, you should use "export default" to export a plugin`
       throw new Error(unknownReason)
@@ -54,10 +54,10 @@ export class PluginStoreBuilder {
 
     let instance = Container.get<IPlugin>(pluginClass)
     return {
-      path: pluginPath,
+      path: pluginFile,
       instance,
       pluginClass,
-      middlearePaths,
+      middleareFiles,
     }
   }
 
@@ -66,7 +66,7 @@ export class PluginStoreBuilder {
 
     for (const plugin of this.app.pluginConfig) {
       const { name, enable, package: packageName, dir = '' } = plugin
-      let pluginItem = {} as PluginInfo
+      let pluginItem = { ...plugin } as PluginInfo
       if (!enable) continue
       try {
         const cwd = packageName ? join(this.app.baseDir, 'node_modules', packageName) : dir
@@ -79,7 +79,7 @@ export class PluginStoreBuilder {
         if (instance.middlewareDidReady) pluginItem.middlewareDidReady = instance.middlewareDidReady
         if (instance.applyMiddleware) pluginItem.applyMiddleware = instance.applyMiddleware
 
-        pluginStore.push({ ...plugin, ...pluginItem })
+        pluginStore.push({ ...pluginItem, ...basicInfo })
       } catch (error) {
         coreLogger.warn(error)
         continue
