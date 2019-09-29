@@ -43,7 +43,7 @@
   "devDependencies": {
     "@types/cookie": "^0.3.3",
     "rimraf": "^3.0.0",
-    "tsnl": "1.1.0",
+    "tsnl": "1.2.0",
     "typescript": "^3.4.5"
   }
 }

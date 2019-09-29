@@ -50,6 +50,6 @@
     "@types/express": "^4.17.1",
     "@types/glob": "^7.1.1",
     "@types/minimatch": "^3.0.3",
-    "tsnl": "1.0.0"
+    "tsnl": "1.2.0"
   }
 }

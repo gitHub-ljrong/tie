@@ -28,7 +28,7 @@
   "devDependencies": {
     "@types/consolidate": "^0.14.0",
     "@types/hbs": "^4.0.1",
-    "tsnl": "^1.0.0",
+    "tsnl": "^1.2.0",
     "typescript": "^3.4.5"
   },
   "dependencies": {
