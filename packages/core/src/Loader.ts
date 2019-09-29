@@ -71,6 +71,10 @@ export class Loader {
 
   private async applyMiddleware() {
     for (const item of this.app.middlewareStore) {
+      if (item.use) {
+        this.app.use(item.use)
+      }
+
       if (item.middlewareFn) {
         this.app.use(item.middlewareFn.bind(item.instance) as any)
       }

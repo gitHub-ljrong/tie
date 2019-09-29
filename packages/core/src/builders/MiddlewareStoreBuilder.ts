@@ -1,8 +1,14 @@
-import { join, isAbsolute } from 'path'
-import glob from 'glob'
+import { join } from 'path'
+import globby, { GlobbyOptions } from 'globby'
 import { Injectable, InjectApp, Application } from '@tiejs/common'
-import { Container, MiddlewareStore, MiddlewareItem } from '@tiejs/common'
+import { Container, MiddlewareStore } from '@tiejs/common'
 import { coreLogger } from '@tiejs/logger'
+
+interface BasicInfo {
+  instance: any
+  middlewareClass: any
+  path: string
+}
 
 @Injectable()
 export class MiddlewareStoreBuilder {
@@ -11,58 +17,73 @@ export class MiddlewareStoreBuilder {
   baseDir = process.cwd()
   middlewarePattern = '**/*.middleware.{ts,js}'
 
-  findLocalMiddlewareInstance(localMiddlewareFiles: string[], name: string) {
-    const matchedMiddlewareFile = localMiddlewareFiles.find(item =>
-      item.includes(`/${name}.middleware.ts`),
-    )
-
-    const unknowReason = `middleware content is not correct, you should use "export default" to export a middleware`
-
-    if (!matchedMiddlewareFile) {
-      coreLogger.warn(
-        `Can not find local "${name}.middleware.ts" file for middleware: "${name}", please check you config`,
-      )
+  requireFile(file: string) {
+    try {
+      if (require(file).default) {
+        return require(file).default
+      }
+    } catch {
       return null
     }
+  }
 
-    try {
-      if (require(matchedMiddlewareFile).default) {
-        const MiddlewareClass = require(matchedMiddlewareFile).default
-        let instance = Container.get<any>(MiddlewareClass)
-        return instance
-      }
-      coreLogger.warn(unknowReason)
-      return null
-    } catch (error) {
-      coreLogger.warn(error)
-      return null
+  loadBasicInfo(name: string): BasicInfo {
+    const middlewareFiles = this.getAllMiddlewareFiles()
+
+    const file = middlewareFiles.find(item => item.includes(`/${name}.middleware.ts`))
+
+    if (!file) {
+      throw new Error(
+        `Can not find "${name}.middleware.ts" file for middleware: "${name}", please check you config`,
+      )
+    }
+
+    const middlewareClass = this.requireFile(file)
+
+    if (!middlewareClass) {
+      const unknownReason = `middleware content is not correct, you should use "export default" to export a middleware`
+      throw new Error(unknownReason)
+    }
+
+    let instance = Container.get<any>(middlewareClass)
+
+    return {
+      instance,
+      middlewareClass,
+      path: file,
     }
   }
 
   async createMiddlewareStore() {
     const middlewareStore: MiddlewareStore = []
-
     if (!this.app.middlewareConfig.length) return []
 
-    const localMiddlewareFiles = this.scanFileByPattern(this.middlewarePattern, this.baseDir)
-
-    for (const { name } of this.app.middlewareConfig) {
-      let middlewareItem = { name } as MiddlewareItem
-
-      const instance = this.findLocalMiddlewareInstance(localMiddlewareFiles, name)
-      if (instance) {
-        middlewareItem.instance = instance
-        middlewareItem.middlewareFn = instance.use
-        middlewareItem.isLocal = true
+    for (const item of this.app.middlewareConfig) {
+      try {
+        const basicInfo = this.loadBasicInfo(item.name)
+        middlewareStore.push({ ...item, middlewareFn: basicInfo.instance.use, ...basicInfo })
+      } catch (error) {
+        coreLogger.warn(error)
+        continue
       }
-
-      middlewareStore.push(middlewareItem)
     }
     return middlewareStore
   }
 
-  scanFileByPattern(pattern: string, sanDir: string = '') {
-    pattern = isAbsolute(pattern) ? pattern : join(sanDir, pattern)
-    return glob.sync(pattern, { ignore: '**/node_modules/**' })
+  private getAllMiddlewareFiles() {
+    const pluginMiddlewares = this.app.pluginStore.reduce(
+      (result, item) => {
+        return [...result, ...item.middleareFiles]
+      },
+      [] as string[],
+    )
+    return [...this.scanMiddlewareFiles(), ...pluginMiddlewares]
+  }
+
+  private scanMiddlewareFiles() {
+    const cwd = this.app.baseDir
+    const opt: GlobbyOptions = { ignore: ['**/node_modules/**'], onlyFiles: true, cwd }
+    const files = globby.sync(this.middlewarePattern, opt).map(i => join(cwd, i))
+    return files
   }
 }

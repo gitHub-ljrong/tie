@@ -53,7 +53,6 @@ export class PluginStoreBuilder {
     }
 
     let instance = Container.get<IPlugin>(pluginClass)
-    console.log('instance:', instance)
     return {
       path: pluginPath,
       instance,

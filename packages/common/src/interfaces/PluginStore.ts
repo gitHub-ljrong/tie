@@ -10,6 +10,7 @@ export interface PluginInfo {
   path: string
   instance: any // plugin class instance
   pluginClass: any
+  middleareFiles: string[]
 
   appDidReady?: AppDidReady
   configDidLoad?: ConfigDidLoad
@@ -19,6 +20,4 @@ export interface PluginInfo {
 
   package?: string
   enable?: boolean
-
-  middleareFiles?: string[]
 }
