@@ -1,5 +1,5 @@
 import { ConfigLoader } from '@tiejs/config'
-import { Application } from '@tiejs/common'
+import { Application, Container } from '@tiejs/common'
 import express from 'express'
 import { PluginStoreBuilder } from './builders/PluginStoreBuilder'
 import { MiddlewareStoreBuilder } from './builders/MiddlewareStoreBuilder'
@@ -12,11 +12,11 @@ export interface Options {
 export class Loader {
   constructor(private app: Application) {
     this.app.env = process.env.NODE_ENV || 'development'
+    this.app.isProd = process.env.NODE_ENV === 'production'
     this.app.baseDir = process.cwd()
     this.app.port = 5001
 
     this.app.middlewarePattern = '**/*.middleware.{ts,js}'
-    this.app.pluginPattern = '**/*.plugin.{ts,js}'
 
     this.app.pluginStore = []
     this.app.middlewareStore = []
@@ -29,20 +29,13 @@ export class Loader {
   }
 
   async init() {
-    const pluginStoreBuilder = new PluginStoreBuilder(
-      this.app.baseDir,
-      this.app.pluginPattern,
-      this.app.pluginConfig,
-    )
+    const pluginStoreBuilder = Container.get(PluginStoreBuilder)
 
     this.app.pluginStore = await pluginStoreBuilder.createPluginStore()
 
     await this.initPluginStore()
 
-    const middlewareStoreBuiler = new MiddlewareStoreBuilder(
-      this.app.pluginStore,
-      this.app.middlewareConfig,
-    )
+    const middlewareStoreBuiler = Container.get(MiddlewareStoreBuilder)
 
     this.app.middlewareStore = await middlewareStoreBuiler.createMiddlewareStore()
 
@@ -67,10 +60,12 @@ export class Loader {
         await item.appDidReady.call(item.instance, this.app)
       }
 
-      // apply plugin middleware
-      item.middlewares.forEach(item => {
-        this.app.middlewareConfig = item.apply(this.app.middlewareConfig)
-      })
+      if (item.applyMiddleware) {
+        this.app.middlewareConfig = item.applyMiddleware.call(
+          item.instance,
+          this.app.middlewareConfig,
+        )
+      }
     }
   }
 

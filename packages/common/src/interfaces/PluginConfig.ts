@@ -1,5 +1,6 @@
 export type PluginConfig = Array<{
   name: string
-  package?: string
   enable?: boolean
+  package?: string
+  dir?: string
 }>

@@ -7,6 +7,7 @@ import { RouteItem } from './RouteItem'
 
 export interface Application extends App {
   env: string | undefined
+  isProd: boolean
   config: any
   baseDir: string
   middlewarePattern: string

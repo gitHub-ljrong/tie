@@ -2,7 +2,6 @@ import { PluginStoreBuilder } from '../../src/builders/PluginStoreBuilder'
 import { join } from 'path'
 
 describe('PluginStoreBuiler', () => {
-  const pluginPattern = '**/*.plugin.{ts,js}'
   const baseDir = join(__dirname, '..', 'sample')
 
   test('local plugin', async () => {
@@ -12,7 +11,7 @@ describe('PluginStoreBuiler', () => {
         enable: true,
       },
     ]
-    const instance = new PluginStoreBuilder(baseDir, pluginPattern, plugins)
+    const instance = new PluginStoreBuilder(baseDir, plugins)
     const pluginStore = await instance.createPluginStore()
     const [testPlugin] = pluginStore
     expect(pluginStore).toBeDefined()
@@ -29,7 +28,7 @@ describe('PluginStoreBuiler', () => {
         package: 'third-party',
       },
     ]
-    const instance = new PluginStoreBuilder(baseDir, pluginPattern, plugins)
+    const instance = new PluginStoreBuilder(baseDir, plugins)
     const pluginStore = await instance.createPluginStore()
     const [testPlugin] = pluginStore
     expect(pluginStore).toBeDefined()

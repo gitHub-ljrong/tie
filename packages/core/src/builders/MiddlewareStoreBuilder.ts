@@ -1,30 +1,15 @@
 import { join, isAbsolute } from 'path'
 import glob from 'glob'
-import { MiddlewareFn, MiddlewareConfig } from '@tiejs/common'
-import { Container, PluginStore, MiddlewareStore, MiddlewareItem } from '@tiejs/common'
+import { Injectable, InjectApp, Application } from '@tiejs/common'
+import { Container, MiddlewareStore, MiddlewareItem } from '@tiejs/common'
 import { coreLogger } from '@tiejs/logger'
 
+@Injectable()
 export class MiddlewareStoreBuilder {
+  constructor(@InjectApp() private app: Application) {}
+
   baseDir = process.cwd()
   middlewarePattern = '**/*.middleware.{ts,js}'
-
-  constructor(private pluginStore: PluginStore, private middlewareConfig: MiddlewareConfig) {}
-
-  findMiddlewareInPlugin(pluginStore: PluginStore, name: string) {
-    let fn: MiddlewareFn | null = null
-    let instance: any
-    for (const pluginItem of pluginStore) {
-      if (!pluginItem.middlewares.length) continue
-      const find = pluginItem.middlewares.find(item => item.name === name)
-      if (find) {
-        fn = find.middlewareFn
-        instance = pluginItem.instance
-        break
-      }
-    }
-    if (!fn) return null
-    return { middlewareFn: fn, instance }
-  }
 
   findLocalMiddlewareInstance(localMiddlewareFiles: string[], name: string) {
     const matchedMiddlewareFile = localMiddlewareFiles.find(item =>
@@ -57,27 +42,20 @@ export class MiddlewareStoreBuilder {
   async createMiddlewareStore() {
     const middlewareStore: MiddlewareStore = []
 
-    if (!this.middlewareConfig.length) return []
+    if (!this.app.middlewareConfig.length) return []
 
     const localMiddlewareFiles = this.scanFileByPattern(this.middlewarePattern, this.baseDir)
 
-    for (const { name } of this.middlewareConfig) {
+    for (const { name } of this.app.middlewareConfig) {
       let middlewareItem = { name } as MiddlewareItem
 
-      const pluginMiddleware = this.findMiddlewareInPlugin(this.pluginStore, name)
-
-      if (pluginMiddleware) {
-        middlewareItem.instance = pluginMiddleware.instance
-        middlewareItem.middlewareFn = pluginMiddleware.middlewareFn
-        middlewareItem.isLocal = false
-      } else {
-        const instance = this.findLocalMiddlewareInstance(localMiddlewareFiles, name)
-        if (instance) {
-          middlewareItem.instance = instance
-          middlewareItem.middlewareFn = instance.use
-          middlewareItem.isLocal = true
-        }
+      const instance = this.findLocalMiddlewareInstance(localMiddlewareFiles, name)
+      if (instance) {
+        middlewareItem.instance = instance
+        middlewareItem.middlewareFn = instance.use
+        middlewareItem.isLocal = true
       }
+
       middlewareStore.push(middlewareItem)
     }
     return middlewareStore
