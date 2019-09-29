@@ -70,16 +70,16 @@ export class PluginStoreBuilder {
       if (!enable) continue
       try {
         const cwd = packageName ? join(this.app.baseDir, 'node_modules', packageName) : dir
-        const basicInfo = this.loadBasicInfo(name, cwd, !!packageName)
-        const instance = basicInfo.instance
+        const info = this.loadBasicInfo(name, cwd, !!packageName)
+        const instance = info.instance
 
-        if (instance.configDidLoad) pluginItem.configDidLoad = instance.configDidLoad
-        if (instance.appDidReady) pluginItem.appDidReady = instance.appDidReady
-        if (instance.serverDidReady) pluginItem.serverDidReady = instance.serverDidReady
-        if (instance.middlewareDidReady) pluginItem.middlewareDidReady = instance.middlewareDidReady
-        if (instance.applyMiddleware) pluginItem.applyMiddleware = instance.applyMiddleware
+        const methods = ['configDidLoad', 'appDidReady', 'serverDidReady', 'applyMiddleware']
 
-        pluginStore.push({ ...pluginItem, ...basicInfo })
+        for (const method of methods) {
+          if (instance[method]) (pluginItem as any)[method] = instance[method]
+        }
+
+        pluginStore.push({ ...pluginItem, ...info })
       } catch (error) {
         coreLogger.warn(error)
         continue

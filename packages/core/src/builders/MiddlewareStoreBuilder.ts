@@ -60,8 +60,8 @@ export class MiddlewareStoreBuilder {
 
     for (const item of this.app.middlewareConfig) {
       try {
-        const basicInfo = this.loadBasicInfo(item.name)
-        middlewareStore.push({ ...item, middlewareFn: basicInfo.instance.use, ...basicInfo })
+        const info = this.loadBasicInfo(item.name)
+        middlewareStore.push({ ...item, middlewareFn: info.instance.use, ...info })
       } catch (error) {
         coreLogger.warn(error)
         continue
