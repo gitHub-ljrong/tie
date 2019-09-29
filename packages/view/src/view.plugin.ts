@@ -10,7 +10,7 @@ export default class ViewPlugin implements IPlugin {
   async configDidLoad(app: Application) {
     const { dirs, engines } = this.viewConfig
 
-    for (const key of Object.keys(engines)) {
+
       const engineName = engines[key]
       app.engine(key, cons[engineName])
       app.set('view engine', key)

@@ -23,7 +23,6 @@ export default class ControllerPlugin implements IPlugin {
   async appDidReady(app: Application) {
     const routeBuilder = Container.get(RouteBuilder)
     this.routes = routeBuilder.buildRoutes()
-
     app.routerStore = this.routes
   }
 
@@ -40,6 +39,7 @@ export default class ControllerPlugin implements IPlugin {
         }
 
         let result = fn.apply(instance, args)
+
         result = isPromise(result) ? await result : result
 
         // can render

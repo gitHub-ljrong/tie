@@ -17,14 +17,14 @@ export const builtinPlugins: PluginConfig = [
     package: '@tiejs/logger',
   },
   {
-    name: 'view',
-    enable: true,
-    package: '@tiejs/view',
-  },
-  {
     name: 'dashboard',
     enable: true,
     package: '@tiejs/dashboard',
+  },
+  {
+    name: 'view',
+    enable: true,
+    package: '@tiejs/view',
   },
   {
     name: 'open',

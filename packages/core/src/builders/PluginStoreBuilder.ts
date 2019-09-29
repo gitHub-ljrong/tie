@@ -73,7 +73,13 @@ export class PluginStoreBuilder {
         const info = this.loadBasicInfo(name, cwd, !!packageName)
         const instance = info.instance
 
-        const methods = ['configDidLoad', 'appDidReady', 'serverDidReady', 'applyMiddleware']
+        const methods = [
+          'configDidLoad',
+          'appDidReady',
+          'serverDidReady',
+          'middlewareDidReady',
+          'applyMiddleware',
+        ]
 
         for (const method of methods) {
           if (instance[method]) (pluginItem as any)[method] = instance[method]
