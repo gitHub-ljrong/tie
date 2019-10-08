@@ -7,14 +7,14 @@ const menuConfig: MenuConfig = [
     name: 'Dashboard',
   },
   {
-    path: '/tie-dev-dashboard/middleware',
-    icon: 'dashboard',
-    name: '中间件',
-  },
-  {
     path: '/tie-dev-dashboard/router',
     icon: 'dashboard',
     name: '路由',
+  },
+  {
+    path: '/tie-dev-dashboard/middleware',
+    icon: 'dashboard',
+    name: '中间件',
   },
   {
     path: '/tie-dev-dashboard/config',

@@ -14,13 +14,13 @@ export class PluginItem {
 
 @ObjectType()
 export class MiddlewareItem {
-  @Field()
+  @Field({ nullable: true })
   name: string
 
-  @Field()
+  @Field({ nullable: true })
   enable?: boolean
 
-  @Field()
+  @Field({ nullable: true })
   use?: string
 }
 

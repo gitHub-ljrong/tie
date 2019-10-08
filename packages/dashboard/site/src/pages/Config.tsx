@@ -3,7 +3,7 @@ import { useFetch } from '@peajs/rest'
 
 
 export default () => {
-  const { loading, data } = useFetch('/-dev-dashboard/api/getConfig')
+  const { loading, data } = useFetch('/api/getTieConfig')
   if (!!loading) return null
 
   return (

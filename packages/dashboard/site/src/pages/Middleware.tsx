@@ -1,12 +1,17 @@
 import React from 'react'
-import { Timeline, Icon } from 'antd'
+import { Timeline } from 'antd'
 import { useQuery } from '@peajs/graphql'
 import { gql } from '@peajs/core'
+
+import { MiddlewareItem } from '../types/types'
+
+type Data = {
+  middlewareStore: MiddlewareItem[]
+}
 
 const input = gql`
   {
     _devDashboard {
-      baseDir
       middlewareStore {
         name
         enable
@@ -15,26 +20,27 @@ const input = gql`
     }
   }
 `
+const colors = ['#1dd1a1', '#48dbfb', '#108ee9', '#feca57', '#ff6b6b']
+
+function randomColor() {
+  const index = Math.ceil(Math.random() * colors.length)
+  return colors[index]
+}
 
 export default () => {
-  const { loading, data } = useQuery(input)
+  const { loading, data } = useQuery<Data>(input)
   if (!!loading) {
     return null
   }
-  console.log('data:', data)
+  const { middlewareStore } = data
   return (
     <div>
       <Timeline mode="alternate">
-        <Timeline.Item>body</Timeline.Item>
-        <Timeline.Item color="green">Logger</Timeline.Item>
-        <Timeline.Item dot={<Icon type="clock-circle-o" style={{ fontSize: '16px' }} />}>
-          Endpoint
-        </Timeline.Item>
-        <Timeline.Item color="red">Network problems being solved 2015-09-01</Timeline.Item>
-        <Timeline.Item>Create a services site 2015-09-01</Timeline.Item>
-        <Timeline.Item dot={<Icon type="clock-circle-o" style={{ fontSize: '16px' }} />}>
-          Technical testing 2015-09-01
-        </Timeline.Item>
+        {middlewareStore.map(item => (
+          <Timeline.Item key={item.name} color={randomColor()}>
+            {item.name}
+          </Timeline.Item>
+        ))}
       </Timeline>
       ,
     </div>

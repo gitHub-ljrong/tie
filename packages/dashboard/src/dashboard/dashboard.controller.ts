@@ -1,5 +1,6 @@
 import { Controller, Get, Render } from '@tiejs/controller'
 import { Container, Application } from '@tiejs/common'
+import { tiePath } from './constant'
 
 @Controller()
 export class DashboardController {
@@ -9,19 +10,19 @@ export class DashboardController {
     this.app = app
   }
 
-  @Get('/tie-dev-dashboard')
-  @Render('tie-dev-dashboard')
+  @Get(`/${tiePath}`)
+  @Render(tiePath)
   index() {
     return `hi dashboard`
   }
 
-  @Get('/tie-dev-dashboard/*')
-  @Render('tie-dev-dashboard')
+  @Get(`/${tiePath}/*`)
+  @Render(tiePath)
   dahshboard() {
     return `hi dashboard`
   }
 
-  @Get('/tie-dev-dashboard/api/getConfig')
+  @Get('/api/getTieConfig')
   getConfig() {
     return this.app.config
   }
