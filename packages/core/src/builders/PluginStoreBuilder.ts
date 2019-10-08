@@ -48,7 +48,7 @@ export class PluginStoreBuilder {
 
     const pluginClass = this.requireFile(pluginFile)
     if (!pluginClass) {
-      const unknownReason = `plugin content is not correct, you should use "export default" to export a plugin`
+      const unknownReason = `plugin {${name}} content is not correct, you should use "export default" to export a plugin`
       throw new Error(unknownReason)
     }
 

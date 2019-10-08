@@ -41,7 +41,7 @@ export class MiddlewareStoreBuilder {
     const middlewareClass = this.requireFile(file)
 
     if (!middlewareClass) {
-      const unknownReason = `middleware content is not correct, you should use "export default" to export a middleware`
+      const unknownReason = `middleware {${name}} content is not correct, you should use "export default" to export a middleware`
       throw new Error(unknownReason)
     }
 
