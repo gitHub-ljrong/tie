@@ -15,6 +15,12 @@ export class DashboardController {
     return `hi dashboard`
   }
 
+  @Get('/tie-dev-dashboard/*')
+  @Render('tie-dev-dashboard')
+  dahshboard() {
+    return `hi dashboard`
+  }
+
   @Get('/tie-dev-dashboard/api/getConfig')
   getConfig() {
     return this.app.config

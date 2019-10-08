@@ -16,7 +16,7 @@ const routes = [
     ],
   },
   {
-    path: '/-dev-dashboard',
+    path: '/tie-dev-dashboard',
     component: BasicLayout,
     children: [
       {
