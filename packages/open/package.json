@@ -23,7 +23,8 @@
     "printWidth": 100
   },
   "files": [
-    "dist"
+    "dist",
+    "openChrome.applescript"
   ],
   "devDependencies": {
     "tsnl": "^1.2.0",
