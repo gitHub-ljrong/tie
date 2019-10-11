@@ -38,12 +38,6 @@ body {
 }
 
 
-.fixedHeaderContainer header img {
-  background: #f0f0f0f0;
-
-  border-radius: 50%;
-}
-
 .feature li {
   font-weight: 100;
   display: inline-block;
