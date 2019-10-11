@@ -4,10 +4,11 @@ title: 快速上手
 sidebar_label: 快速上手
 ---
 
-我们使用 `npx tie-cli` 来初始化 tie 项目，当然你也可以选择全局安装 `tie-cli`:
+使用 `tie-cli` 来初始化 tie 项目:
 
 ```bash
-npx tie-cli myapp # 选择 minimal-controller
+npm i -g tie-cli
+tie new myapp # 选择 minimal-controller
 cd myapp
 npm run dev
 ```
