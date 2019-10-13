@@ -4,6 +4,7 @@ import express from 'express'
 import { PluginStoreBuilder } from './builders/PluginStoreBuilder'
 import { MiddlewareStoreBuilder } from './builders/MiddlewareStoreBuilder'
 import { join } from 'path'
+import { isClass } from './utils/isClass'
 
 export interface Options {
   port: number
@@ -72,7 +73,13 @@ export class Loader {
   private async applyMiddleware() {
     for (const item of this.app.middlewareStore) {
       if (item.use) {
-        this.app.use(item.use)
+        if (isClass(item.use)) {
+          this.app.use(item.use as any)
+        } else {
+          if (Container.get<any>(item.use as any).use) {
+            this.app.use(Container.get<any>(item.use as any).use)
+          }
+        }
       }
 
       if (item.middlewareFn) {

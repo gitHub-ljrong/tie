@@ -1,9 +1,10 @@
 import { MiddlewareFn } from './MiddlewareFn'
+import { MiddlewareClass } from './MiddlewareClass'
 
 export type MiddlewareStore = MiddlewareItem[]
 export interface MiddlewareItem {
   name: string
-  use?: (...args: any) => any | void
+  use?: MiddlewareFn | MiddlewareClass
   enable?: boolean
   matcher?: { path: string; method: string }
 

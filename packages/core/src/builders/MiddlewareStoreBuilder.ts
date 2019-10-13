@@ -5,9 +5,11 @@ import { Container, MiddlewareStore } from '@tiejs/common'
 import { coreLogger } from '@tiejs/logger'
 
 interface BasicInfo {
-  instance: any
-  middlewareClass: any
-  path: string
+  name: string
+  instance?: any
+  middlewareClass?: any
+  path?: string
+  use?: any //TODO: set type
 }
 
 @Injectable()
@@ -27,9 +29,12 @@ export class MiddlewareStoreBuilder {
     }
   }
 
-  loadBasicInfo(name: string): BasicInfo {
-    const middlewareFiles = this.getAllMiddlewareFiles()
+  // TODO: handle any
+  loadBasicInfo(item: any): BasicInfo {
+    const { name, use } = item
+    if (use) return item
 
+    const middlewareFiles = this.scanMiddlewareFiles()
     const file = middlewareFiles.find(item => item.includes(`/${name}.middleware`))
 
     if (!file) {
@@ -48,6 +53,7 @@ export class MiddlewareStoreBuilder {
     let instance = Container.get<any>(middlewareClass)
 
     return {
+      ...item,
       instance,
       middlewareClass,
       path: file,
@@ -60,7 +66,7 @@ export class MiddlewareStoreBuilder {
 
     for (const item of this.app.middlewareConfig) {
       try {
-        const info = this.loadBasicInfo(item.name)
+        const info = this.loadBasicInfo(item)
         middlewareStore.push({ ...item, middlewareFn: info.instance.use, ...info })
       } catch (error) {
         coreLogger.warn(error)
@@ -68,17 +74,6 @@ export class MiddlewareStoreBuilder {
       }
     }
     return middlewareStore
-  }
-
-  private getAllMiddlewareFiles() {
-    // const pluginMiddlewares = this.app.pluginStore.reduce(
-    //   (result, item) => {
-    //     return [...result, ...item.middleareFiles]
-    //   },
-    //   [] as string[],
-    // )
-    // return [...this.scanMiddlewareFiles(), ...pluginMiddlewares]
-    return [...this.scanMiddlewareFiles()]
   }
 
   private scanMiddlewareFiles() {

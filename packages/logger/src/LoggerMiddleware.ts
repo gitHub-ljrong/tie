@@ -1,9 +1,9 @@
 import { Injectable, Request, Response, NextFunction, IMiddleware } from '@tiejs/common'
-import { ctxLogger } from './loggers/ctxLogger'
 import { Logger } from 'ts-log-debug'
+import { ctxLogger } from './loggers/ctxLogger'
 
 @Injectable()
-export default class LoggerPlugin implements IMiddleware {
+export class LoggerMiddleware implements IMiddleware {
   async use(req: Request, _: Response, next: NextFunction) {
     req.logger = {} as Logger
     const levels = ['debug', 'info', 'trace', 'warn', 'error']
