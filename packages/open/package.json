@@ -1,6 +1,6 @@
 {
   "name": "@tiejs/open",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "description": "Tie open url plugin",
   "main": "dist/index.js",
   "scripts": {
@@ -31,8 +31,8 @@
     "typescript": "^3.4.5"
   },
   "dependencies": {
-    "@tiejs/common": "^0.0.3",
-    "@tiejs/config": "^0.0.4",
+    "@tiejs/common": "^0.0.4",
+    "@tiejs/config": "^0.1.0",
     "open": "^6.4.0"
   }
 }
