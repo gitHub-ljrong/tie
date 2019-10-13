@@ -71,13 +71,14 @@ export class MiddlewareStoreBuilder {
   }
 
   private getAllMiddlewareFiles() {
-    const pluginMiddlewares = this.app.pluginStore.reduce(
-      (result, item) => {
-        return [...result, ...item.middleareFiles]
-      },
-      [] as string[],
-    )
-    return [...this.scanMiddlewareFiles(), ...pluginMiddlewares]
+    // const pluginMiddlewares = this.app.pluginStore.reduce(
+    //   (result, item) => {
+    //     return [...result, ...item.middleareFiles]
+    //   },
+    //   [] as string[],
+    // )
+    // return [...this.scanMiddlewareFiles(), ...pluginMiddlewares]
+    return [...this.scanMiddlewareFiles()]
   }
 
   private scanMiddlewareFiles() {
