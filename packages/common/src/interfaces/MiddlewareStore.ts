@@ -1,14 +1,8 @@
-import { MiddlewareFn } from './MiddlewareFn'
-import { MiddlewareClass } from './MiddlewareClass'
+import { MiddlewareConfigItem } from './MiddlewareConfig'
 
-export type MiddlewareStore = MiddlewareItem[]
-export interface MiddlewareItem {
-  name: string
-  use?: MiddlewareFn | MiddlewareClass
-  enable?: boolean
-  matcher?: { path: string; method: string }
+export type MiddlewareStore = MiddlewareStoreItem[]
 
-  middlewareFn: MiddlewareFn
+export interface MiddlewareStoreItem extends MiddlewareConfigItem {
   path?: string
   instance?: any // plugin class instance
 }

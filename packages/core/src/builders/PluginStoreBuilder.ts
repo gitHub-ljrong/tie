@@ -19,6 +19,7 @@ export class PluginStoreBuilder {
   constructor(@InjectApp() private app: Application) {}
 
   requireFile(file: string) {
+
     try {
       if (require(file).default) {
         return require(file).default
@@ -53,13 +54,7 @@ export class PluginStoreBuilder {
         const info = this.loadBasicInfo(packageName)
         const instance = info.instance
 
-        const methods = [
-          'configDidLoad',
-          'appDidReady',
-          'serverDidReady',
-          'middlewareDidReady',
-          'applyMiddleware',
-        ]
+        const methods = ['configDidLoad', 'appDidReady', 'serverDidReady', 'middlewareDidReady']
 
         for (const method of methods) {
           if (instance[method]) (pluginItem as any)[method] = instance[method]

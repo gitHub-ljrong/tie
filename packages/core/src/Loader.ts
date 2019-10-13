@@ -60,13 +60,6 @@ export class Loader {
       if (item.appDidReady) {
         await item.appDidReady.call(item.instance, this.app)
       }
-
-      if (item.applyMiddleware) {
-        this.app.middlewareConfig = item.applyMiddleware.call(
-          item.instance,
-          this.app.middlewareConfig,
-        )
-      }
     }
   }
 
@@ -80,10 +73,6 @@ export class Loader {
             this.app.use(Container.get<any>(item.use as any).use)
           }
         }
-      }
-
-      if (item.middlewareFn) {
-        this.app.use(item.middlewareFn.bind(item.instance) as any)
       }
     }
   }

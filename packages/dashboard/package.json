@@ -2,6 +2,7 @@
   "name": "@tiejs/dashboard",
   "version": "0.1.0",
   "description": "Tie dashboard",
+  "main": "dist/index.js",
   "scripts": {
     "dev": "tsnl dev",
     "build": "tsnl build",

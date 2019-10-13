@@ -17,6 +17,7 @@ export class DashboardPlugin implements IPlugin {
     const { resolvers } = this.graphql
     const { patterns } = this.controller
     const { dirs } = this.view
+
     if (resolvers && Array.isArray(resolvers)) {
       resolvers.push({
         pattern: '**/*.resolver.js',

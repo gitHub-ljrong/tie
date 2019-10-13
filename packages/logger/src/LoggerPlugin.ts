@@ -1,9 +1,10 @@
-import { Injectable, IPlugin, MiddlewareConfig } from '@tiejs/common'
+import { Injectable, InjectApp, Application } from '@tiejs/common'
 import { LoggerMiddleware } from './LoggerMiddleware'
 
 @Injectable()
-export class LoggerPlugin implements IPlugin {
-  applyMiddleware(middlewareConfig: MiddlewareConfig): MiddlewareConfig {
-    return [{ name: 'logger', use: LoggerMiddleware }, ...middlewareConfig]
+export class LoggerPlugin {
+  constructor(@InjectApp() private app: Application) {
+    let middlewareConfig = this.app.middlewareConfig
+    middlewareConfig = [{ name: 'logger', use: LoggerMiddleware }, ...middlewareConfig]
   }
 }

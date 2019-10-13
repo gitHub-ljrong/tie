@@ -1,16 +1,8 @@
 import { join } from 'path'
 import globby, { GlobbyOptions } from 'globby'
-import { Injectable, InjectApp, Application } from '@tiejs/common'
-import { Container, MiddlewareStore } from '@tiejs/common'
+import { Injectable, InjectApp, Application, MiddlewareConfigItem } from '@tiejs/common'
+import { Container, MiddlewareStore, MiddlewareStoreItem } from '@tiejs/common'
 import { coreLogger } from '@tiejs/logger'
-
-interface BasicInfo {
-  name: string
-  instance?: any
-  middlewareClass?: any
-  path?: string
-  use?: any //TODO: set type
-}
 
 @Injectable()
 export class MiddlewareStoreBuilder {
@@ -29,21 +21,20 @@ export class MiddlewareStoreBuilder {
     }
   }
 
-  // TODO: handle any
-  loadBasicInfo(item: any): BasicInfo {
+  getMiddlewareStoreItem(item: MiddlewareConfigItem): MiddlewareStoreItem {
     const { name, use } = item
     if (use) return item
 
     const middlewareFiles = this.scanMiddlewareFiles()
-    const file = middlewareFiles.find(item => item.includes(`/${name}.middleware`))
+    const path = middlewareFiles.find(item => item.includes(`/${name}.middleware`))
 
-    if (!file) {
+    if (!path) {
       throw new Error(
         `Can not find "${name}.middleware.{js,ts}" file for middleware: "${name}", please check you config`,
       )
     }
 
-    const middlewareClass = this.requireFile(file)
+    const middlewareClass = this.requireFile(path)
 
     if (!middlewareClass) {
       const unknownReason = `middleware {${name}} content is not correct, you should use "export default" to export a middleware`
@@ -52,11 +43,16 @@ export class MiddlewareStoreBuilder {
 
     let instance = Container.get<any>(middlewareClass)
 
+    // TODO: check use
+    if (!instance.use) {
+      throw new Error(`require use method in midlleware ${name}`)
+    }
+
     return {
       ...item,
+      use: instance.use,
       instance,
-      middlewareClass,
-      path: file,
+      path,
     }
   }
 
@@ -66,8 +62,8 @@ export class MiddlewareStoreBuilder {
 
     for (const item of this.app.middlewareConfig) {
       try {
-        const info = this.loadBasicInfo(item)
-        middlewareStore.push({ ...item, middlewareFn: info.instance.use, ...info })
+        const middlewareStoreItem = this.getMiddlewareStoreItem(item)
+        middlewareStore.push(middlewareStoreItem)
       } catch (error) {
         coreLogger.warn(error)
         continue
