@@ -2,7 +2,7 @@ import { Injectable, IPlugin, Application } from '@tiejs/common'
 import { GraphqlService } from './GraphqlService'
 
 @Injectable()
-export default class GraphqlPlugin implements IPlugin {
+export class GraphqlPlugin implements IPlugin {
   constructor(private graphqlService: GraphqlService) {}
 
   apollerServer: any

@@ -1,4 +1,5 @@
 import 'reflect-metadata'
+import { ControllerPlugin } from './ControllerPlugin'
 
 export * from './decorators/Controller'
 
@@ -27,3 +28,5 @@ export * from './decorators/params/Header'
 export * from './interfaces/ControllerConfig'
 
 export * from './constant'
+
+export default ControllerPlugin

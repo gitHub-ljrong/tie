@@ -7,7 +7,7 @@ import express from 'express'
 import cors from 'cors'
 
 @Injectable()
-export default class DashboardPlugin implements IPlugin {
+export class DashboardPlugin implements IPlugin {
   constructor(
     @InjectConfig('graphql') private graphql: GraphqlConfig,
     @InjectConfig('controller') private controller: ControllerConfig,

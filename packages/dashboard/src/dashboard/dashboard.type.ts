@@ -3,9 +3,6 @@ import { Field, ObjectType } from 'type-graphql'
 @ObjectType()
 export class PluginItem {
   @Field()
-  name: string
-
-  @Field()
   enable?: boolean
 
   @Field()

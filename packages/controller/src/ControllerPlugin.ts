@@ -18,7 +18,7 @@ import { paramStore } from './stores/paramStore'
 import { RouteBuilder } from './routeBuilder'
 
 @Injectable()
-export default class ControllerPlugin implements IPlugin {
+export class ControllerPlugin implements IPlugin {
   private routes: RouteItem[] = []
   async appDidReady(app: Application) {
     const routeBuilder = Container.get(RouteBuilder)

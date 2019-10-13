@@ -4,7 +4,7 @@ import cons from 'consolidate'
 import { ViewConfig } from './interfaces/ViewConfig'
 
 @Injectable()
-export default class ViewPlugin implements IPlugin {
+export class ViewPlugin implements IPlugin {
   constructor(@InjectConfig('view') private viewConfig: ViewConfig) {}
 
   async configDidLoad(app: Application) {

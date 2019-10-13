@@ -4,7 +4,7 @@ import { OpenConfig } from './interfaces/OpenConfig'
 
 import { openBrowser } from './openBrowser'
 @Injectable()
-export default class OpenPlugin implements IPlugin {
+export class OpenPlugin implements IPlugin {
   constructor(@InjectConfig('open') private openConfig: OpenConfig) {}
 
   async serverDidReady(app: Application) {

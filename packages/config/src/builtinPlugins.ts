@@ -2,33 +2,27 @@ import { PluginConfig } from '@tiejs/common'
 
 export const builtinPlugins: PluginConfig = [
   {
-    name: 'controller',
-    enable: true,
     package: '@tiejs/controller',
+    enable: true,
   },
   {
-    name: 'graphql',
-    enable: true,
     package: '@tiejs/graphql',
+    enable: true,
   },
   {
-    name: 'logger',
-    enable: true,
     package: '@tiejs/logger',
+    enable: true,
   },
   {
-    name: 'dashboard',
-    enable: true,
     package: '@tiejs/dashboard',
+    enable: true,
   },
   {
-    name: 'view',
-    enable: true,
     package: '@tiejs/view',
+    enable: true,
   },
   {
-    name: 'open',
-    enable: true,
     package: '@tiejs/open',
+    enable: true,
   },
 ]

@@ -3,7 +3,7 @@ import { createConnection, useContainer } from 'typeorm'
 import { InjectLogger, Logger } from '@tiejs/logger'
 
 @Injectable()
-export default class TypeormPlugin implements IPlugin {
+export class TypeormPlugin implements IPlugin {
   constructor(@InjectLogger('@tiejs/typeorm') private logger: Logger) {}
 
   async appDidReady(app: Application) {
