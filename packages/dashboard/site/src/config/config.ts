@@ -1,4 +1,3 @@
-import { Config } from '@peajs/core'
 
 function handleResponse(result: any) {
   if (typeof result !== 'object') return result
@@ -8,7 +7,7 @@ function handleResponse(result: any) {
   return result
 }
 
-const config: Partial<Config> = {
+const config = {
   rest: {
     endpoint: 'http://127.0.0.1:5001'
   },

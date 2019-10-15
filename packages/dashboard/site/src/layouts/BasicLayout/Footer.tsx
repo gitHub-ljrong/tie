@@ -6,7 +6,7 @@ const { Footer } = Layout
 
 const copyright = (
   <Fragment>
-    Copyright <Icon type="copyright" /> 2018 Dahlia
+    Copyright <Icon type="copyright" /> 2019 Pea
   </Fragment>
 )
 

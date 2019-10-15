@@ -1,7 +1,7 @@
 import React from 'react'
 import { Table, Tag } from 'antd'
 import { useQuery } from '@peajs/graphql'
-import { gql } from '@peajs/core'
+import gql from 'gql-tag'
 import { RouteItem } from '../types/types'
 import { modalStore } from '@peajs/modal'
 
@@ -70,7 +70,7 @@ const columns = [
     render() {
       return (
         <span>
-          <a onClick={() => modalStore.open('ModalRouterDetail')}>详情</a>
+          <span onClick={() => modalStore.open('ModalRouterDetail')}>详情</span>
         </span>
       )
     },

@@ -20,7 +20,7 @@ const routes = [
     component: BasicLayout,
     children: [
       {
-        path: '/',
+        path: '/summary',
         component: Index,
       },
       {

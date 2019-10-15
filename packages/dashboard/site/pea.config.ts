@@ -1,22 +1,25 @@
-import less from 'pea-less'
-import antd from 'pea-antd'
-import styledJsx from 'pea-styled-jsx'
-import darkTheme from '@ant-design/dark-theme'
-// import { Configuration } from 'pea-cli'
+import ModalPlugin from 'pea-plugin-modal'
+import DrawerPlugin from 'pea-plugin-drawer'
+import RouterPlugin from 'pea-plugin-router'
+import AntdPlugin from 'pea-plugin-antd'
+import LessPlugin from 'pea-plugin-less'
+import RestPlugin from 'pea-plugin-rest'
+import GraphqlPlugin from 'pea-plugin-graphql'
+// import darkTheme from '@ant-design/dark-theme'
 import { join } from 'path'
 
-// const config: Configuration = {
 const config = {
-  title: 'Tie',
-  outputHtml: 'tie-dev-dashboard.html',
-  appHtml: join(process.cwd(), 'public', 'tie-dev-dashboard.html'),
+  title: 'Dashboard',
+  // buildDir: join(process.cwd(), '..', 'dist-site'),
   plugins: [
-    less({
-      modifyVars: darkTheme,
-      javascriptEnabled: true,
-    }),
-    antd(),
-    styledJsx(),
+    new RouterPlugin(),
+    new AntdPlugin(),
+    new DrawerPlugin(),
+    new ModalPlugin(),
+    new RestPlugin(),
+    new GraphqlPlugin(),
+    // new LessPlugin({ javascriptEnabled: true, modifyVars: darkTheme }),
+    new LessPlugin({ javascriptEnabled: true }),
   ],
 }
 

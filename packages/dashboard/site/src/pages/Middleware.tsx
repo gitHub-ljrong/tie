@@ -1,7 +1,7 @@
 import React from 'react'
 import { Timeline } from 'antd'
 import { useQuery } from '@peajs/graphql'
-import { gql } from '@peajs/core'
+import gql from 'gql-tag'
 
 import { MiddlewareItem } from '../types/types'
 
@@ -42,7 +42,6 @@ export default () => {
           </Timeline.Item>
         ))}
       </Timeline>
-      ,
     </div>
   )
 }

@@ -1,12 +1,18 @@
 import React from 'react'
 import { Layout } from 'antd'
 import { observe } from '@peajs/store'
+import styled from 'styled-components'
 
 // import basicLayoutStore from './basicLayoutStore'
 
 import SelectLang from '@components/SelectLang'
 import UserMenu from './UserMenu'
 // import styles from './Header.less'
+
+const Wrapper = styled.div`
+  padding: 0 20px;
+  float: right;
+`
 
 const { Header } = Layout
 
@@ -17,7 +23,7 @@ const { Header } = Layout
 const HeaderView = observe(() => {
   // const { collapsed } = basicLayoutStore
   return (
-    <Header style={{}}>
+    <Header style={{ background: '#fff', padding: 0 }}>
       {/* <span className={styles.trigger}>
         <Icon
           className="trigger"
@@ -26,17 +32,11 @@ const HeaderView = observe(() => {
         />
       </span> */}
 
-      <div>
+      <Wrapper>
         <UserMenu />
         <span> </span>
         <SelectLang />
-      </div>
-      <style jsx={true}>{`
-        div {
-          padding: 0 20px;
-          float: right;
-        }
-      `}</style>
+      </Wrapper>
     </Header>
   )
 })
