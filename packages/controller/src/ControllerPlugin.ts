@@ -16,6 +16,7 @@ import { paramTypes } from './constant'
 import { isPromise } from './utils/isPromise'
 import { paramStore } from './stores/paramStore'
 import { RouteBuilder } from './routeBuilder'
+import { isClass } from './utils/isClass'
 
 @Injectable()
 export class ControllerPlugin implements IPlugin {
@@ -30,29 +31,43 @@ export class ControllerPlugin implements IPlugin {
     for (const route of this.routes) {
       const { method, path, instance, fn, target, propertyKey, view } = route
 
-      app[method](path, async (req: Request, res: Response) => {
+      app[method](path, async (req: Request, res: Response, next: any) => {
         const args = getArgs(req, res, target, propertyKey)
         const validationErrors = await getValidationErrors(args)
 
         if (validationErrors.length) {
-          throw new BadRequest('Argument Validation Error', validationErrors)
+          return next(new BadRequest('Argument Validation Error', validationErrors))
         }
 
-        let result = fn.apply(instance, args)
+        // can render     TODO:
+        if (view) return res.render(view)
 
-        result = isPromise(result) ? await result : result
+        try {
+          let result = fn.apply(instance, args)
+          result = isPromise(result) ? await result : result
 
-        // can render
-        if (view) {
-          // TODO:
-          res.render(view)
-          return
-        }
-
-        if (result) {
-          res.send(result)
+          if (result) res.send(result)
+          next()
+        } catch (error) {
+          next(error)
         }
       })
+    }
+
+    applyAfaterMiddleware(app)
+  }
+}
+
+function applyAfaterMiddleware(app: Application) {
+  const { middlewareStore } = app
+  for (const item of middlewareStore) {
+    if (item.type !== 'after') continue
+
+    if (isClass(item.use)) {
+      const instance = Container.get<any>(item.use as any)
+      if (instance.use) app.use(instance.use)
+    } else {
+      app.use((item.use as any).bind(item.instance || null))
     }
   }
 }

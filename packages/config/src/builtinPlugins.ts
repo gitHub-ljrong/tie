@@ -25,4 +25,8 @@ export const builtinPlugins: PluginConfig = [
     package: '@tiejs/open',
     enable: true,
   },
+  {
+    package: '@tiejs/onerror',
+    enable: true,
+  },
 ]

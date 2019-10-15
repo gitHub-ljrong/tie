@@ -42,7 +42,7 @@ export class Loader {
 
     this.app.use(express.static(join(this.app.baseDir, 'src', 'public')))
 
-    this.applyMiddleware()
+    this.applyBeforeMiddleware()
 
     await this.applyMiddlewareDidReady()
   }
@@ -63,9 +63,13 @@ export class Loader {
     }
   }
 
-  private async applyMiddleware() {
+  private async applyBeforeMiddleware() {
     for (const item of this.app.middlewareStore) {
+      // TODO need logger
       if (!item.use) continue
+
+      // only apply type before
+      if (item.type ==='after') continue
 
       if (isClass(item.use)) {
         const instance = Container.get<any>(item.use as any)
