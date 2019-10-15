@@ -13,7 +13,7 @@ GraphQL 在 Tie 中是开箱即用的，下面我们使用 CLI 工具 `tie-cli` 
 使用 `tie-cli` 初始化应用 (选择 minimal-graphql)：
 
 ```bash
-tie new myapp # 选择 minimal-graphql
+tie create myapp # 选择 minimal-graphql
 cd myapp
 npm run dev
 ```

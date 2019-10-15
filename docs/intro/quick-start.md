@@ -8,7 +8,7 @@ sidebar_label: 快速上手
 
 ```bash
 npm i -g tie-cli
-tie new myapp # 选择 minimal-controller
+tie create myapp # 选择 minimal-controller
 cd myapp
 npm run dev
 ```

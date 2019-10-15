@@ -11,7 +11,7 @@ Controller 功能 在 Tie 中是开箱即用的，下面我们使用 CLI 工具 
 使用 `tie-cli` 初始化应用 (选择 minimal-controller)：
 
 ```bash
-tie new myapp # 选择 minimal-controller
+tie create myapp # 选择 minimal-controller
 cd myapp
 npm run dev
 ```

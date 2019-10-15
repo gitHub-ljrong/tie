@@ -13,13 +13,12 @@ sidebar_label: 配置 (Config)
 Tie 根据环境变量 `process.env.NODE_ENV`加载配置，你可以定义多个环境的配置文件。
 
 ```bash
-# src/config
-
+# src/config/
 config
-├── config.default.ts
-├── config.development.ts
-├── config.production.ts
-└── config.test.ts
+  ├── config.default.ts
+  ├── config.development.ts
+  ├── config.production.ts
+  └── config.test.ts
 ```
 
 `config.default.ts` 为默认的配置文件，所有环境都会加载这个配置文件，一般也会作为开发环境的默认配置文件。
