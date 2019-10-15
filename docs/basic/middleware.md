@@ -36,15 +36,41 @@ export default class LoggerMiddleware {
 
 ## 使用中间件
 
-**全局中间件**
+插件配置文件为 `src/config/middleware.ts`:
 
-你可以在配置文件配置全局中间件，中间件的执行顺序根据配置的顺序:
+### 本地中间件
+
+你可以在配置文件配置中间件，中间件的执行顺序根据配置的顺序:
 
 ```js
-import { Injectable } from '@tiejs/common'
+import { MiddlewareConfig } from '@tiejs/common'
 
-@Injectable()
-export default class Config {
-  middlewares: string[] = ['logger']
-}
+const config: MiddlewareConfig = [
+  {
+    name: 'logger',
+  },
+]
+
+export default config
+```
+
+### 第三方中间件
+
+也可以使用第三方中间件:
+
+```js
+import { MiddlewareConfig } from '@tiejs/common'
+import cors from 'cors'
+
+const config: MiddlewareConfig = [
+  {
+    name: 'logger',
+  },
+  {
+    name: 'cors',
+    use: cors(),
+  },
+]
+
+export default config
 ```
