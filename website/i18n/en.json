@@ -31,11 +31,15 @@
       },
       "advance/plugin": {
         "title": "插件",
-        "sidebar_label": "插件"
+        "sidebar_label": "插件 (Plugin)"
       },
       "advance/testing": {
         "title": "单元测试",
         "sidebar_label": "单元测试 (Testing)"
+      },
+      "advance/typeorm": {
+        "title": "TypeORM",
+        "sidebar_label": "TypeORM"
       },
       "advance/validation": {
         "title": "校验",

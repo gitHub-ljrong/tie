@@ -9,6 +9,12 @@
       "basic/middleware",
       "basic/plugin"
     ],
-    "进阶": ["advance/development", "advance/testing", "advance/validation", "advance/plugin"]
+    "进阶": [
+      "advance/development",
+      "advance/testing",
+      "advance/validation",
+      "advance/plugin",
+      "advance/typeorm"
+    ]
   }
 }
