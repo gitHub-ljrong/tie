@@ -15,7 +15,6 @@ export * from './interfaces/MiddlewareFn'
 export * from './interfaces/AppDidReady'
 export * from './interfaces/ServerDidReady'
 export * from './interfaces/ConfigDidLoad'
-export * from './interfaces/ApplyMiddleware'
 export * from './interfaces/MiddlewareDidReady'
 
 export * from './interfaces/IPlugin'

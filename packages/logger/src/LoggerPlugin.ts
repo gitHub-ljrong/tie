@@ -4,7 +4,7 @@ import { LoggerMiddleware } from './LoggerMiddleware'
 @Injectable()
 export class LoggerPlugin {
   constructor(@InjectApp() private app: Application) {
-    let middlewareConfig = this.app.middlewareConfig
+    let { middlewareConfig } = this.app
     middlewareConfig = [{ name: 'logger', use: LoggerMiddleware }, ...middlewareConfig]
   }
 }
