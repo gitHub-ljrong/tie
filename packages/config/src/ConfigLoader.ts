@@ -33,7 +33,8 @@ export class ConfigLoader {
       config = []
     }
 
-    return [...builtinPlugins, ...config]
+    // TODO: check repeat
+    return [...config, ...builtinPlugins]
   }
 
   loadMiddlewareConfig(): MiddlewareConfig {
