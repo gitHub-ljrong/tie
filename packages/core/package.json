@@ -36,6 +36,7 @@
     "@tiejs/dashboard": "^0.1.2",
     "@tiejs/graphql": "^0.1.2",
     "@tiejs/logger": "^0.1.2",
+    "@tiejs/onerror": "^0.0.0",
     "@tiejs/open": "^0.1.2",
     "@tiejs/view": "^0.1.2",
     "chalk": "^2.4.2",
