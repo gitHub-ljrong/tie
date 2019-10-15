@@ -50,4 +50,44 @@ export class CreateUserInput {
 
 ## Resolver 检验
 
-wip...
+Graphql 中的检验和 Controller 中类似：
+
+<!--DOCUSAURUS_CODE_TABS-->
+<!--user.resolver.ts-->
+
+```js
+import { Resolver, Arg, Mutation } from 'type-graphql'
+import { User } from './user.type'
+import { UserService } from './user.service'
+import { CreateUserInput } from 'createUser.input'
+
+@Resolver(() => User)
+export class UserResolver {
+  @Mutation(() => User)
+  async createUser(@Arg('input') input: CreateUserInput): Promise<User> {
+    return await this.userService.createUser(input)
+  }
+}
+```
+
+<!--createUser.input.ts-->
+
+```js
+import { Field, InputType } from 'type-graphql'
+import { IsInt, Min, Max, IsNotEmpty } from 'class-validator'
+
+@InputType()
+export class CreateUser {
+  @Field()
+  @IsNotEmpty({ message: 'Name required' })
+  name: string
+
+  @Field()
+  @IsInt({ message: 'Age should be Int' })
+  @Min(0)
+  @Max(100)
+  age: number
+}
+```
+
+<!--END_DOCUSAURUS_CODE_TABS-->
