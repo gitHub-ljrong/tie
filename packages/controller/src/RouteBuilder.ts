@@ -1,4 +1,4 @@
-import { Container, RouteItem, Injectable } from '@tiejs/common'
+import { Container, RouteItem, Injectable, InjectApp, Application } from '@tiejs/common'
 import globby, { GlobbyOptions } from 'globby'
 import { InjectConfig } from '@tiejs/config'
 import { ControllerConfig } from './interfaces/ControllerConfig'
@@ -10,7 +10,10 @@ import { join } from 'path'
 
 @Injectable()
 export class RouteBuilder {
-  constructor(@InjectConfig('controller') private config: ControllerConfig) {}
+  constructor(
+    @InjectConfig('controller') private config: ControllerConfig,
+    @InjectApp() private app: Application,
+  ) {}
 
   buildRoutes(): RouteItem[] {
     const routes: RouteItem[] = []
@@ -84,6 +87,11 @@ export class RouteBuilder {
       const paths = globby.sync(pattern, opt).map(i => join(cwd, i))
       files = [...files, ...paths]
     }
-    return files
+
+    if (this.app.isProd) {
+      return files.filter(file => file.endsWith('.js'))
+    } else {
+      return files.filter(file => file.endsWith('.ts'))
+    }
   }
 }
