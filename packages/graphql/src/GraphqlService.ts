@@ -4,12 +4,13 @@ import { InjectConfig } from '@tiejs/config'
 import { ApolloServer, Config } from 'apollo-server-express'
 
 import { SchemaBuilder } from './SchemaBuilder'
+import { GraphqlConfig } from './interfaces/GraphqlConfig'
 
 @Injectable()
 export class GraphqlService {
   constructor(
     @InjectLogger('@tiejs/graphql') private logger: Logger,
-    @InjectConfig() private config: any,
+    @InjectConfig('graphql') private config: GraphqlConfig,
     private schemeBuilder: SchemaBuilder,
   ) {}
 
@@ -34,7 +35,7 @@ export class GraphqlService {
         introspection: true,
       }
       const server = new ApolloServer(apolloConfig)
-      const { path, cors } = this.config.graphql
+      const { path, cors } = this.config
 
       server.applyMiddleware({
         app,
