@@ -11,6 +11,8 @@ import {
 import { validateOrReject, ValidationError } from 'class-validator'
 import { plainToClass } from 'class-transformer'
 import { parse } from 'cookie'
+import bodyParser from 'body-parser'
+
 import { BadRequest } from '@tiejs/exception'
 import { paramTypes } from './constant'
 import { isPromise } from './utils/isPromise'
@@ -25,6 +27,8 @@ export class ControllerPlugin implements IPlugin {
     const routeBuilder = Container.get(RouteBuilder)
     this.routes = routeBuilder.buildRoutes()
     app.routerStore = this.routes
+
+    app.use(bodyParser.json())
   }
 
   async middlewareDidReady(app: Application) {
@@ -33,6 +37,7 @@ export class ControllerPlugin implements IPlugin {
 
       app[method](path, async (req: Request, res: Response, next: any) => {
         const args = getArgs(req, res, target, propertyKey)
+
         const validationErrors = await getValidationErrors(args)
 
         if (validationErrors.length) {
