@@ -7,7 +7,7 @@ export class GraphqlPlugin implements IPlugin {
 
   apollerServer: any
 
-  async appDidReady(app: Application) {
+  async middlewareDidReady(app: Application) {
     this.apollerServer = await this.graphqlService.startServer(app)
   }
 }

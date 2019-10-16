@@ -13,7 +13,6 @@ export class GraphqlService {
     private schemeBuilder: SchemaBuilder,
   ) {}
 
-  // TODO: hanlde any
   async startServer(app: Application): Promise<any> {
     try {
       const schema = await this.schemeBuilder.getSchema()
