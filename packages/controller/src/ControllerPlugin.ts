@@ -1,3 +1,4 @@
+import isClass from 'is-class'
 import {
   Injectable,
   IPlugin,
@@ -12,13 +13,12 @@ import { validateOrReject, ValidationError } from 'class-validator'
 import { plainToClass } from 'class-transformer'
 import { parse } from 'cookie'
 import bodyParser from 'body-parser'
+import isPromise from 'is-promise'
 
 import { BadRequest } from '@tiejs/exception'
 import { paramTypes } from './constant'
-import { isPromise } from './utils/isPromise'
 import { paramStore } from './stores/paramStore'
 import { RouteBuilder } from './routeBuilder'
-import { isClass } from './utils/isClass'
 
 @Injectable()
 export class ControllerPlugin implements IPlugin {
