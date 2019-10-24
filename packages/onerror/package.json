@@ -1,6 +1,6 @@
 {
   "name": "@tiejs/onerror",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Error handle for Tie",
   "main": "dist/index.js",
   "scripts": {
@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "@tiejs/common": "^0.1.2",
-    "@tiejs/config": "^0.1.3",
+    "@tiejs/config": "^0.1.4",
     "@tiejs/exception": "0.0.2"
   }
 }
