@@ -21,10 +21,10 @@ export const builtinPlugins: PluginConfig = [
     package: '@tiejs/view',
     enable: true,
   },
-  {
-    package: '@tiejs/open',
-    enable: true,
-  },
+  // {
+  //   package: '@tiejs/open',
+  //   enable: true,
+  // },
   {
     package: '@tiejs/onerror',
     enable: true,
