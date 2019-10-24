@@ -34,6 +34,7 @@
     "apollo-server-express": "^2.9.3",
     "globby": "^10.0.1",
     "graphql": "^14.5.7",
+    "is-class": "0.0.9",
     "tslib": "^1.10.0",
     "type-graphql": "^0.17.5"
   },

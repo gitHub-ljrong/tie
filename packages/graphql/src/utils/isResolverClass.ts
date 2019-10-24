@@ -1,4 +1,4 @@
-import { isClass } from './isClass'
+import isClass from 'is-class'
 
 // TODO: 需要改善
 export function isResolverClass(exportedValue: any) {
