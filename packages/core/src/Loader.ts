@@ -4,7 +4,7 @@ import express from 'express'
 import { PluginStoreBuilder } from './builders/PluginStoreBuilder'
 import { MiddlewareStoreBuilder } from './builders/MiddlewareStoreBuilder'
 import { join } from 'path'
-import { isClass } from './utils/isClass'
+import isClass from 'is-class'
 
 export interface Options {
   port: number
@@ -69,7 +69,7 @@ export class Loader {
       if (!item.use) continue
 
       // only apply type before
-      if (item.type ==='after') continue
+      if (item.type === 'after') continue
 
       if (isClass(item.use)) {
         const instance = Container.get<any>(item.use as any)
