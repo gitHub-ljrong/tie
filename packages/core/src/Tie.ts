@@ -25,6 +25,10 @@ export class Tie {
     return Tie.app
   }
 
+  private static storeServer() {
+    Container.set('TIE_SERVER', Tie.server)
+  }
+
   private static storeApp() {
     Container.set('TIE_APP', Tie.app)
   }
@@ -44,6 +48,9 @@ export class Tie {
 
         resolve(server)
       })
+
+      this.storeServer()
+
       return server
     })
   }
