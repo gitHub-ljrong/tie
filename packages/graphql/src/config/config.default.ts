@@ -4,7 +4,7 @@ import { Injectable } from '@tiejs/common'
 export default class Config {
   graphql = {
     path: '/graphql',
-    cors: false,
+    cors: true,
     resolvers: ['**/*.resolver.{ts,js}'],
   }
 }

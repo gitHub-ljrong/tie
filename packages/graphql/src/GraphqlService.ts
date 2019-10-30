@@ -1,4 +1,4 @@
-import { Injectable, Application } from '@tiejs/common'
+import { Injectable, Application, InjectApp } from '@tiejs/common'
 import { InjectLogger, Logger } from '@tiejs/logger'
 import { InjectConfig } from '@tiejs/config'
 import { ApolloServer, Config } from 'apollo-server-express'
@@ -11,10 +11,11 @@ export class GraphqlService {
   constructor(
     @InjectLogger('@tiejs/graphql') private logger: Logger,
     @InjectConfig('graphql') private config: GraphqlConfig,
+    @InjectApp() private app: Application,
     private schemeBuilder: SchemaBuilder,
   ) {}
 
-  async startServer(app: Application): Promise<any> {
+  async startServer() {
     try {
       const schema = await this.schemeBuilder.getSchema()
 
@@ -38,7 +39,7 @@ export class GraphqlService {
       const { path, cors } = this.config
 
       server.applyMiddleware({
-        app,
+        app: this.app,
         path,
         cors,
       })
@@ -47,6 +48,7 @@ export class GraphqlService {
       return server
     } catch (error) {
       this.logger.error(error)
+      return null
     }
   }
 }
