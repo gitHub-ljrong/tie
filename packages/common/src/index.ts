@@ -6,6 +6,7 @@ export * from './decorators/Inject'
 export * from './decorators/InjectMany'
 export * from './decorators/Injectable'
 export * from './decorators/InjectApp'
+export * from './decorators/InjectServer'
 
 export * from './interfaces/Request'
 export * from './interfaces/Response'
