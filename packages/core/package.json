@@ -1,6 +1,6 @@
 {
   "name": "@tiejs/core",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Tie core",
   "main": "dist/index.js",
   "scripts": {
@@ -33,8 +33,8 @@
     "@tiejs/common": "^0.1.3",
     "@tiejs/config": "^0.1.5",
     "@tiejs/controller": "^0.1.5",
-    "@tiejs/dashboard": "^0.1.5",
-    "@tiejs/graphql": "^0.1.5",
+    "@tiejs/dashboard": "^0.1.6",
+    "@tiejs/graphql": "^0.1.6",
     "@tiejs/logger": "^0.1.4",
     "@tiejs/onerror": "^0.0.3",
     "@tiejs/open": "^0.1.5",

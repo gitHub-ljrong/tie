@@ -1,6 +1,6 @@
 {
   "name": "@tiejs/graphql",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Graphql plugin for ",
   "main": "dist/index.js",
   "scripts": {
