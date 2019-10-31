@@ -27,7 +27,7 @@ export class GraphqlService {
       const apolloConfig: Config = {
         schema,
         tracing: false,
-        context: ({ ctx }) => ctx,
+        context: ctx => ctx,
         playground: {
           settings: {
             'request.credentials': 'include',
