@@ -34,6 +34,7 @@
     "@tiejs/config": "^0.1.5",
     "@tiejs/controller": "^0.1.5",
     "@tiejs/dashboard": "^0.1.6",
+    "@tiejs/exception": "0.0.2",
     "@tiejs/graphql": "^0.1.6",
     "@tiejs/logger": "^0.1.4",
     "@tiejs/onerror": "^0.0.3",
