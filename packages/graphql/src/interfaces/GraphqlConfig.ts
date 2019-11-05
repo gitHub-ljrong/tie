@@ -5,4 +5,5 @@ export interface GraphqlConfig {
   path?: string
   cors?: boolean
   resolvers?: Resolvers
+  debug?: boolean
 }

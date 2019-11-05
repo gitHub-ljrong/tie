@@ -33,6 +33,7 @@ export class GraphqlService {
             'request.credentials': 'include',
           },
         } as any,
+        debug: this.config.debug,
         introspection: true,
       }
       const server = new ApolloServer(apolloConfig)

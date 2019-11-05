@@ -6,7 +6,7 @@ export default class Config {
   graphql: GraphqlConfig = {
     path: '/graphql',
     cors: true,
-    debug: true,
+    debug: false,
     resolvers: ['**/*.resolver.{ts,js}'],
   }
 }
