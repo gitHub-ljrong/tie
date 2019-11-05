@@ -1,3 +1,3 @@
 import { Application } from './Application'
 
-export type AppDidReady = (app: Application) => Promise<any>
+export type AppDidReady = (app: Application) => Promise<any> | any
