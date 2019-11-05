@@ -1,4 +1,5 @@
-import { Injectable, Application, InjectApp } from '@tiejs/common'
+import isClass from 'is-class'
+import { Injectable, Application, InjectApp, Container } from '@tiejs/common'
 import { InjectLogger, Logger } from '@tiejs/logger'
 import { InjectConfig } from '@tiejs/config'
 import { ApolloServer, Config } from 'apollo-server-express'
@@ -45,11 +46,27 @@ export class GraphqlService {
         cors,
       })
 
+      applyAfaterMiddleware(this.app)
+
       this.logger.info('GraphQL server started')
       return server
     } catch (error) {
       this.logger.error(error)
       return null
+    }
+  }
+}
+
+function applyAfaterMiddleware(app: Application) {
+  const { middlewareStore } = app
+  for (const item of middlewareStore) {
+    if (item.type !== 'after') continue
+
+    if (isClass(item.use)) {
+      const instance = Container.get<any>(item.use as any)
+      if (instance.use) app.use(instance.use)
+    } else {
+      app.use((item.use as any).bind(item.instance || null))
     }
   }
 }
