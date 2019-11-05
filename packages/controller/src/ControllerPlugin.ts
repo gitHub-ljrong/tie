@@ -62,16 +62,15 @@ export class ControllerPlugin implements IPlugin {
           return next(new BadRequest('Argument Validation Error', validationErrors))
         }
 
-        // can render     TODO:
-        if (view) return ctx.render(view)
-
         try {
           let result = fn.apply(instance, args.map(i => i.value))
           result = isPromise(result) ? await result : result
 
-          if (result) {
-            ctx.body = result
-          }
+          // can render
+          if (view) return ctx.render(view, result)
+
+          // render result
+          if (result) ctx.body = result
         } catch (error) {
           this.logger.error(error)
           await next()
