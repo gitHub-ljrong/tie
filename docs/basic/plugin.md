@@ -28,7 +28,7 @@ export default config
 简单的插件代码示例：
 
 ```js
-import { Injectable, IPlugin, Middleware, Request, Response, NextFunction } from '@tiejs/common'
+import { Injectable, IPlugin } from '@tiejs/common'
 
 @Injectable()
 export default class LoggerPlugin implements IPlugin {

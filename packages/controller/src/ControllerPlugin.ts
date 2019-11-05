@@ -1,42 +1,60 @@
-import isClass from 'is-class'
 import {
   Injectable,
   IPlugin,
   Application,
-  Request,
-  Response,
   RouteItem,
   Container,
+  Context,
+  InjectApp,
 } from '@tiejs/common'
 
 import { validateOrReject, ValidationError } from 'class-validator'
 import { plainToClass } from 'class-transformer'
 import { parse } from 'cookie'
-import bodyParser from 'body-parser'
+import bodyParser, { Options } from 'koa-bodyparser'
+
 import isPromise from 'is-promise'
+import Router from '@koa/router'
 
 import { BadRequest } from '@tiejs/exception'
 import { paramTypes } from './constant'
 import { paramStore } from './stores/paramStore'
 import { RouteBuilder } from './routeBuilder'
+import { InjectConfig } from '@tiejs/config'
+
+import { InjectLogger, Logger } from '@tiejs/logger'
+
+interface Arg {
+  value: any
+  shouldValidate: boolean
+}
 
 @Injectable()
 export class ControllerPlugin implements IPlugin {
   private routes: RouteItem[] = []
+
+  constructor(
+    @InjectApp() private app: Application,
+    @InjectConfig('body') private body: Options,
+    @InjectLogger('@tiejs/controller') private logger: Logger,
+  ) {
+    this.app.use(bodyParser(this.body))
+  }
+
   async appDidReady(app: Application) {
     const routeBuilder = Container.get(RouteBuilder)
     this.routes = routeBuilder.buildRoutes()
     app.routerStore = this.routes
-
-    app.use(bodyParser.json())
   }
 
   async middlewareDidReady(app: Application) {
+    const router = new Router()
+
     for (const route of this.routes) {
       const { method, path, instance, fn, target, propertyKey, view } = route
 
-      app[method](path, async (req: Request, res: Response, next: any) => {
-        const args = getArgs(req, res, target, propertyKey)
+      router[method](path, async (ctx: Context, next: any) => {
+        const args = getArgs(ctx, target, propertyKey)
 
         const validationErrors = await getValidationErrors(args)
 
@@ -45,59 +63,47 @@ export class ControllerPlugin implements IPlugin {
         }
 
         // can render     TODO:
-        if (view) return res.render(view)
+        if (view) return ctx.render(view)
 
         try {
-          let result = fn.apply(instance, args)
+          let result = fn.apply(instance, args.map(i => i.value))
           result = isPromise(result) ? await result : result
 
-          if (result) res.send(result)
-          next()
+          if (result) {
+            ctx.body = result
+          }
         } catch (error) {
-          next(error)
+          this.logger.error(error)
+          await next()
         }
       })
     }
 
-    applyAfaterMiddleware(app)
+    app.use(router.routes()).use(router.allowedMethods())
   }
 }
 
-function applyAfaterMiddleware(app: Application) {
-  const { middlewareStore } = app
-  for (const item of middlewareStore) {
-    if (item.type !== 'after') continue
-
-    if (isClass(item.use)) {
-      const instance = Container.get<any>(item.use as any)
-      if (instance.use) app.use(instance.use)
-    } else {
-      app.use((item.use as any).bind(item.instance || null))
-    }
-  }
-}
-
-function getVaue(req: Request, res: Response, paramType: string, paramName: string) {
+function getVaue(ctx: Context, paramType: string, paramName: string) {
   const ValueMaps = {
-    [paramTypes.Query]: (req: Request) => (paramName ? req.query[paramName] : { ...req.query }),
-    [paramTypes.Body]: (req: Request) => (paramName ? req.body[paramName] : req.body),
-    [paramTypes.Params]: (req: Request) => (paramName ? req.params[paramName] : req.params),
-    [paramTypes.Cookie]: (req: Request) => {
-      const cookies = parse(req.cookies) || {}
+    [paramTypes.Query]: () => (paramName ? ctx.query[paramName] : { ...ctx.query }),
+    [paramTypes.Body]: () => (paramName ? ctx.request.body[paramName] : ctx.request.body),
+    [paramTypes.Params]: () => (paramName ? ctx.params[paramName] : ctx.params),
+    [paramTypes.Cookie]: () => {
+      const cookies = parse(ctx.headers.cookie) || {}
       return paramName ? cookies[paramName] : cookies
     },
-    [paramTypes.Method]: (req: Request) => req.method,
-    [paramTypes.Session]: (req: Request) => req,
-    [paramTypes.Ctx]: (req: Request) => req,
-    [paramTypes.Req]: (req: Request) => req,
-    [paramTypes.Res]: (_: any, res: Response) => res,
-    [paramTypes.Header]: (req: Request) => req.headers,
+    [paramTypes.Method]: () => ctx.method,
+    [paramTypes.Session]: () => ctx.req, // TODO: session
+    [paramTypes.Ctx]: () => ctx,
+    [paramTypes.Req]: () => ctx.req,
+    [paramTypes.Res]: () => ctx.res,
+    [paramTypes.Header]: () => ctx.headers,
   }
-  return (ValueMaps as any)[paramType](req, res)
+  return (ValueMaps as any)[paramType]()
 }
 
-function getArgs(req: Request, res: Response, target: Object, propertyKey: string): any[] {
-  const args: any[] = []
+function getArgs(ctx: Context, target: Object, propertyKey: string): Arg[] {
+  const args: Arg[] = []
 
   const ParamTypes = paramStore.getParamTypes(target, propertyKey)
 
@@ -110,27 +116,37 @@ function getArgs(req: Request, res: Response, target: Object, propertyKey: strin
 
     if (paramMetadata) {
       for (const paramName of Object.keys(paramMetadata)) {
-        let value = getVaue(req, res, type, paramName)
+        let shouldValidate = false
+        let value = getVaue(ctx, type, paramName)
         const index = paramMetadata[paramName]
         const paramType = ParamTypes[index]
 
+        const builtinTypes = [paramTypes.Ctx, paramTypes.Req, paramTypes.Res, paramTypes.Method]
         try {
-          value = plainToClass(paramType, value)
+          if (!builtinTypes.includes(type)) {
+            shouldValidate = true
+            value = plainToClass(paramType, value)
+          }
         } catch {}
 
-        args[paramMetadata[paramName]] = value
+        args[paramMetadata[paramName]] = {
+          value,
+          shouldValidate,
+        }
       }
     }
   }
   return args
 }
 
-async function getValidationErrors(args: any[]) {
+async function getValidationErrors(args: Arg[]) {
   let validationErrors: ValidationError[] = []
 
   for (const arg of args) {
     try {
-      await validateOrReject(arg)
+      if (arg.shouldValidate) {
+        await validateOrReject(arg)
+      }
     } catch (errors) {
       if (errors && errors.length) {
         validationErrors = [...validationErrors, ...errors]

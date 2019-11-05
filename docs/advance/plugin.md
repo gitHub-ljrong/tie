@@ -11,7 +11,7 @@ Tie 拥有强大的插件系统，利用插件可以更好地让业务逻辑复�
 创建插件非常简单，它只是一个普通的 `Provider`, 下面非常简单的插件的例子：
 
 ```js
-import { Injectable, IPlugin, Middleware, Request, Response, NextFunction } from '@tiejs/common'
+import { Injectable, IPlugin } from '@tiejs/common'
 
 @Injectable()
 export default class LoggerPlugin implements IPlugin {

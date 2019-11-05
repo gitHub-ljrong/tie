@@ -1,9 +1,7 @@
-import { ConfigLoader } from '@tiejs/config'
 import { Application, Container } from '@tiejs/common'
-import express from 'express'
 import { PluginStoreBuilder } from './builders/PluginStoreBuilder'
 import { MiddlewareStoreBuilder } from './builders/MiddlewareStoreBuilder'
-import { join } from 'path'
+// import { join } from 'path'
 import isClass from 'is-class'
 
 export interface Options {
@@ -12,21 +10,7 @@ export interface Options {
 
 export class Loader {
   constructor(private app: Application) {
-    this.app.env = process.env.NODE_ENV || 'development'
-    this.app.isProd = process.env.NODE_ENV === 'production'
-    this.app.baseDir = process.cwd()
-    this.app.port = 5001
-
-    this.app.middlewarePattern = '**/*.middleware.{ts,js}'
-
-    this.app.pluginStore = []
-    this.app.middlewareStore = []
-
-    const configLoader = new ConfigLoader(app)
-
-    this.app.config = configLoader.loadConfig()
-    this.app.middlewareConfig = configLoader.loadMiddlewareConfig()
-    this.app.pluginConfig = configLoader.loadPluginConfig()
+    this.app = app
   }
 
   async init() {
@@ -39,8 +23,6 @@ export class Loader {
     const middlewareStoreBuiler = Container.get(MiddlewareStoreBuilder)
 
     this.app.middlewareStore = await middlewareStoreBuiler.createMiddlewareStore()
-
-    this.app.use(express.static(join(this.app.baseDir, 'src', 'public')))
 
     this.applyBeforeMiddleware()
 
@@ -67,9 +49,6 @@ export class Loader {
     for (const item of this.app.middlewareStore) {
       // TODO need logger
       if (!item.use) continue
-
-      // only apply type before
-      if (item.type === 'after') continue
 
       if (isClass(item.use)) {
         const instance = Container.get<any>(item.use as any)

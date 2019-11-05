@@ -7,9 +7,9 @@ export default class Config {
   constructor(@InjectApp() private app: Application) {}
 
   view: ViewConfig = {
-    dirs: [join(this.app.baseDir, 'src', 'views')],
-    engines: {
-      html: 'handlebars',
+    dir: join(this.app.baseDir, 'src', 'views'),
+    map: {
+      html: 'underscore',
     },
   }
 }

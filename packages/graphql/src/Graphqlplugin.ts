@@ -1,4 +1,4 @@
-import { ApolloServer } from 'apollo-server-express'
+import { ApolloServer } from 'apollo-server-koa'
 import { Injectable, IPlugin } from '@tiejs/common'
 import { GraphqlService } from './GraphqlService'
 import { Server } from 'http'

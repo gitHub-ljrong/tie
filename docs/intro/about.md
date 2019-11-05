@@ -4,20 +4,20 @@ title: 关于 Tie
 sidebar_label: 关于 Tie
 ---
 
-Tie 一个使用 TypeScript 的 Node.js 框架，底层基于 [Express.js](https://github.com/expressjs/express) 和 [TypeDI](https://github.com/typestack/typedi)，核心特性是使用依赖注入组织应用代码。
+Tie 一个使用 TypeScript 的 Node.js 框架，底层基于 [Koa](https://github.com/koajs/koa) 和 [TypeDI](https://github.com/typestack/typedi)，核心特性是使用依赖注入组织应用代码。
 
 ## 特性
 
 - 全面拥抱 TypeScript
 - 依赖注入，易于编写可维护、可测试的代码
-- 基于 Express，易于可以复用 Express 中间件生态
+- 基于 Koa，易于可以复用 Koa 中间件生态
 - 自带插件体系，易于扩展
 
 ## 核心技术
 
 Tie 使用下面这些开源技术，如果你们喜欢它们，我相信你也会爱上 Tie。
 
-- [Express.js](https://github.com/expressjs/express)
+- [Koa](https://github.com/koajs/koa)
 - [TypeDI](https://github.com/typestack/typedi)
 - [TypeGraphQL](https://github.com/MichalLytek/type-graphql)
 - [TypeORM](https://github.com/typeorm/typeorm)

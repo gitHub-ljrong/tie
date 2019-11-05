@@ -1,5 +1,4 @@
-import { Request } from './Request'
-import { Response } from './Response'
+import { Context } from './Context'
 import { NextFunction } from './NextFunction'
 
-export type MiddlewareFn = (req: Request, res: Response, next: NextFunction) => any | void
+export type MiddlewareFn = (ctx: Context, next: NextFunction) => any | void

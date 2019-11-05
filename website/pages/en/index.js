@@ -65,8 +65,8 @@ class HomeSplash extends React.Component {
           <ProjectTitle siteConfig={siteConfig} />
           <ul className="feature">
             <li>
-              <a href="https://github.com/expressjs/express" target="_blank">
-                Express
+              <a href="https://github.com/koajs/koa" target="_blank">
+                Koa
               </a>
             </li>
             <li>

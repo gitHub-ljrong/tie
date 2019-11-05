@@ -1,2 +1,2 @@
-export { Tie } from './Tie'
+export { Appliaction } from './App'
 export { ServerOptions } from './interfaces/ServerOptions'

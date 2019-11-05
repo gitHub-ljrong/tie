@@ -1,3 +1,5 @@
+export type RouterStore = RouteItem[]
+
 export interface RouteItem {
   method: string
   methodName: string

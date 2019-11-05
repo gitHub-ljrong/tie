@@ -6,30 +6,30 @@ sidebar_label: 中间件 (Middleware)
 
 ## 定义中间件
 
-Tie 中间件和 Express 中间件不同的是它一个 `Provider`，为什么要这样设计呢？因为这样你可以注入如何其他`Provider`，并且更容易测试。
+Tie 中间件和 Koa 中间件不同的是它一个 `Provider`，为什么要这样设计呢？因为这样你可以注入如何其他`Provider`，并且更容易测试。
 
-**Express 中间件：**
+**Koa 中间件：**
 
 ```js
-const myLogger = (req, res, next) => {
+const myLogger = async (ctx, next) => {
   console.log('LOGGED')
-  next()
+  await next()
 }
 ```
 
 **Tie 中间件：**
 
-Tie 中间件文件默认的命名格式必须为 `xxx.middleware.ts`，每个中间件都有个名字，比如中间件 `resTime.middleware.ts` 名字为 `resTime`。
+Tie 中间件文件默认的命名格式必须为 `xxx.middleware.ts`，每个中间件都有个名字，比如中间件 `logger.middleware.ts` 名字为 `logger`。
 
 ```js
 // logger.middleware.ts
-import { Injectable, Request, Response, NextFunction } from '@tiejs/common'
+import { Injectable, Context, NextFunction } from '@tiejs/common'
 
 @Injectable()
 export default class LoggerMiddleware {
-  async use(req: Request, res: Response, next: NextFunction) {
+  async use(ctx: Context, next: NextFunction) {
     console.log('LOGGED')
-    next()
+    await next()
   }
 }
 ```

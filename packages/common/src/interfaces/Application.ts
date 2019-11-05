@@ -1,22 +1,23 @@
-import { Application as App } from 'express'
+import KoaApp from 'koa'
 import { PluginConfig } from './PluginConfig'
 import { PluginStore } from './PluginStore'
 import { MiddlewareStore } from './MiddlewareStore'
 import { MiddlewareConfig } from './MiddlewareConfig'
-import { RouteItem } from './RouteItem'
+import { RouterStore } from './RouterStore'
+import { Server } from 'http'
 
-export interface Application extends App {
-  env: string | undefined
+export interface Application extends KoaApp {
+  server: Server | null
   isProd: boolean
   config: any
   baseDir: string
   middlewarePattern: string
-  pluginPattern: string
+  // pluginPattern: string
   middlewareConfig: MiddlewareConfig
   middlewareStore: MiddlewareStore
   pluginConfig: PluginConfig
   pluginStore: PluginStore
-  routerStore: RouteItem[]
+  routerStore: RouterStore
   port: number
-  start: () => any
+  // start: () => any
 }

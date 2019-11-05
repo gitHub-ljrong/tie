@@ -13,20 +13,12 @@ export const builtinPlugins: PluginConfig = [
     package: '@tiejs/logger',
     enable: true,
   },
-  {
-    package: '@tiejs/dashboard',
-    enable: true,
-  },
-  {
-    package: '@tiejs/view',
-    enable: true,
-  },
   // {
-  //   package: '@tiejs/open',
+  //   package: '@tiejs/dashboard',
   //   enable: true,
   // },
   {
-    package: '@tiejs/onerror',
+    package: '@tiejs/view',
     enable: true,
   },
 ]

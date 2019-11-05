@@ -44,8 +44,8 @@ type SupportedTemplateEngines =
   | 'whiskers'
 
 export interface ViewConfig {
-  dirs: string[]
-  engines: {
+  dir: string
+  map: {
     [viewEngine: string]: SupportedTemplateEngines
   }
 }

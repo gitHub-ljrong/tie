@@ -1,1 +1,1 @@
-export { NextFunction } from 'express'
+export type NextFunction = () => Promise<any>
