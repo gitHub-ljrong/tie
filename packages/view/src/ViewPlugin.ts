@@ -9,9 +9,6 @@ export class ViewPlugin implements IPlugin {
   constructor(@InjectConfig('view') private viewConfig: ViewConfig) {}
 
   async configDidLoad(app: Application) {
-    if (!this.viewConfig) {
-      return
-    }
     const { dir, map } = this.viewConfig
 
     app.use(

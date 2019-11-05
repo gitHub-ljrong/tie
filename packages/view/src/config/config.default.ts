@@ -9,7 +9,7 @@ export default class Config {
   view: ViewConfig = {
     dir: join(this.app.baseDir, 'src', 'views'),
     map: {
-      html: 'underscore',
+      html: 'handlebars',
     },
   }
 }

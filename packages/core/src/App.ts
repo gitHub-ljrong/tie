@@ -1,6 +1,13 @@
 import Koa from 'koa'
 import { Server } from 'http'
-import { Container, MiddlewareStore, PluginStore, RouterStore } from '@tiejs/common'
+import {
+  Container,
+  MiddlewareStore,
+  PluginStore,
+  RouterStore,
+  MiddlewareConfig,
+  PluginConfig,
+} from '@tiejs/common'
 import { coreLogger } from '@tiejs/logger'
 import { ConfigLoader } from '@tiejs/config'
 import chalk from 'chalk'
@@ -17,7 +24,6 @@ export class Appliaction extends Koa {
   env = process.env.NODE_ENV || 'development'
   isProd = process.env.NODE_ENV === 'production'
   baseDir = process.cwd()
-  port = 5001
 
   middlewarePattern = '**/*.middleware.{ts,js}'
 
@@ -25,14 +31,20 @@ export class Appliaction extends Koa {
   middlewareStore: MiddlewareStore = []
   routerStore: RouterStore = []
 
-  configLoader: ConfigLoader = new ConfigLoader(this)
-  config = this.configLoader.loadConfig()
-  middlewareConfig = this.configLoader.loadMiddlewareConfig()
-  pluginConfig = this.configLoader.loadPluginConfig()
+  config: any
+  port: number
+  middlewareConfig: MiddlewareConfig
+  pluginConfig: PluginConfig
 
   constructor() {
     super()
+    const configLoader = new ConfigLoader(this)
     this.storeApp()
+
+    this.config = configLoader.loadConfig()
+    this.port = this.config.port || 5001
+    this.middlewareConfig = configLoader.loadMiddlewareConfig()
+    this.pluginConfig = configLoader.loadPluginConfig()
   }
 
   private storeServer() {
@@ -46,7 +58,7 @@ export class Appliaction extends Koa {
   async bootstrap() {
     const t1 = Date.now()
     const time = (t1 - this.t0) / 1000
-    const port = 3000
+    const { port } = this
 
     await new Loader(this).init()
 

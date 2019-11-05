@@ -60,7 +60,7 @@ export class ConfigLoader {
     try {
       const ConfigClass = require(path).default
       return Container.get(ConfigClass)
-    } catch {
+    } catch (error) {
       return {}
     }
   }
