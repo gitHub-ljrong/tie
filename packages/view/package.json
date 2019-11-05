@@ -1,6 +1,6 @@
 {
   "name": "@tiejs/view",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Tie view plugin",
   "main": "dist/index.js",
   "scripts": {
@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "@tiejs/common": "^0.2.0",
-    "@tiejs/config": "^0.2.0",
+    "@tiejs/config": "^0.2.1",
     "koa-views": "^6.2.1"
   }
 }

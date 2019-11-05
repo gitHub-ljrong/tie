@@ -1,6 +1,6 @@
 {
   "name": "@tiejs/config",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Tie config tool",
   "main": "dist/index.js",
   "scripts": {
