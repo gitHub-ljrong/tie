@@ -65,10 +65,11 @@ export class Appliaction extends Koa {
     this.server = this.listen(port, () => {
       const msg = `server started on ${cyan(`http://127.0.0.1:${port}`)} (${time}s)`
       coreLogger.info(msg)
+
       // TODO: too hack
-      //  Tie.app.pluginStore.forEach(item => {
-      //    item.serverDidReady && item.serverDidReady.call(item.instance, Tie.app, server)
-      //  })
+      this.pluginStore.forEach(item => {
+        item.serverDidReady && item.serverDidReady.call(item.instance, this, this.server as Server)
+      })
     })
 
     this.storeServer()
