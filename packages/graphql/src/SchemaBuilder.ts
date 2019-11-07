@@ -1,13 +1,16 @@
+import { join } from 'path'
 import { Injectable, Container, InjectApp, Application } from '@tiejs/common'
 import { InjectLogger, Logger } from '@tiejs/logger'
 import { InjectConfig } from '@tiejs/config'
 import globby, { GlobbyOptions } from 'globby'
 
 import { buildSchema } from 'type-graphql'
-import { GraphQLSchema } from 'graphql'
+import { extendSchema, parse, GraphQLSchema } from 'graphql'
 import { GraphqlConfig } from './interfaces/GraphqlConfig'
 import { isResolverClass } from './utils/isResolverClass'
-import { join } from 'path'
+import addDirective from './utils/addDirective'
+import { GraphQLISODateTime } from './scalars/isodate'
+import { GraphQLTimestamp } from './scalars/timestamp'
 
 @Injectable()
 export class SchemaBuilder {
@@ -17,8 +20,29 @@ export class SchemaBuilder {
     @InjectApp() private app: Application,
   ) {}
 
+  private setDirective(schema: GraphQLSchema) {
+    const { typeDefs } = this.config
+    if (typeDefs) {
+      schema = extendSchema(schema, parse(typeDefs))
+    }
+    const resolverMap = this.config.directives
+    if (resolverMap && Object.keys(resolverMap).length) {
+      return addDirective(schema, resolverMap || {})
+    }
+    return schema
+  }
+
   async getSchema() {
     let schema: GraphQLSchema
+    const { scalarsMap = [], dateScalarMode } = this.config
+
+    const defaultScalarMap = [
+      {
+        type: Date,
+        scalar: dateScalarMode === 'timestamp' ? GraphQLTimestamp : GraphQLISODateTime,
+      },
+    ]
+
     const resolvers = await this.getResolverClass()
     if (!resolvers.length) {
       this.logger.warn('No Resolver found!')
@@ -27,12 +51,13 @@ export class SchemaBuilder {
 
     schema = await buildSchema({
       resolvers,
+      scalarsMap: [...defaultScalarMap, ...scalarsMap],
       dateScalarMode: 'isoDate',
       emitSchemaFile: true,
       container: Container,
     })
 
-    return schema
+    return this.setDirective(schema)
   }
 
   async loadResolverFiles() {
