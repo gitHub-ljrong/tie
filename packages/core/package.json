@@ -1,6 +1,6 @@
 {
   "name": "@tiejs/core",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Tie core",
   "main": "dist/index.js",
   "scripts": {
@@ -30,13 +30,13 @@
     "dist"
   ],
   "dependencies": {
-    "@tiejs/common": "^0.2.0",
-    "@tiejs/config": "^0.2.1",
-    "@tiejs/controller": "^0.2.1",
-    "@tiejs/exception": "0.0.2",
-    "@tiejs/graphql": "^0.2.2",
-    "@tiejs/logger": "^0.2.0",
-    "@tiejs/view": "^0.2.1",
+    "@tiejs/common": "^0.2.1",
+    "@tiejs/config": "^0.2.2",
+    "@tiejs/controller": "^0.2.2",
+    "@tiejs/exception": "^0.0.3",
+    "@tiejs/graphql": "^0.2.3",
+    "@tiejs/logger": "^0.2.1",
+    "@tiejs/view": "^0.2.2",
     "chalk": "^2.4.2",
     "fs-jetpack": "^2.2.3",
     "globby": "^10.0.1",
