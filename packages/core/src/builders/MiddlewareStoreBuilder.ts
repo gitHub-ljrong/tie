@@ -1,4 +1,4 @@
-import { join } from 'path'
+import { join, sep } from 'path'
 import globby, { GlobbyOptions } from 'globby'
 import { Injectable, InjectApp, Application, MiddlewareConfigItem } from '@tiejs/common'
 import { Container, MiddlewareStore, MiddlewareStoreItem } from '@tiejs/common'
@@ -26,7 +26,7 @@ export class MiddlewareStoreBuilder {
     if (use) return item
 
     const middlewareFiles = this.scanMiddlewareFiles()
-    const path = middlewareFiles.find(item => item.includes(`/${name}.middleware`))
+    const path = middlewareFiles.find(item => item.includes(`${sep}${name}.middleware`))
 
     if (!path) {
       throw new Error(
