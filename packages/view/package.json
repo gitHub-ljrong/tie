@@ -1,6 +1,6 @@
 {
   "name": "@tiejs/view",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Tie view plugin",
   "main": "index.js",
   "scripts": {
