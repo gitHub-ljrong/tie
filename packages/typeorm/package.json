@@ -1,8 +1,8 @@
 {
   "name": "@tiejs/typeorm",
   "version": "0.2.1",
-  "description": "Typeorm plugin for ",
-  "main": "dist/index.js",
+  "description": "Typeorm plugin for Tie",
+  "main": "index.js",
   "scripts": {
     "dev": "tsnl dev",
     "build": "tsnl build",
@@ -24,9 +24,7 @@
     "trailingComma": "all",
     "printWidth": 100
   },
-  "files": [
-    "dist"
-  ],
+  "files": [],
   "dependencies": {
     "@tiejs/common": "^0.2.1",
     "@tiejs/logger": "^0.2.1",

@@ -6,10 +6,11 @@ import { ctxLogger } from './loggers/ctxLogger'
 export class LoggerMiddleware implements IMiddleware {
   async use(ctx: Context, next: NextFunction) {
     ctx.logger = {} as Logger
+
     const levels = ['debug', 'info', 'trace', 'warn', 'error']
     for (const level of levels) {
-      ctx.logger[level] = (...msg: any[]) => {
-        ctxLogger[level]({
+      ;(ctx.logger as any)[level] = (...msg: any[]) => {
+        ;(ctxLogger as any)[level]({
           ...getMsg(...msg),
           request: ctx.req,
         })

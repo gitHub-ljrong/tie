@@ -11,8 +11,12 @@ export class TypeormPlugin implements IPlugin {
   }
 
   private async connectDB(app: Application) {
+
     const config = this.handleConfig(app.config.typeorm, app.config.env)
     useContainer(Container)
+    if (!config) {
+      this.logger.error('database config not found')
+    }
 
     try {
       await createConnection(config)

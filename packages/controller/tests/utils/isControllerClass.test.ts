@@ -1,6 +1,6 @@
 import 'reflect-metadata'
-import { isControllerClass } from '../../src/utils/isControllerClass'
-import { Controller } from '../../src'
+import { isControllerClass } from '../../utils/isControllerClass'
+import { Controller } from '../..'
 
 class Test1 {}
 

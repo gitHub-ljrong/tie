@@ -19,7 +19,6 @@ export class PluginStoreBuilder {
   constructor(@InjectApp() private app: Application) {}
 
   requireFile(file: string) {
-
     try {
       if (require(file).default) {
         return require(file).default

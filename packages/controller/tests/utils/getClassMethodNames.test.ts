@@ -1,5 +1,5 @@
 import 'reflect-metadata'
-import { getClassMethodNames } from '../../src/utils/getClassMethodNames'
+import { getClassMethodNames } from '../../utils/getClassMethodNames'
 
 class Test {
   constructor() {}

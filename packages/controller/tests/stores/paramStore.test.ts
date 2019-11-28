@@ -1,6 +1,6 @@
 import 'reflect-metadata'
-import { paramStore, paramTypes } from '../../src/stores/paramStore'
-import { Query } from '../../src'
+import { paramStore, paramTypes } from '../../stores/paramStore'
+import { Query } from '../..'
 
 class UserController {
   getUser(@Query() query: any) {

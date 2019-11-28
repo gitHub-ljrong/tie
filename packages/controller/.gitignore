@@ -3,4 +3,5 @@
 
 coverage
 yarn.lock
-dist/
+*.js
+*d.ts

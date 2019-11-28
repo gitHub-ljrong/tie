@@ -1,5 +1,5 @@
 import 'reflect-metadata'
-import { controllerStore } from '../../src/stores/controllerStore'
+import { controllerStore } from '../../stores/controllerStore'
 
 class Test {}
 

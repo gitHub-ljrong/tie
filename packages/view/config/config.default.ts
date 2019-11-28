@@ -7,7 +7,7 @@ export default class Config {
   constructor(@InjectApp() private app: Application) {}
 
   view: ViewConfig = {
-    dir: join(this.app.baseDir, 'src', 'views'),
+    dir: join(this.app.baseDir, 'views'),
     map: {
       html: 'handlebars',
     },

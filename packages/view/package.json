@@ -2,7 +2,7 @@
   "name": "@tiejs/view",
   "version": "0.2.2",
   "description": "Tie view plugin",
-  "main": "dist/index.js",
+  "main": "index.js",
   "scripts": {
     "dev": "tsnl dev",
     "build": "tsnl build",

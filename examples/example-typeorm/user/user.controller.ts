@@ -11,6 +11,7 @@ export class HomeController {
 
   @Get('/users')
   async users() {
+    console.log('user control....');
     return await this.userService.queryUser()
   }
 

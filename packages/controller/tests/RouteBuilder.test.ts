@@ -1,7 +1,7 @@
 import 'reflect-metadata'
-import { RouteBuilder } from '../src/RouteBuilder'
+import { RouteBuilder } from '../RouteBuilder'
 
-import { Controller, Get } from '../src'
+import { Controller, Get } from '..'
 
 @Controller('base')
 export class HomeController {

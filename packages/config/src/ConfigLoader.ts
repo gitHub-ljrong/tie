@@ -18,14 +18,14 @@ export class ConfigLoader {
   }
 
   loadConfig() {
-    let envConfig = this.getLocalConfigByPattern(`**/*/config/config.${this.env}.${this.ext}`)
-    let defaultConfig = this.getLocalConfigByPattern(`**/*/config/config.default.${this.ext}`)
+    let envConfig = this.getLocalConfigByPattern(`config/config.${this.env}.${this.ext}`)
+    let defaultConfig = this.getLocalConfigByPattern(`config/config.default.${this.ext}`)
     const pluginConfig = this.getConfigFromPlugin(this.env, this.baseDir)
     return extend(true, pluginConfig, defaultConfig, envConfig)
   }
 
   loadPluginConfig(): PluginConfig {
-    const configPath = join(this.baseDir, 'src', 'config', `plugin.${this.ext}`)
+    const configPath = join(this.baseDir, 'config', `plugin.${this.ext}`)
     let config: any
     try {
       config = require(configPath).default
@@ -38,7 +38,7 @@ export class ConfigLoader {
   }
 
   loadMiddlewareConfig(): MiddlewareConfig {
-    const configPath = join(this.baseDir, 'src', 'config', `middleware.${this.ext}`)
+    const configPath = join(this.baseDir, 'config', `middleware.${this.ext}`)
     try {
       return require(configPath).default
     } catch (error) {
@@ -78,9 +78,9 @@ export class ConfigLoader {
     for (const item of pluginConfig) {
       if (!item.package) continue
       const packageDir = join(baseDir, 'node_modules', item.package)
-      let envConfig = this.getConfigByPath(join(packageDir, 'dist', 'config', `config.${env}.js`))
+      let envConfig = this.getConfigByPath(join(packageDir, 'config', `config.${env}.js`))
       let defaultConfig = this.getConfigByPath(
-        join(packageDir, 'dist', 'config', 'config.default.js'),
+        join(packageDir, 'config', 'config.default.js'),
       )
 
       config = extend(true, config, defaultConfig, envConfig)
