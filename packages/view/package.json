@@ -23,7 +23,8 @@
     "printWidth": 100
   },
   "files": [
-    "dist"
+    "**/*.js",
+    "**/*.d.ts"
   ],
   "devDependencies": {
     "@types/hbs": "^4.0.1",

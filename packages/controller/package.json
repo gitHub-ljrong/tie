@@ -27,7 +27,8 @@
     "printWidth": 100
   },
   "files": [
-    "dist"
+    "**/*.js",
+    "**/*.d.ts"
   ],
   "peerDependencies": {
     "class-validator": "^0.11.0"

@@ -24,7 +24,10 @@
     "trailingComma": "all",
     "printWidth": 100
   },
-  "files": [],
+  "files": [
+    "**/*.js",
+    "**/*.d.ts"
+  ],
   "dependencies": {
     "@tiejs/common": "^0.2.1",
     "@tiejs/logger": "^0.3.0",

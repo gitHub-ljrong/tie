@@ -21,7 +21,8 @@
     "printWidth": 100
   },
   "files": [
-    "dist"
+    "**/*.js",
+    "**/*.d.ts"
   ],
   "devDependencies": {
     "tsnl": "1.2.1",
