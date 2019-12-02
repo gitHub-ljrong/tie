@@ -36,7 +36,7 @@ export default class LoggerMiddleware {
 
 ## 使用中间件
 
-插件配置文件为 `src/config/middleware.ts`:
+插件配置文件为 `config/middleware.ts`:
 
 ### 本地中间件
 

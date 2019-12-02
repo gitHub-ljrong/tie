@@ -13,7 +13,7 @@ sidebar_label: 配置 (Config)
 Tie 根据环境变量 `process.env.NODE_ENV`加载配置，你可以定义多个环境的配置文件。
 
 ```bash
-# src/config/
+# config/
 config
   ├── config.default.ts
   ├── config.development.ts

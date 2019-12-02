@@ -50,8 +50,8 @@ export class ProfileService {
 <!--user.service.test.ts-->
 
 ```js
-import { UserService } from '../src/user.service'
-import { ProfileService } from '../src/profile.service'
+import { UserService } from '../user.service'
+import { ProfileService } from '../profile.service'
 
 describe('UserService', () => {
   test('getUser()', () => {
@@ -87,8 +87,8 @@ npm i @tiejs/testing -D
 
 ```js
 import { Tester } from '@tiejs/testing'
-import { UserService } from '../src/user.service'
-import { ProfileService } from '../src/profile.service'
+import { UserService } from '../user.service'
+import { ProfileService } from '../profile.service'
 
 describe('UserService', () => {
   test('getUserPhone()', () => {

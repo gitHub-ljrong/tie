@@ -8,7 +8,7 @@ sidebar_label: 插件 (Plugin)
 
 ## 插件配置
 
-插件配置文件为 `src/config/plugin.ts`:
+插件配置文件为 `config/config/plugin.ts`:
 
 ```js
 import { PluginConfig } from '@tiejs/common'

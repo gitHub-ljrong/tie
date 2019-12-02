@@ -41,7 +41,7 @@ npm i @tiejs/typeorm
 
 ## 配置插件
 
-在配置文件 `src/config/plugin.ts` 配置插件：
+在配置文件 `config/plugin.ts` 配置插件：
 
 ```js
 import { PluginConfig } from '@tiejs/common'
@@ -58,7 +58,7 @@ export default config
 
 ## 配置数据库连接
 
-在配置文件 `src/config/config.default.ts` 配置数据库连接：
+在配置文件 `config/config.default.ts` 配置数据库连接：
 
 ```js
 import { Injectable } from '@tiejs/common'
@@ -74,13 +74,13 @@ export default class Config {
     database: 'TODO',
     synchronize: false,
     logging: true,
-    entities: ['src/**/*.entity.ts'],
-    migrations: ['src/migration/**/*.ts'],
-    subscribers: ['src/subscriber/**/*.ts'],
+    entities: ['entity/**/*.entity.ts'],
+    migrations: ['/migration/**/*.ts'],
+    subscribers: ['/subscriber/**/*.ts'],
     cli: {
-      entitiesDir: 'src/entity',
-      migrationsDir: 'src/migration',
-      subscribersDir: 'src/subscriber',
+      entitiesDir: 'entity',
+      migrationsDir: 'migration',
+      subscribersDir: 'subscriber',
     },
   }
 }
@@ -88,7 +88,7 @@ export default class Config {
 
 ### 创建 Entity
 
-**`src/user/user.entity.ts`**
+**`user/user.entity.ts`**
 
 ```js
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn } from 'typeorm'
