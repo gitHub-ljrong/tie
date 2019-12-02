@@ -16,10 +16,10 @@
     "printWidth": 100
   },
   "dependencies": {
-    "@tiejs/common": "^0.1.2",
-    "@tiejs/controller": "^0.1.4",
-    "@tiejs/core": "^0.1.4",
-    "@tiejs/graphql": "^0.1.4",
-    "tie-cli": "0.0.5"
+    "@tiejs/common": "^0.2.1",
+    "@tiejs/controller": "^0.3.1",
+    "@tiejs/core": "^0.3.1",
+    "@tiejs/graphql": "^0.3.1",
+    "tie-cli": "0.1.0"
   }
 }

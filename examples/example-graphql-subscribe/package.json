@@ -1,5 +1,5 @@
 {
-  "name": "app",
+  "name": "example-subcribe",
   "scripts": {
     "dev": "tie dev",
     "build": "tie build",
@@ -16,9 +16,7 @@
     "printWidth": 100
   },
   "dependencies": {
-    "@tiejs/common": "^0.2.1",
     "@tiejs/core": "^0.3.1",
-    "@tiejs/graphql": "^0.3.1",
-    "tie-cli": "0.1.0"
+    "tie-cli": "^0.1.0"
   }
 }
