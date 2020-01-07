@@ -4,7 +4,7 @@ import { InjectLogger, Logger } from '@tiejs/logger'
 import { InjectConfig } from '@tiejs/config'
 import globby, { GlobbyOptions } from 'globby'
 
-import { buildSchema } from 'type-graphql'
+import { buildSchema, BuildSchemaOptions } from 'type-graphql'
 import { extendSchema, parse, GraphQLSchema } from 'graphql'
 import { GraphqlConfig } from './interfaces/GraphqlConfig'
 import { isResolverClass } from './utils/isResolverClass'
@@ -34,7 +34,12 @@ export class SchemaBuilder {
 
   async getSchema() {
     let schema: GraphQLSchema
-    const { scalarsMap = [], dateScalarMode } = this.config
+    const {
+      scalarsMap = [],
+      emitSchemaFile = true,
+      dateScalarMode = 'isoDate',
+      pubSub,
+    } = this.config
 
     const defaultScalarMap = [
       {
@@ -49,13 +54,17 @@ export class SchemaBuilder {
       return null
     }
 
-    schema = await buildSchema({
+    const options: BuildSchemaOptions = {
       resolvers,
       scalarsMap: [...defaultScalarMap, ...scalarsMap],
-      dateScalarMode: 'isoDate',
-      emitSchemaFile: true,
+      dateScalarMode,
+      emitSchemaFile,
       container: Container,
-    })
+    }
+
+    if (pubSub) options.pubSub = pubSub
+
+    schema = await buildSchema(options)
 
     return this.setDirective(schema)
   }
