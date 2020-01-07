@@ -17,6 +17,10 @@ export class ConfigLoader {
     this.baseDir = app.baseDir
   }
 
+  private mergePluginConfig(builtinPlugins: PluginConfig, userPlugins: PluginConfig): PluginConfig {
+    return [...builtinPlugins, ...userPlugins]
+  }
+
   loadConfig() {
     let envConfig = this.getLocalConfigByPattern(`config/config.${this.env}.${this.ext}`)
     let defaultConfig = this.getLocalConfigByPattern(`config/config.default.${this.ext}`)
@@ -33,8 +37,7 @@ export class ConfigLoader {
       config = []
     }
 
-    // TODO: check repeat
-    const plugins: PluginConfig = [...config, ...builtinPlugins]
+    const plugins = this.mergePluginConfig(builtinPlugins, config)
     return plugins.filter(i => i.enable)
   }
 
