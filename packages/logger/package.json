@@ -1,6 +1,6 @@
 {
   "name": "@tiejs/logger",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Logger for Tie",
   "main": "dist/index.js",
   "scripts": {
@@ -29,7 +29,7 @@
     "typescript": "^3.6.4"
   },
   "dependencies": {
-    "@tiejs/common": "^0.2.1",
+    "@tiejs/common": "^0.2.2",
     "source-map-support": "^0.5.16",
     "ts-log-debug": "^5.1.1"
   }
