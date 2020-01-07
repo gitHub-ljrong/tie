@@ -34,7 +34,8 @@ export class ConfigLoader {
     }
 
     // TODO: check repeat
-    return [...config, ...builtinPlugins]
+    const plugins: PluginConfig = [...config, ...builtinPlugins]
+    return plugins.filter(i => i.enable)
   }
 
   loadMiddlewareConfig(): MiddlewareConfig {
@@ -79,9 +80,7 @@ export class ConfigLoader {
       if (!item.package) continue
       const packageDir = join(baseDir, 'node_modules', item.package)
       let envConfig = this.getConfigByPath(join(packageDir, 'config', `config.${env}.js`))
-      let defaultConfig = this.getConfigByPath(
-        join(packageDir, 'config', 'config.default.js'),
-      )
+      let defaultConfig = this.getConfigByPath(join(packageDir, 'config', 'config.default.js'))
 
       config = extend(true, config, defaultConfig, envConfig)
     }
