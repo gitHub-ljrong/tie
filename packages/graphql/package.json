@@ -1,6 +1,6 @@
 {
   "name": "@tiejs/graphql",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Graphql plugin for tie",
   "main": "index.js",
   "scripts": {

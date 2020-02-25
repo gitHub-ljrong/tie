@@ -1,6 +1,6 @@
 {
   "name": "@tiejs/typeorm",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Typeorm plugin for Tie",
   "main": "index.js",
   "scripts": {
