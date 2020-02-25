@@ -32,7 +32,7 @@
     "@tiejs/common": "^0.2.2",
     "@tiejs/logger": "^0.3.2",
     "mysql": "^2.17.1",
-    "typeorm": "^0.2.19",
+    "typeorm": "^0.2.22",
     "typeorm-typedi-extensions": "^0.2.3"
   },
   "devDependencies": {
