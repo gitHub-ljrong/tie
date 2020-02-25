@@ -5,9 +5,10 @@ import { GraphqlConfig } from '../interfaces/GraphqlConfig'
 export default class Config {
   graphql: GraphqlConfig = {
     path: '/graphql',
+    dateScalarMode: 'isoDate',
     cors: true,
     debug: false,
     resolvers: ['**/*.resolver.{js}'],
-    directives: []
+    directives: [],
   }
 }

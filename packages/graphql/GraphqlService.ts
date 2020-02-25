@@ -17,7 +17,11 @@ export class GraphqlService {
 
   async startServer() {
     try {
+      const t0 = Date.now()
       const schema = await this.schemeBuilder.getSchema()
+
+      const t1 = Date.now()
+      this.logger.info(`loadResolverFiles time: ${(t1 - t0) / 1000}s`)
 
       if (!schema) {
         this.logger.warn('No Schema found')

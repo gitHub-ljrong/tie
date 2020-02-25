@@ -72,6 +72,7 @@ export class SchemaBuilder {
   async loadResolverFiles() {
     let files: string[] = []
     let cwd: string = process.cwd()
+    const t0 = Date.now()
     const { resolvers } = this.config
 
     if (typeof resolvers === 'undefined') return files
@@ -87,6 +88,8 @@ export class SchemaBuilder {
       const paths = globby.sync(pattern, opt).map(i => join(cwd, i))
       files = [...files, ...paths]
     }
+    const t1 = Date.now()
+    this.logger.info(`loadResolverFiles time: ${(t1 - t0) / 1000}s`)
     return files
   }
 
