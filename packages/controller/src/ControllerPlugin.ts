@@ -19,7 +19,7 @@ import Router from '@koa/router'
 import { BadRequest } from '@tiejs/exception'
 import { paramTypes } from './constant'
 import { paramStore } from './stores/paramStore'
-import { RouteBuilder } from './routeBuilder'
+import { RouteBuilder } from './RouteBuilder'
 import { InjectConfig } from '@tiejs/config'
 
 import { InjectLogger, Logger } from '@tiejs/logger'

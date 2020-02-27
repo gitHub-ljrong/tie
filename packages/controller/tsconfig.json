@@ -1,7 +1,7 @@
 {
   "compileOnSave": true,
   "compilerOptions": {
-    "outDir": "./",
+    "outDir": "./dist",
     "target": "es2017",
     "module": "commonjs",
     "lib": ["esnext"],
@@ -30,5 +30,5 @@
     "esModuleInterop": true,
     "importHelpers": true
   },
-  "exclude": ["node_modules", "tests"]
+  "exclude": ["node_modules*", "tests", "dist"]
 }

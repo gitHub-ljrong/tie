@@ -2,7 +2,7 @@
   "name": "@tiejs/controller",
   "version": "0.3.5",
   "description": "Controller plugin for Tie.js",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "dev": "tsnl dev",
     "build": "tsnl build",
@@ -27,8 +27,7 @@
     "printWidth": 100
   },
   "files": [
-    "**/*.js",
-    "**/*.d.ts"
+    "dist"
   ],
   "peerDependencies": {
     "class-validator": "^0.11.0"
