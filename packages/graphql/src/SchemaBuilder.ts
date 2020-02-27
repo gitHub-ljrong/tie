@@ -8,14 +8,18 @@ import { GraphqlConfig } from './interfaces/GraphqlConfig'
 import addDirective from './utils/addDirective'
 import { GraphQLISODateTime } from './scalars/isodate'
 import { GraphQLTimestamp } from './scalars/timestamp'
+import { defaultConfig } from './config.default'
 
 @Injectable()
 export class SchemaBuilder {
+  config: GraphqlConfig
   constructor(
     @InjectLogger('@tiejs/graphql') private logger: Logger,
-    @InjectConfig('graphql') private config: GraphqlConfig,
+    @InjectConfig('graphql') private graphqlqlConfig: GraphqlConfig,
     @InjectApp() private app: Application,
-  ) {}
+  ) {
+    this.config = { ...defaultConfig, ...this.graphqlqlConfig }
+  }
 
   private setDirective(schema: GraphQLSchema) {
     const { typeDefs } = this.config

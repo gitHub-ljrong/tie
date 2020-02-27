@@ -2,7 +2,7 @@
   "name": "@tiejs/graphql",
   "version": "0.3.5",
   "description": "Graphql plugin for tie",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "dev": "tsnl dev",
     "build": "tsnl build",
@@ -25,8 +25,7 @@
     "printWidth": 100
   },
   "files": [
-    "**/*.js",
-    "**/*.d.ts"
+    "dist"
   ],
   "dependencies": {
     "@tiejs/common": "^0.2.3",
