@@ -1,11 +1,11 @@
 import { Injectable, Context, NextFunction, IMiddleware } from '@tiejs/common'
-import { Logger } from 'ts-log-debug'
+// import { Logger } from 'ts-log-debug'
 import { ctxLogger } from './loggers/ctxLogger'
 
 @Injectable()
 export class LoggerMiddleware implements IMiddleware {
   async use(ctx: Context, next: NextFunction) {
-    ctx.logger = {} as Logger
+    ctx.logger = {} as any
 
     const levels = ['debug', 'info', 'trace', 'warn', 'error']
     for (const level of levels) {

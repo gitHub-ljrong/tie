@@ -46,7 +46,7 @@ export class PluginStoreBuilder {
     const pluginStore: PluginInfo[] = []
 
     for (const plugin of this.app.pluginConfig) {
-      const { enable, package: packageName } = plugin
+      const { enable, package: packageName ='' } = plugin
       let pluginItem = { ...plugin } as PluginInfo
       if (!enable) continue
       try {

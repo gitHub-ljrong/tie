@@ -53,6 +53,7 @@
   "devDependencies": {
     "@types/body-parser": "^1.17.1",
     "@types/cookie": "^0.3.3",
+    "@types/globby": "^9.1.0",
     "@types/is-promise": "^2.1.0",
     "@types/koa-bodyparser": "^4.3.0",
     "@types/koa__router": "^8.0.2",

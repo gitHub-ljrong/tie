@@ -1,13 +1,10 @@
-import { join } from 'path'
 import { Injectable, Container, InjectApp, Application } from '@tiejs/common'
 import { InjectLogger, Logger } from '@tiejs/logger'
 import { InjectConfig } from '@tiejs/config'
-import globby, { GlobbyOptions } from 'globby'
 
 import { buildSchema, BuildSchemaOptions } from 'type-graphql'
 import { extendSchema, parse, GraphQLSchema } from 'graphql'
 import { GraphqlConfig } from './interfaces/GraphqlConfig'
-import { isResolverClass } from './utils/isResolverClass'
 import addDirective from './utils/addDirective'
 import { GraphQLISODateTime } from './scalars/isodate'
 import { GraphQLTimestamp } from './scalars/timestamp'
@@ -48,7 +45,7 @@ export class SchemaBuilder {
       },
     ]
 
-    const resolvers = await this.getResolverClass()
+    const resolvers = await this.app.resolvers
     if (!resolvers.length) {
       this.logger.warn('No Resolver found!')
       return null
@@ -67,49 +64,5 @@ export class SchemaBuilder {
     schema = await buildSchema(options)
 
     return this.setDirective(schema)
-  }
-
-  async loadResolverFiles() {
-    let files: string[] = []
-    let cwd: string = process.cwd()
-    const t0 = Date.now()
-    const { resolvers } = this.config
-
-    if (typeof resolvers === 'undefined') return files
-    for (const item of resolvers) {
-      let pattern: any
-      const opt: GlobbyOptions = { ignore: ['**/node_modules/**'], onlyFiles: true, cwd }
-      if (typeof item === 'string') pattern = item
-      if (typeof item === 'object') {
-        cwd = item.cwd || process.cwd()
-        pattern = item.pattern
-        opt.cwd = cwd
-      }
-      const paths = globby.sync(pattern, opt).map(i => join(cwd, i))
-      files = [...files, ...paths]
-    }
-    const t1 = Date.now()
-    this.logger.info(`loadResolverFiles time: ${(t1 - t0) / 1000}s`)
-    return files
-  }
-
-  async getResolverClass() {
-    const resolverClasses: any[] = []
-    const resolverFiles = await this.loadResolverFiles()
-    for (const file of resolverFiles) {
-      if (this.app.isProd) {
-        if (file.endsWith('.ts')) continue
-      } else {
-        if (file.endsWith('.js')) continue
-      }
-      const exportedValues = Object.values(require(file))
-      for (const value of exportedValues) {
-        if (isResolverClass(value) && !resolverClasses.includes(value)) {
-          resolverClasses.push(value)
-        }
-      }
-    }
-
-    return resolverClasses
   }
 }

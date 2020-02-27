@@ -19,5 +19,7 @@ export interface Application extends KoaApp {
   pluginStore: PluginStore
   routerStore: RouterStore
   port: number
+  resolvers: any
+  controllers: any
   // start: () => any
 }

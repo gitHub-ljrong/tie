@@ -8,7 +8,7 @@ export default class Config {
     dateScalarMode: 'isoDate',
     cors: true,
     debug: false,
-    resolvers: ['**/*.resolver.{js}'],
+    resolvers: [],
     directives: [],
   }
 }

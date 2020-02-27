@@ -1,7 +1,6 @@
 import { GraphQLScalarType } from 'graphql'
 import { PubSubEngine, PubSubOptions } from 'graphql-subscriptions'
 
-type Resolver = string | { pattern: string; cwd?: string }
 // type Directive = () => Promise<any> | any
 interface ScalarsMapItem {
   type: any
@@ -13,7 +12,7 @@ export interface GraphqlConfig {
   dateScalarMode?: 'isoDate' | 'timestamp'
   scalarsMap?: ScalarsMapItem[]
   cors?: boolean
-  resolvers?: Resolver[]
+  resolvers?: any[]
   debug?: boolean
   typeDefs?: string
   directives?: {

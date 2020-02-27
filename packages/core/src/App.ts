@@ -14,6 +14,10 @@ import chalk from 'chalk'
 
 import { Loader } from './Loader'
 
+interface Opt {
+  resolvers: any
+  controllers: any
+}
 const { cyan } = chalk
 
 export class Appliaction extends Koa {
@@ -36,11 +40,16 @@ export class Appliaction extends Koa {
   middlewareConfig: MiddlewareConfig
   pluginConfig: PluginConfig
 
-  constructor() {
+  resolvers: any
+  controllers: any
+
+  constructor(opt = {} as Opt) {
     super()
     const configLoader = new ConfigLoader(this)
     this.storeApp()
 
+    this.resolvers = opt.resolvers || []
+    this.controllers = opt.controllers || []
     this.config = configLoader.loadConfig()
     this.port = this.config.port || 5001
     this.middlewareConfig = configLoader.loadMiddlewareConfig()
