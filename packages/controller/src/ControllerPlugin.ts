@@ -63,7 +63,10 @@ export class ControllerPlugin implements IPlugin {
         }
 
         try {
-          let result = fn.apply(instance, args.map(i => i.value))
+          let result = fn.apply(
+            instance,
+            args.map(i => i.value),
+          )
           result = isPromise(result) ? await result : result
 
           // can render

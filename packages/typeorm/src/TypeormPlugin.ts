@@ -11,8 +11,7 @@ export class TypeormPlugin implements IPlugin {
   }
 
   private async connectDB(app: Application) {
-
-    const config = this.handleConfig(app.config.typeorm, app.config.env)
+    const config = app.config.typeorm
     useContainer(Container)
     if (!config) {
       this.logger.error('database config not found')
@@ -26,19 +25,5 @@ export class TypeormPlugin implements IPlugin {
       this.logger.error('database connect fail')
       this.logger.error(error)
     }
-  }
-
-  private handleConfig(config: any, env: string) {
-    if (env !== 'production') {
-      return config
-    }
-    const keys = ['entities', 'migrations', 'subscribers']
-    for (const key of keys) {
-      if (config[key]) {
-        const newValue = config[key].map((item: string) => item.replace(/\.ts$/, '.js'))
-        config[key] = newValue
-      }
-    }
-    return config
   }
 }
