@@ -30,6 +30,7 @@
   "dependencies": {
     "@types/formidable": "^1.0.31",
     "koa": "^2.11.0",
+    "lodash.get": "^4.4.2",
     "reflect-metadata": "^0.1.13",
     "ts-log-debug": "^5.1.1",
     "tslib": "^1.10.0",
@@ -39,6 +40,7 @@
   "devDependencies": {
     "@types/glob": "^7.1.1",
     "@types/koa": "^2.0.51",
+    "@types/lodash.get": "^4.4.6",
     "formidable": "^1.2.1",
     "tsnl": "1.2.1",
     "typescript": "^3.6.4"
