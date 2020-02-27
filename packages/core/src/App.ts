@@ -9,7 +9,6 @@ import {
   PluginConfig,
 } from '@tiejs/common'
 import { coreLogger } from '@tiejs/logger'
-import { ConfigLoader } from '@tiejs/config'
 import chalk from 'chalk'
 
 import { Loader } from './Loader'
@@ -17,6 +16,9 @@ import { Loader } from './Loader'
 interface Opt {
   resolvers: any
   controllers: any
+  config: any
+  middlewareConfig: any
+  pluginConfig: any
 }
 const { cyan } = chalk
 
@@ -35,8 +37,8 @@ export class Appliaction extends Koa {
   middlewareStore: MiddlewareStore = []
   routerStore: RouterStore = []
 
-  config: any
   port: number
+  config: any
   middlewareConfig: MiddlewareConfig
   pluginConfig: PluginConfig
 
@@ -45,15 +47,15 @@ export class Appliaction extends Koa {
 
   constructor(opt = {} as Opt) {
     super()
-    const configLoader = new ConfigLoader(this)
     this.storeApp()
+
 
     this.resolvers = opt.resolvers || []
     this.controllers = opt.controllers || []
-    this.config = configLoader.loadConfig()
+    this.config = opt.config
+    this.middlewareConfig = opt.middlewareConfig
+    this.pluginConfig = opt.pluginConfig
     this.port = this.config.port || 5001
-    this.middlewareConfig = configLoader.loadMiddlewareConfig()
-    this.pluginConfig = configLoader.loadPluginConfig()
   }
 
   private storeServer() {

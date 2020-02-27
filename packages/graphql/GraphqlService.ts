@@ -16,7 +16,6 @@ export class GraphqlService {
   ) {}
 
   async startServer() {
-    console.log('-----------------start server......');
     try {
       const schema = await this.schemeBuilder.getSchema()
 
