@@ -2,7 +2,7 @@
   "name": "@tiejs/view",
   "version": "0.3.3",
   "description": "Tie view plugin",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "dev": "tsnl dev",
     "build": "tsnl build",
@@ -23,14 +23,13 @@
     "printWidth": 100
   },
   "files": [
-    "**/*.js",
-    "**/*.d.ts"
+    "dist"
   ],
   "devDependencies": {
     "@types/hbs": "^4.0.1",
-    "@types/koa-views": "^2.0.3",
-    "tsnl": "^1.2.0",
-    "typescript": "^3.4.5"
+    "@types/koa-views": "^2.0.4",
+    "tsnl": "^1.3.0",
+    "typescript": "^3.8.2"
   },
   "dependencies": {
     "@tiejs/common": "^0.2.3",
