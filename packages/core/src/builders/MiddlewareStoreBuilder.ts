@@ -50,7 +50,7 @@ export class MiddlewareStoreBuilder {
 
     return {
       ...item,
-      use: instance.use,
+      use: instance.use.bind(instance),
       instance,
       path,
     }
