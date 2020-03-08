@@ -3,6 +3,7 @@ import globby, { GlobbyOptions } from 'globby'
 import { Injectable, InjectApp, Application, MiddlewareConfigItem } from '@tiejs/common'
 import { Container, MiddlewareStore, MiddlewareStoreItem } from '@tiejs/common'
 import { coreLogger } from '@tiejs/logger'
+import { requireFile } from '../utils/requireFile'
 
 @Injectable()
 export class MiddlewareStoreBuilder {
@@ -10,16 +11,6 @@ export class MiddlewareStoreBuilder {
 
   baseDir = process.cwd()
   middlewarePattern = '**/*.middleware.{ts,js}'
-
-  requireFile(file: string) {
-    try {
-      if (require(file).default) {
-        return require(file).default
-      }
-    } catch {
-      return null
-    }
-  }
 
   getMiddlewareStoreItem(item: MiddlewareConfigItem): MiddlewareStoreItem {
     const { name, use } = item
@@ -34,7 +25,7 @@ export class MiddlewareStoreBuilder {
       )
     }
 
-    const middlewareClass = this.requireFile(path)
+    const middlewareClass = requireFile(path)
 
     if (!middlewareClass) {
       const unknownReason = `middleware {${name}} content is not correct, you should use "export default" to export a middleware`
