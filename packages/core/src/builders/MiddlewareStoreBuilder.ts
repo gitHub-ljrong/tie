@@ -50,6 +50,7 @@ export class MiddlewareStoreBuilder {
 
     return {
       ...item,
+      enable: typeof item.enable === 'undefined' ? true : item.enable,
       use: instance.use.bind(instance),
       instance,
       path,

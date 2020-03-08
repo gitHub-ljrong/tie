@@ -36,7 +36,7 @@
     "@tiejs/graphql": "^0.4.0",
     "@tiejs/logger": "^0.4.0",
     "@tiejs/view": "^0.4.0",
-    "chalk": "^2.4.2",
+    "chalk": "^3.0.0",
     "fs-jetpack": "^2.2.3",
     "globby": "^11.0.0",
     "is-class": "0.0.9",

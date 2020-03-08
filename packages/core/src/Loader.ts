@@ -50,6 +50,8 @@ export class Loader {
       // TODO need logger
       if (!item.use) continue
 
+      if (!item.enable) continue
+
       if (isClass(item.use)) {
         const instance = Container.get<any>(item.use as any)
         if (instance.use) this.app.use(instance.use)
