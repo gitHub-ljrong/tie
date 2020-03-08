@@ -6,6 +6,7 @@ import {
   Injectable,
   InjectApp,
   Application,
+  PluginConfigItem,
 } from '@tiejs/common'
 import { coreLogger } from '@tiejs/logger'
 import { requireFile } from '../utils/requireFile'
@@ -19,16 +20,15 @@ interface BasicInfo {
 export class PluginStoreBuilder {
   constructor(@InjectApp() private app: Application) {}
 
-  loadBasicInfo(packageName: string): BasicInfo {
-    const pluginClass = requireFile(packageName)
+  loadBasicInfo(plugin: PluginConfigItem): BasicInfo {
+    let pluginClass = plugin.main ? plugin.main : requireFile(plugin.package)
     if (!pluginClass) {
-      const unknownReason = `plugin {${packageName}} content is not correct, you should use "export default" to export a plugin`
+      const unknownReason = `plugin {${plugin.package}} content is not correct, you should use "export default" to export a plugin`
       throw new Error(unknownReason)
     }
 
-    let instance = Container.get<IPlugin>(pluginClass)
     return {
-      instance,
+      instance: Container.get<IPlugin>(pluginClass),
       pluginClass,
     }
   }
@@ -37,11 +37,11 @@ export class PluginStoreBuilder {
     const pluginStore: PluginInfo[] = []
 
     for (const plugin of this.app.pluginConfig) {
-      const { enable, package: packageName = '' } = plugin
+      const { enable } = plugin
       let pluginItem = { ...plugin } as PluginInfo
       if (!enable) continue
       try {
-        const info = this.loadBasicInfo(packageName)
+        const info = this.loadBasicInfo(plugin)
         const instance = info.instance
 
         const methods = ['configDidLoad', 'appDidReady', 'serverDidReady', 'middlewareDidReady']
