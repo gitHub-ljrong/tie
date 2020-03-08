@@ -2,9 +2,10 @@ import { AppDidReady } from './AppDidReady'
 import { ConfigDidLoad } from './ConfigDidLoad'
 import { ServerDidReady } from './ServerDidReady'
 import { MiddlewareDidReady } from './MiddlewareDidReady'
+import { PluginConfigItem } from './PluginConfig'
 
 export type PluginStore = PluginInfo[]
-export interface PluginInfo {
+export interface PluginInfo extends PluginConfigItem {
   name: string
   path: string
   instance: any // plugin class instance
@@ -15,7 +16,4 @@ export interface PluginInfo {
   configDidLoad?: ConfigDidLoad
   serverDidReady?: ServerDidReady
   middlewareDidReady?: MiddlewareDidReady
-
-  package?: string
-  enable?: boolean
 }
