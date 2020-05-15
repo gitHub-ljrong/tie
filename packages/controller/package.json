@@ -29,9 +29,6 @@
   "files": [
     "dist"
   ],
-  "peerDependencies": {
-    "class-validator": "^0.11.0"
-  },
   "dependencies": {
     "@koa/router": "^8.0.8",
     "@tiejs/common": "^0.3.1",
@@ -40,12 +37,12 @@
     "@tiejs/logger": "^0.4.1",
     "body-parser": "^1.19.0",
     "class-transformer": "^0.2.3",
-    "class-validator": "^0.11.0",
-    "cookie": "^0.4.0",
+    "class-validator": "^0.12.2",
+    "cookie": "^0.4.1",
     "globby": "^11.0.0",
     "is-class": "0.0.9",
-    "is-promise": "^2.1.0",
-    "koa-bodyparser": "^4.2.1",
+    "is-promise": "^4.0.0",
+    "koa-bodyparser": "^4.3.0",
     "reflect-metadata": "^0.1.13",
     "tslib": "^1.11.1"
   },

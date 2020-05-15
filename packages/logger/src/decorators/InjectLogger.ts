@@ -1,5 +1,5 @@
 import { Container } from '@tiejs/common'
-import { Logger } from 'ts-log-debug'
+import { Logger } from '@tsed/logger'
 import { join } from 'path'
 
 export function InjectLogger(type = '') {

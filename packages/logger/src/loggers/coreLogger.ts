@@ -1,4 +1,4 @@
-import { Logger } from 'ts-log-debug'
+import { Logger } from '@tsed/logger'
 import { join } from 'path'
 
 export const coreLogger = new Logger('Tie core')

@@ -1,5 +1,5 @@
 import { Injectable, Context, NextFunction, IMiddleware } from '@tiejs/common'
-// import { Logger } from 'ts-log-debug'
+// import { Logger } from '@tsed/logger'
 import { ctxLogger } from './loggers/ctxLogger'
 
 @Injectable()

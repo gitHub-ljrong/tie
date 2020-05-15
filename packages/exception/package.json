@@ -24,7 +24,7 @@
     "dist"
   ],
   "devDependencies": {
-    "tsnl": "1.2.0",
-    "typescript": "^3.4.5"
+    "tsnl": "1.3.0",
+    "typescript": "^3.9.2"
   }
 }

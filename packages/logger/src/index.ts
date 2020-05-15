@@ -1,4 +1,4 @@
-export { Logger } from 'ts-log-debug'
+export { Logger } from '@tsed/logger'
 import { LoggerPlugin } from './LoggerPlugin'
 export { coreLogger } from './loggers/coreLogger'
 export { ctxLogger } from './loggers/ctxLogger'

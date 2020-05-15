@@ -1,5 +1,5 @@
 import { Context as Ctx, Request as Req, Response as Res } from 'koa'
-import { Logger } from 'ts-log-debug'
+import { Logger } from '@tsed/logger'
 
 export interface Request extends Req {
   body: any
