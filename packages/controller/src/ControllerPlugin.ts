@@ -16,7 +16,7 @@ import bodyParser, { Options } from 'koa-bodyparser'
 import isPromise from 'is-promise'
 import Router from '@koa/router'
 
-import { BadRequest } from '@tiejs/exception'
+import { Exception } from '@common/tiejs/exception'
 import { paramTypes } from './constant'
 import { paramStore } from './stores/paramStore'
 import { RouteBuilder } from './RouteBuilder'
@@ -48,7 +48,7 @@ export class ControllerPlugin implements IPlugin {
   }
 
   async middlewareDidReady(app: Application) {
-    const router = new Router()
+    const router: any = new Router()
 
     for (const route of this.routes) {
       const { method, path, instance, fn, target, propertyKey, view } = route
@@ -59,7 +59,14 @@ export class ControllerPlugin implements IPlugin {
         const validationErrors = await getValidationErrors(args)
 
         if (validationErrors.length) {
-          return next(new BadRequest('Argument Validation Error', validationErrors))
+          return next(
+            new Exception({
+              type: 'ValidationError',
+              code: 'ValidationError',
+              message: 'Argument Validation Error',
+              origin: validationErrors,
+            }),
+          )
         }
 
         try {
