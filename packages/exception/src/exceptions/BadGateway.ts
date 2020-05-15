@@ -1,10 +1,15 @@
-import { Exception } from '../Exception'
+import { Exception, Options } from '../Exception'
 import { HttpStatus } from '../HttpStatus.enum'
 
 const { BAD_GATEWAY } = HttpStatus
 
 export class BadGateway extends Exception {
-  constructor(error: string, origin?: any) {
-    super(BAD_GATEWAY, error, HttpStatus[BAD_GATEWAY], origin)
+  constructor(options: Options) {
+    super({
+      ...options,
+      code: options.code || HttpStatus[BAD_GATEWAY],
+      type: options.type || HttpStatus[BAD_GATEWAY],
+      status: BAD_GATEWAY,
+    })
   }
 }

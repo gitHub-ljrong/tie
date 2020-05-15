@@ -1,10 +1,15 @@
-import { Exception } from '../Exception'
+import { Exception, Options } from '../Exception'
 import { HttpStatus } from '../HttpStatus.enum'
 
 const { UNPROCESSABLE_ENTITY } = HttpStatus
 
 export class UnprocessableEntity extends Exception {
-  constructor(error: string, origin?: any) {
-    super(UNPROCESSABLE_ENTITY, error, HttpStatus[UNPROCESSABLE_ENTITY], origin)
+  constructor(options: Options) {
+    super({
+      ...options,
+      code: options.code || HttpStatus[UNPROCESSABLE_ENTITY],
+      type: options.type || HttpStatus[UNPROCESSABLE_ENTITY],
+      status: UNPROCESSABLE_ENTITY,
+    })
   }
 }

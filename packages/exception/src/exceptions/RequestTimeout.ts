@@ -1,10 +1,15 @@
-import { Exception } from '../Exception'
+import { Exception, Options } from '../Exception'
 import { HttpStatus } from '../HttpStatus.enum'
 
 const { REQUEST_TIMEOUT } = HttpStatus
 
 export class RequestTimeout extends Exception {
-  constructor(error: string, origin?: any) {
-    super(REQUEST_TIMEOUT, error, HttpStatus[REQUEST_TIMEOUT], origin)
+  constructor(options: Options) {
+    super({
+      ...options,
+      code: options.code || HttpStatus[REQUEST_TIMEOUT],
+      type: options.type || HttpStatus[REQUEST_TIMEOUT],
+      status: REQUEST_TIMEOUT,
+    })
   }
 }

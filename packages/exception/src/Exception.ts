@@ -1,28 +1,36 @@
-export interface Response {
-  code: string
-  message: string
-  origin?: any
+export interface Options {
+  code?: string // error code
+  type?: string // error type，分类
+  message?: string // error message
+  origin?: any // origin error message
+}
+
+export interface Response extends Options {}
+
+export interface ExceptionOptions extends Options {
+  status?: number // httpStatus code
 }
 
 export class Exception extends Error {
-  constructor(
-    private readonly status: number = 500, // httpStatus code
-    private readonly error: string = '', // error message
-    private readonly code: string = 'UNKNOWN_ERROR', // error type code
-    private readonly origin?: any, // origin error message
-  ) {
+  private status: number
+  private response: Response
+
+  constructor(options: ExceptionOptions) {
     super()
+    this.status = options.status || 600
+    this.response = {
+      message: options.message || '',
+      code: options.code || 'UnknownError',
+      origin: options.origin || '',
+      type: options.type,
+    }
   }
 
   /**
    * response for client
    */
   getResponse() {
-    return {
-      code: this.code,
-      message: this.error,
-      origin: this.origin,
-    }
+    return this.response
   }
 
   /**

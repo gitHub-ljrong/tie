@@ -1,10 +1,15 @@
-import { Exception } from '../Exception'
+import { Exception, Options } from '../Exception'
 import { HttpStatus } from '../HttpStatus.enum'
 
 const { INTERNAL_SERVER_ERROR } = HttpStatus
 
 export class InternalServerError extends Exception {
-  constructor(error: string, origin?: any) {
-    super(INTERNAL_SERVER_ERROR, error, HttpStatus[INTERNAL_SERVER_ERROR], origin)
+  constructor(options: Options) {
+    super({
+      ...options,
+      code: options.code || HttpStatus[INTERNAL_SERVER_ERROR],
+      type: options.type || HttpStatus[INTERNAL_SERVER_ERROR],
+      status: INTERNAL_SERVER_ERROR,
+    })
   }
 }

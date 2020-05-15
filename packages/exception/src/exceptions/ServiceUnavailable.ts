@@ -1,10 +1,15 @@
-import { Exception } from '../Exception'
+import { Exception, Options } from '../Exception'
 import { HttpStatus } from '../HttpStatus.enum'
 
 const { SERVICE_UNAVAILABLE } = HttpStatus
 
 export class ServiceUnavailable extends Exception {
-  constructor(error: string, origin?: any) {
-    super(SERVICE_UNAVAILABLE, error, HttpStatus[SERVICE_UNAVAILABLE], origin)
+  constructor(options: Options) {
+    super({
+      ...options,
+      code: options.code || HttpStatus[SERVICE_UNAVAILABLE],
+      type: options.type || HttpStatus[SERVICE_UNAVAILABLE],
+      status: SERVICE_UNAVAILABLE,
+    })
   }
 }

@@ -1,10 +1,15 @@
-import { Exception } from '../Exception'
+import { Exception, Options } from '../Exception'
 import { HttpStatus } from '../HttpStatus.enum'
 
 const { FORBIDDEN } = HttpStatus
 
 export class Forbidden extends Exception {
-  constructor(error: string, origin?: any) {
-    super(FORBIDDEN, error, HttpStatus[FORBIDDEN], origin)
+  constructor(options: Options) {
+    super({
+      ...options,
+      code: options.code || HttpStatus[FORBIDDEN],
+      type: options.type || HttpStatus[FORBIDDEN],
+      status: FORBIDDEN,
+    })
   }
 }

@@ -1,10 +1,15 @@
-import { Exception } from '../Exception'
+import { Exception, Options } from '../Exception'
 import { HttpStatus } from '../HttpStatus.enum'
 
 const { UNSUPPORTED_MEDIA_TYPE } = HttpStatus
 
 export class UnsupportedMediaType extends Exception {
-  constructor(error: string, origin?: any) {
-    super(UNSUPPORTED_MEDIA_TYPE, error, HttpStatus[UNSUPPORTED_MEDIA_TYPE], origin)
+  constructor(options: Options) {
+    super({
+      ...options,
+      code: options.code || HttpStatus[UNSUPPORTED_MEDIA_TYPE],
+      type: options.type || HttpStatus[UNSUPPORTED_MEDIA_TYPE],
+      status: UNSUPPORTED_MEDIA_TYPE,
+    })
   }
 }
