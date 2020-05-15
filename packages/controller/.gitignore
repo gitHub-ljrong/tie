@@ -1,7 +1,0 @@
-.DS_Store
-*.swp
-
-coverage
-yarn.lock
-*.js
-*d.ts

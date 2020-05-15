@@ -3,4 +3,6 @@
 node_modules
 lerna-debug.log
 coverage/
+dist/
 build/
+.pea
