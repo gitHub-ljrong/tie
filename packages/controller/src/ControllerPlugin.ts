@@ -16,7 +16,7 @@ import bodyParser, { Options } from 'koa-bodyparser'
 import isPromise from 'is-promise'
 import Router from '@koa/router'
 
-import { Exception } from '@common/tiejs/exception'
+import { Exception } from '@tiejs/exception'
 import { paramTypes } from './constant'
 import { paramStore } from './stores/paramStore'
 import { RouteBuilder } from './RouteBuilder'

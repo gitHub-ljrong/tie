@@ -3,8 +3,6 @@ import { InjectConfig } from '@tiejs/config'
 import { GraphqlConfig } from '@tiejs/graphql'
 import { ControllerConfig } from '@tiejs/controller'
 import { join } from 'path'
-import express from 'express'
-import cors from 'cors'
 
 @Injectable()
 export class DashboardPlugin implements IPlugin {
@@ -36,8 +34,9 @@ export class DashboardPlugin implements IPlugin {
       dirs.push(join(app.baseDir, 'node_modules', '@tiejs/dashboard', 'site', 'build'))
     }
 
-    app.use(express.static(join(app.baseDir, 'node_modules', '@tiejs/dashboard', 'site', 'build')))
+    // TODO: handle express
+    // app.use(express.static(join(app.baseDir, 'node_modules', '@tiejs/dashboard', 'site', 'build')))
 
-    app.use(cors())
+    // app.use(cors())
   }
 }
