@@ -42,12 +42,12 @@ function forEachField(schema: GraphQLSchema, fn: FieldIteratorFn): void {
   })
 }
 
-function getFieldResolver(field) {
+function getFieldResolver(field: any) {
   const resolver = field.resolve || defaultFieldResolver
   return resolver.bind(field)
 }
 
-function createAsyncResolver(field) {
+function createAsyncResolver(field: any) {
   const originalResolver = getFieldResolver(field)
   const resolverFn: GraphQLFieldResolver<any, any> = async (source, args, context, info) =>
     originalResolver(source, args, context, info)
