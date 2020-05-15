@@ -1,9 +1,7 @@
-import { join, sep } from 'path'
-import globby, { GlobbyOptions } from 'globby'
+import isClass from 'is-class'
 import { Injectable, InjectApp, Application, MiddlewareConfigItem } from '@tiejs/common'
 import { Container, MiddlewareStore, MiddlewareStoreItem } from '@tiejs/common'
 import { coreLogger } from '@tiejs/logger'
-import { requireFile } from '../utils/requireFile'
 
 @Injectable()
 export class MiddlewareStoreBuilder {
@@ -14,37 +12,20 @@ export class MiddlewareStoreBuilder {
 
   getMiddlewareStoreItem(item: MiddlewareConfigItem): MiddlewareStoreItem {
     const { name, use } = item
-    if (use) return item
+    const enable = typeof item.enable === 'undefined' ? true : item.enable
 
-    const middlewareFiles = this.scanMiddlewareFiles()
-    const path = middlewareFiles.find(item => item.includes(`${sep}${name}.middleware`))
-
-    if (!path) {
-      throw new Error(
-        `Can not find "${name}.middleware.{js,ts}" file for middleware: "${name}", please check you config`,
-      )
-    }
-
-    const middlewareClass = requireFile(path)
-
-    if (!middlewareClass) {
-      const unknownReason = `middleware {${name}} content is not correct, you should use "export default" to export a middleware`
-      throw new Error(unknownReason)
-    }
-
-    let instance = Container.get<any>(middlewareClass)
-
-    // TODO: check use
-    if (!instance.use) {
+    if (!use) {
       throw new Error(`require use method in midlleware ${name}`)
     }
 
+    if (!isClass(use)) return { ...item, enable }
+
+    const instance = Container.get<any>(use)
     return {
       ...item,
-      enable: typeof item.enable === 'undefined' ? true : item.enable,
+      enable,
       use: instance.use.bind(instance),
       instance,
-      path,
     }
   }
 
@@ -62,12 +43,5 @@ export class MiddlewareStoreBuilder {
       }
     }
     return middlewareStore
-  }
-
-  private scanMiddlewareFiles() {
-    const cwd = this.app.baseDir
-    const opt: GlobbyOptions = { ignore: ['**/node_modules/**'], onlyFiles: true, cwd }
-    const files = globby.sync(this.middlewarePattern, opt).map(i => join(cwd, i))
-    return files
   }
 }

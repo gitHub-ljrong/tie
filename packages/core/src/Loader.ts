@@ -1,8 +1,6 @@
 import { Application, Container } from '@tiejs/common'
 import { PluginStoreBuilder } from './builders/PluginStoreBuilder'
 import { MiddlewareStoreBuilder } from './builders/MiddlewareStoreBuilder'
-// import { join } from 'path'
-import isClass from 'is-class'
 
 export interface Options {
   port: number
@@ -47,16 +45,8 @@ export class Loader {
 
   private async applyBeforeMiddleware() {
     for (const item of this.app.middlewareStore) {
-      // TODO need logger
-      if (!item.use) continue
-
-      if (!item.enable) continue
-
-      if (isClass(item.use)) {
-        const instance = Container.get<any>(item.use as any)
-        if (instance.use) this.app.use(instance.use)
-      } else {
-        this.app.use((item.use as any).bind(item.instance || null))
+      if (item.enable) {
+        this.app.use(item.use as any)
       }
     }
   }

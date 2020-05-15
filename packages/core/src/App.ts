@@ -49,7 +49,6 @@ export class Appliaction extends Koa {
     super()
     this.storeApp()
 
-
     this.resolvers = opt.resolvers || []
     this.controllers = opt.controllers || []
     this.config = opt.config

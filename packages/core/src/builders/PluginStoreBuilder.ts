@@ -9,7 +9,6 @@ import {
   PluginConfigItem,
 } from '@tiejs/common'
 import { coreLogger } from '@tiejs/logger'
-import { requireFile } from '../utils/requireFile'
 
 interface BasicInfo {
   instance: any
@@ -20,8 +19,18 @@ interface BasicInfo {
 export class PluginStoreBuilder {
   constructor(@InjectApp() private app: Application) {}
 
+  private requireFile(file: string = '') {
+    try {
+      if (require(file).default) {
+        return require(file).default
+      }
+    } catch {
+      return null
+    }
+  }
+
   loadBasicInfo(plugin: PluginConfigItem): BasicInfo {
-    let pluginClass = plugin.main ? plugin.main : requireFile(plugin.package)
+    let pluginClass = plugin.main ? plugin.main : this.requireFile(plugin.package)
     if (!pluginClass) {
       const unknownReason = `plugin {${plugin.package}} content is not correct, you should use "export default" to export a plugin`
       throw new Error(unknownReason)
