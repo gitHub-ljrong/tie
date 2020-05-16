@@ -1,25 +1,28 @@
 import KoaApp from 'koa'
-import { PluginConfig } from './PluginConfig'
 import { PluginStore } from './PluginStore'
 import { MiddlewareStore } from './MiddlewareStore'
-import { MiddlewareConfig } from './MiddlewareConfig'
 import { RouterStore } from './RouterStore'
 import { Server } from 'http'
+import { MiddlewareConfig } from './MiddlewareConfig'
+import { PluginConfig } from './PluginConfig'
+
+export interface Config {
+  port?: number
+  resolvers?: any[]
+  controllers?: any[]
+  middlewares?: MiddlewareConfig
+  plugins?: PluginConfig
+  [key: string]: any
+}
 
 export interface Application extends KoaApp {
   server: Server | null
   isProd: boolean
-  config: any
+  port: number
   baseDir: string
   middlewarePattern: string
-  // pluginPattern: string
-  middlewareConfig: MiddlewareConfig
+  config: Config
   middlewareStore: MiddlewareStore
-  pluginConfig: PluginConfig
   pluginStore: PluginStore
   routerStore: RouterStore
-  port: number
-  resolvers: any
-  controllers: any
-  // start: () => any
 }
