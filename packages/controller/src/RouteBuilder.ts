@@ -9,8 +9,8 @@ export class RouteBuilder {
 
   buildRoutes(): RouteItem[] {
     const routes: RouteItem[] = []
-    const controllerClasses = this.app.controllers
-    for (const ControllerClass of controllerClasses) {
+    const { controllers = [] } = this.app.config
+    for (const ControllerClass of controllers) {
       const basePath = controllerStore.get(ControllerClass)
       let instance = Container.get<any>(ControllerClass)
       const prototype = Object.getPrototypeOf(instance)

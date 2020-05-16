@@ -49,7 +49,7 @@ export class SchemaBuilder {
       },
     ]
 
-    const resolvers = await this.app.resolvers
+    const { resolvers = [] as any } = this.app.config
     if (!resolvers.length) {
       this.logger.warn('No Resolver found!')
       return null
