@@ -1,7 +1,7 @@
 import { actionStore } from '../stores/actionStore'
 
 export const createMethodDecorator = (method: string) => {
-  return (path: string) => {
+  return (path: string | string[]) => {
     return function(target: Object, propertyKey: string, descriptor: PropertyDescriptor) {
       actionStore.set(descriptor.value, {
         target,

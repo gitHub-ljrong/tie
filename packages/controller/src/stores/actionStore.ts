@@ -1,5 +1,5 @@
 interface Value {
-  path: string
+  path: string | string[]
   method: string
   view: string
   fn: (...args: any[]) => any

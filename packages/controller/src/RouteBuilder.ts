@@ -21,6 +21,7 @@ export class RouteBuilder {
         const value = actionStore.get(actionFn)
         if (!value) continue
         const { path, method, view, fn, target, propertyKey } = value
+
         routes.push({
           method,
           methodName,
@@ -37,10 +38,23 @@ export class RouteBuilder {
     return routes
   }
 
-  mergePath(basePath: string, path: string) {
-    basePath = basePath.replace(/^\/|\/$/, '')
-    path = path.replace(/^\/|\/$/, '')
-    if (!basePath && !path) return '/'
-    return `/${basePath}/${path}`.replace(/\/\//, '/').replace(/\/$/, '')
+  mergePath(basePath: string, path: string | string[]): any {
+    basePath = basePath.replace(/^\/|\/$/, '') // 格式化
+
+    if (Array.isArray(path)) {
+      return path.map(p => {
+        p = p.replace(/^\/|\/$/, '') // 格式化
+        if (!basePath && !p) return '/'
+        return `/${basePath}/${p}`.replace(/\/\//, '/').replace(/\/$/, '')
+      })
+    }
+
+    if (typeof path === 'string') {
+      path = path.replace(/^\/|\/$/, '') // 格式化
+      if (!basePath && !path) return '/'
+      return `/${basePath}/${path}`.replace(/\/\//, '/').replace(/\/$/, '')
+    }
+
+    throw new Error('path not correct')
   }
 }
