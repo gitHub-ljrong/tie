@@ -16,4 +16,9 @@ export const defaultPlugins: PluginConfig = [
     package: '@tiejs/logger',
     enable: true,
   },
+  {
+    name: 'view',
+    package: '@tiejs/view',
+    enable: true,
+  },
 ]
