@@ -31,9 +31,10 @@ export class MiddlewareStoreBuilder {
 
   async createMiddlewareStore() {
     const middlewareStore: MiddlewareStore = []
-    if (!this.app.middlewareConfig.length) return []
+    const { middlewares = [] } = this.app.config
+    if (!middlewares.length) return []
 
-    for (const item of this.app.middlewareConfig) {
+    for (const item of middlewares) {
       try {
         const middlewareStoreItem = this.getMiddlewareStoreItem(item)
         middlewareStore.push(middlewareStoreItem)

@@ -1,25 +1,13 @@
 import Koa from 'koa'
 import { Server } from 'http'
-import {
-  Container,
-  MiddlewareStore,
-  PluginStore,
-  RouterStore,
-  MiddlewareConfig,
-  PluginConfig,
-} from '@tiejs/common'
+import { Container, MiddlewareStore, PluginStore, RouterStore } from '@tiejs/common'
 import { coreLogger } from '@tiejs/logger'
 import chalk from 'chalk'
 
 import { Loader } from './Loader'
+import { getPluginConfig } from './utils'
+import { Config } from './types'
 
-interface Opt {
-  resolvers: any
-  controllers: any
-  config: any
-  middlewareConfig: any
-  pluginConfig: any
-}
 const { cyan } = chalk
 
 export class Appliaction extends Koa {
@@ -38,22 +26,17 @@ export class Appliaction extends Koa {
   routerStore: RouterStore = []
 
   port: number
-  config: any
-  middlewareConfig: MiddlewareConfig
-  pluginConfig: PluginConfig
+  config: Config
 
-  resolvers: any
-  controllers: any
-
-  constructor(opt = {} as Opt) {
+  constructor(config = {} as Config) {
     super()
     this.storeApp()
 
-    this.resolvers = opt.resolvers || []
-    this.controllers = opt.controllers || []
-    this.config = opt.config
-    this.middlewareConfig = opt.middlewareConfig
-    this.pluginConfig = opt.pluginConfig
+    this.config = {
+      ...config,
+      plugins: getPluginConfig(config.plugins),
+    }
+
     this.port = this.config.port || 5001
   }
 

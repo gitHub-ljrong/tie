@@ -44,8 +44,9 @@ export class PluginStoreBuilder {
 
   async createPluginStore(): Promise<PluginStore> {
     const pluginStore: PluginInfo[] = []
+    const { plugins = [] } = this.app.config
 
-    for (const plugin of this.app.pluginConfig) {
+    for (const plugin of plugins) {
       const { enable } = plugin
       let pluginItem = { ...plugin } as PluginInfo
       if (!enable) continue
