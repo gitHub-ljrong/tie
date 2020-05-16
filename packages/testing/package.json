@@ -1,6 +1,6 @@
 {
   "name": "@tiejs/testing",
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.0-alpha.1",
   "description": "Test toolkit for Tie",
   "main": "dist/index.js",
   "scripts": {
@@ -28,6 +28,6 @@
     "typescript": "^3.9.2"
   },
   "dependencies": {
-    "@tiejs/common": "^1.0.0-alpha.0"
+    "@tiejs/common": "^1.0.0-alpha.1"
   }
 }

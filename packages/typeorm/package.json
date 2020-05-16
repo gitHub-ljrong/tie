@@ -1,6 +1,6 @@
 {
   "name": "@tiejs/typeorm",
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.0-alpha.1",
   "description": "Typeorm plugin for Tie",
   "main": "dist/index.js",
   "scripts": {
@@ -29,8 +29,8 @@
     "**/*.d.ts"
   ],
   "dependencies": {
-    "@tiejs/common": "^1.0.0-alpha.0",
-    "@tiejs/logger": "^1.0.0-alpha.0",
+    "@tiejs/common": "^1.0.0-alpha.1",
+    "@tiejs/logger": "^1.0.0-alpha.1",
     "mysql": "^2.18.1",
     "typeorm": "^0.2.24",
     "typeorm-typedi-extensions": "^0.2.3"
