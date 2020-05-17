@@ -4,7 +4,7 @@ title: TypeORM
 sidebar_label: TypeORM
 ---
 
-为了统一开发体验，Tie 框架内置了配置管理。
+为了统一开发体验，TieJS 框架内置了配置管理。
 
 ### 多环境配置
 

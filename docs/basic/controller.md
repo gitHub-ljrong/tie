@@ -4,9 +4,9 @@ title: 控制器
 sidebar_label: 控制器 (Controller)
 ---
 
-## 快速体验
+## 基本用法
 
-Controller 功能 在 Tie 中是开箱即用的，下面我们使用 CLI 工具 `tie-cli` 快速体验。
+Controller 功能 在 TieJS 中是开箱即用的，下面我们使用 CLI 工具 `tie-cli` 快速体验。
 
 使用 `tie-cli` 初始化应用 (选择 minimal-controller)：
 
@@ -16,22 +16,34 @@ cd myapp
 npm run dev
 ```
 
-
 项目结构如下:
 
-```js
+```bash
 .
-├── package.json
-├── src
-│   └── home.controller.ts
+├── app.ts
+├── home.controller.ts
 └── tsconfig.json
 ```
 
 启动成功后，然后访问浏览器：http://localhost:5001
 
-这是一个最小化的 Tie 应用，核心文件只有一个 `home.controller.ts`，代码如下:
+代码如下:
 
 <!--DOCUSAURUS_CODE_TABS-->
+
+<!--app.ts-->
+
+```js
+import { Appliaction } from '@tiejs/core'
+import { HomeController } from './home.controller'
+
+const app = new Appliaction({
+  controllers: [HomeController],
+})
+
+app.bootstrap()
+```
+
 <!--home.controller.ts-->
 
 ```js
@@ -57,8 +69,8 @@ export class HomeController {
     "test": "tie test"
   },
   "dependencies": {
-    "@tiejs/core": "^0.2.2",
-    "@tiejs/controller": "^0.2.2",
+    "@tiejs/core": "^1.0.0",
+    "@tiejs/controller": "^1.0.0",
     "tie-cli": "0.0.4"
   }
 }
@@ -66,18 +78,17 @@ export class HomeController {
 
 <!--END_DOCUSAURUS_CODE_TABS-->
 
-> 注意，控制器的文件命名格式必须是 `xxx.controller.ts`, 框架会自动扫描控制器文件。
-
 ## 常用功能
 
-上面介绍了 Tie 中 Controller 的最小化用法，下面例子你将体验到 Controller 的常用功能:
+上面介绍了 TieJS 中 Controller 的最小化用法，下面例子你将体验到 Controller 的常用功能:
 
 首先，我们新建如下的项目目录：
 
 ```bash
 .
 ├── package.json
-├── src
+├── app.ts
+├── user
 │   ├── createUser.input.ts
 │   ├── user.resolver.ts
 │   ├── user.service.ts
@@ -88,6 +99,21 @@ export class HomeController {
 项目代码如下：
 
 <!--DOCUSAURUS_CODE_TABS-->
+
+<!--app.ts-->
+
+```js
+import { Appliaction } from '@tiejs/core'
+import { UserController } from './user/user.controller'
+
+const app = new Appliaction({
+  controllers: [UserController],
+})
+
+app.bootstrap()
+```
+
+
 <!--user.controller.ts-->
 
 ```js
@@ -185,14 +211,12 @@ export class CreateUserInput {
     "test": "tie test"
   },
   "dependencies": {
-    "@tiejs/common": "^0.2.2",
-    "@tiejs/core": "^0.2.2",
-    "@tiejs/controller": "^0.2.2",
+    "@tiejs/common": "^1.0.0",
+    "@tiejs/core": "^1.0.0",
+    "@tiejs/controller": "^1.0.0",
     "tie-cli": "0.0.4"
   }
 }
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
-
-使用`npm run dev`启动成功后，然后访问浏览器：http://localhost:5001/graphql，你就可以在 GraphQL Playground 中体验 Query 和 Mutation 了。

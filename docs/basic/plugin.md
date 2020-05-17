@@ -4,7 +4,7 @@ title: 插件
 sidebar_label: 插件 (Plugin)
 ---
 
-插件是 Tie.js 最核心功能。
+插件是 TieJS 最核心功能。
 
 ## 插件配置
 

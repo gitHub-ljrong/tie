@@ -4,7 +4,7 @@ title: 校验
 sidebar_label: 校验 (Validation)
 ---
 
-检验功能是后端开发的重要的功能，Tie 提供了非常优雅的校验方式，底层使用 [class-validator](https://github.com/typestack/class-validator) 。
+检验功能是后端开发的重要的功能，TieJS 提供了非常优雅的校验方式，底层使用 [class-validator](https://github.com/typestack/class-validator) 。
 
 ## Controller 检验
 

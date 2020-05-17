@@ -4,11 +4,11 @@ title: GraphQL
 sidebar_label: GraphQL
 ---
 
-Tie 是默认支持 GraphQL 的，你不需任何额外的配置，对于无历史包袱的新项目，非常推荐使用 GraphQL 来开发 API。
+TieJS 是默认支持 GraphQL 的，你不需任何额外的配置，对于无历史包袱的新项目，非常推荐使用 GraphQL 来开发 API。
 
-## 快速体验
+## 基本用法
 
-GraphQL 在 Tie 中是开箱即用的，下面我们使用 CLI 工具 `tie-cli` 快速体验。
+GraphQL 在 TieJS 中是开箱即用的，下面我们使用 CLI 工具 `tie-cli` 快速体验。
 
 使用 `tie-cli` 初始化应用 (选择 minimal-graphql)：
 
@@ -22,9 +22,8 @@ npm run dev
 
 ```js
 .
-├── package.json
-├── src
-│   └── hello.resolver.ts
+├── app.ts
+├── hello.resolver.ts
 └── tsconfig.json
 ```
 
@@ -33,6 +32,20 @@ npm run dev
 这是一个最小化的 Tie GraphQL 应用，核心文件只有一个 `hello.resolver.ts`，代码如下:
 
 <!--DOCUSAURUS_CODE_TABS-->
+
+<!--app.ts-->
+
+```js
+import { Appliaction } from '@tiejs/core'
+import { HelloResolver } from './hello.resolver'
+
+const app = new Appliaction({
+  resolvers: [HelloResolver],
+})
+
+app.bootstrap()
+```
+
 <!--hello.resolver.ts-->
 
 ```js
@@ -58,9 +71,9 @@ export class HelloResolver {
     "test": "tie test"
   },
   "dependencies": {
-    "@tiejs/common": "^0.2.2",
-    "@tiejs/core": "^0.2.2",
-    "@tiejs/graphql": "^0.2.2",
+    "@tiejs/common": "^1.0.0",
+    "@tiejs/core": "^1.0.0",
+    "@tiejs/graphql": "^1.0.0",
     "tie-cli": "0.0.4"
   }
 }
@@ -68,13 +81,13 @@ export class HelloResolver {
 
 <!--END_DOCUSAURUS_CODE_TABS-->
 
-在 Tie 中，`xxx.resolver.ts` 是 GraphQL 的端点文件，类似 MVC 架构中的 Controller。默认，Tie 会自动加载 `xxx.resolver.ts` 命名格式的文件。
+在 TieJS 中，`xxx.resolver.ts` 是 GraphQL 的端点文件，类似 MVC 架构中的 Controller。
 
-Tie 中内置了 GraphQL 插件 `@tiejs/graphql`，Tie 的 GraphQL 插件基于 [TypeGraphQL](https://github.com/MichalLytek/type-graphql)，建议详细阅读 [TypeGraphQL](https://github.com/MichalLytek/type-graphql) 文档。
+TieJS 中内置了 GraphQL 插件 `@tiejs/graphql`，Tie 的 GraphQL 插件基于 [TypeGraphQL](https://github.com/MichalLytek/type-graphql)，建议详细阅读 [TypeGraphQL](https://github.com/MichalLytek/type-graphql) 文档。
 
 ## 常用功能
 
-上面介绍了 Tie 中 GraphQL 最小化用法，旨在让你感官的体验 在 Tie 中 GraphQL 用法，下面例子你将体验到 GraphQL 的常用功能，包括 Query、Mutation、Arg、ObjectType、InputType 等。
+上面介绍了 TieJS 中 GraphQL 最小化用法，旨在让你感官的体验 在 TieJS 中 GraphQL 用法，下面例子你将体验到 GraphQL 的常用功能，包括 Query、Mutation、Arg、ObjectType、InputType 等。
 
 首先，我们新建如下的项目目录：
 

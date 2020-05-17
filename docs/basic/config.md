@@ -4,13 +4,13 @@ title: 配置
 sidebar_label: 配置 (Config)
 ---
 
-为了统一开发体验，Tie 框架内置了配置管理。
+为了统一开发体验，TieJS 框架内置了配置管理。
 
 ## 多环境配置
 
 框架支持根据环境来加载配置，，具体环境请查看运行环境配置
 
-Tie 根据环境变量 `process.env.NODE_ENV`加载配置，你可以定义多个环境的配置文件。
+TieJS 根据环境变量 `process.env.NODE_ENV`加载配置，你可以定义多个环境的配置文件。
 
 ```bash
 # config/

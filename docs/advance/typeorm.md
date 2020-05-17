@@ -6,9 +6,9 @@ sidebar_label: TypeORM
 
 [TypeORM](https://typeorm.io/) 是 TypeScript 生态中非常优秀的 ORM，如果你使用关系型数据库，强烈建议你使用 [TypeORM](https://typeorm.io/)。
 
-使用 Tie 官方的插件 `@tiejs/typeorm`，你可以非常方便地使用 TypeORM。
+使用 TieJS 官方的插件 `@tiejs/typeorm`，你可以非常方便地使用 TypeORM。
 
-为了直观的感受如何在使用 Tie 中使用 TypeORM，建议运行下面命令初始化例子 (选择模板 `example-typeorm`)：
+为了直观的感受如何在使用 TieJS 中使用 TypeORM，建议运行下面命令初始化例子 (选择模板 `example-typeorm`)：
 
 ```bash
 ➜  ~ tie create typeorm-example

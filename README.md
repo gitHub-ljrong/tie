@@ -1,5 +1,5 @@
 
-# Tie
+# TieJS
 
 ## 快速体验
 
@@ -23,7 +23,7 @@ npm run dev
 
 启动成功后，然后访问浏览器：http://localhost:5001
 
-这是一个最小化的 Tie 应用，核心文件只有一个 `home.controller.ts`，代码如下:
+这是一个最小化的 TieJS 应用，核心文件只有一个 `home.controller.ts`，代码如下:
 
 
 ```js

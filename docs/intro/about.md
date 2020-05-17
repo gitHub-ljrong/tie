@@ -1,10 +1,10 @@
 ---
 id: about
-title: 关于 Tie
-sidebar_label: 关于 Tie
+title: 关于 TieJS
+sidebar_label: 关于 TieJS
 ---
 
-Tie 一个使用 TypeScript 的 Node.js 框架，底层基于 [Koa](https://github.com/koajs/koa) 和 [TypeDI](https://github.com/typestack/typedi)，核心特性是使用依赖注入组织应用代码。
+TieJS 一个使用 TypeScript 的 Node.js 框架，底层基于 [Koa](https://github.com/koajs/koa) 和 [TypeDI](https://github.com/typestack/typedi)，核心特性是使用依赖注入组织应用代码。
 
 ## 特性
 
@@ -15,7 +15,7 @@ Tie 一个使用 TypeScript 的 Node.js 框架，底层基于 [Koa](https://gith
 
 ## 核心技术
 
-Tie 使用下面这些开源技术，如果你们喜欢它们，我相信你也会爱上 Tie。
+TieJS 使用下面这些开源技术，如果你们喜欢它们，我相信你也会爱上 TieJS。
 
 - [Koa](https://github.com/koajs/koa)
 - [TypeDI](https://github.com/typestack/typedi)
@@ -25,7 +25,7 @@ Tie 使用下面这些开源技术，如果你们喜欢它们，我相信你也�
 
 ## 灵感
 
-Tie 的实现借鉴了以下框架：
+TieJS 的实现借鉴了以下框架：
 
 - [routing-controllers](https://github.com/typestack/routing-controllers)
 - [nest.js](https://github.com/nestjs/nest)

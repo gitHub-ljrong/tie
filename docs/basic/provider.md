@@ -4,15 +4,15 @@ title: 提供者
 sidebar_label: 提供者 (Provider)
 ---
 
-Tie 框架最核心的特性是使用依赖注入 (Dependency injection) 组织代码，提供者 (Provider) 是用来组织代码的最小单位。
+TieJS 框架最核心的特性是使用依赖注入 (Dependency injection) 组织代码，提供者 (Provider) 是用来组织代码的最小单位。
 
 ## 什么是提供者 (Provider)?
 
-提供者很简单，只不过是一个用 `@Injectable()` 装饰器注释的简单类，在 Tie 中提供者包含服务(Service)、存储库(Repository)、中间件(Middleware)、插件(Plugin)、配置(Config)等。
+提供者很简单，只不过是一个用 `@Injectable()` 装饰器注释的简单类，在 TieJS 中提供者包含服务(Service)、存储库(Repository)、中间件(Middleware)、插件(Plugin)、配置(Config)等。
 
 ## 服务 (Service)
 
-服务是业务逻辑的抽象，通常你会在 Controller 或 Resolver 中通过**依赖注入**的方式调用 Service，Tie 使用 **依赖注入** 的方式组织代码，这是非常重要特性，因为它使代码有更好的可读性，也更易于进行单元测试。
+服务是业务逻辑的抽象，通常你会在 Controller 或 Resolver 中通过**依赖注入**的方式调用 Service，TieJS 使用 **依赖注入** 的方式组织代码，这是非常重要特性，因为它使代码有更好的可读性，也更易于进行单元测试。
 
 <!--DOCUSAURUS_CODE_TABS-->
 
@@ -115,7 +115,7 @@ export class UserResolver {
 
 ## 存储库(Repository)
 
-对于小型项目，你可能在会直接在 Controller 或者 Service 中操作数据库，对于大型项目，为了项目的分层更清晰，Tie 推荐抽象一层 **存储库(Repository)** 来操作数据库，通常你会在 Service 中调用 Repository。
+对于小型项目，你可能在会直接在 Controller 或者 Service 中操作数据库，对于大型项目，为了项目的分层更清晰，TieJS 推荐抽象一层 **存储库(Repository)** 来操作数据库，通常你会在 Service 中调用 Repository。
 
 <!--DOCUSAURUS_CODE_TABS-->
 

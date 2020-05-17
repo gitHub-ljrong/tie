@@ -8,7 +8,7 @@ sidebar_label: 单元测试 (Testing)
 
 ## 测试代码
 
-为了演示在 Tie 怎么进行单元测试，我们新建 `UserService` 和 `PostService` 两个 Service，并且他们有依赖关系。
+为了演示在 TieJS 怎么进行单元测试，我们新建 `UserService` 和 `PostService` 两个 Service，并且他们有依赖关系。
 
 <!--DOCUSAURUS_CODE_TABS-->
 <!--user.service.ts-->
@@ -72,7 +72,7 @@ describe('UserService', () => {
 
 ## 使用 `@tiejs/testing`
 
-使用 Tie 提供的测试工具，可以很好地解决上面两个问题。
+使用 TieJS 提供的测试工具，可以很好地解决上面两个问题。
 
 先安装 `@tiejs/testing`:
 
