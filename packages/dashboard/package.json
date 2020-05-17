@@ -41,7 +41,6 @@
   },
   "dependencies": {
     "@tiejs/common": "^1.0.0-alpha.1",
-    "@tiejs/config": "^0.3.2",
     "@tiejs/controller": "^1.0.0-alpha.1",
     "@tiejs/graphql": "^1.0.0-alpha.1",
     "cors": "^2.8.5",

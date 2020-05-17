@@ -1,6 +1,6 @@
 import { Injectable, Application, InjectApp } from '@tiejs/common'
 import { InjectLogger, Logger } from '@tiejs/logger'
-import { InjectConfig } from '@tiejs/config'
+import { InjectConfig } from '@tiejs/common'
 import { ApolloServer, Config } from 'apollo-server-koa'
 import { defaultConfig } from './config.default'
 

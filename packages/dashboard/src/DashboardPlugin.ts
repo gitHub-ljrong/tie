@@ -1,5 +1,5 @@
 import { Injectable, IPlugin, Application } from '@tiejs/common'
-import { InjectConfig } from '@tiejs/config'
+import { InjectConfig } from '@tiejs/common'
 import { GraphqlConfig } from '@tiejs/graphql'
 import { ControllerConfig } from '@tiejs/controller'
 import { join } from 'path'

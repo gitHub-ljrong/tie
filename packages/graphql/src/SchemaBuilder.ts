@@ -1,6 +1,6 @@
 import { Injectable, Container, InjectApp, Application } from '@tiejs/common'
 import { InjectLogger, Logger } from '@tiejs/logger'
-import { InjectConfig } from '@tiejs/config'
+import { InjectConfig } from '@tiejs/common'
 
 import { buildSchema, BuildSchemaOptions } from 'type-graphql'
 import { extendSchema, parse, GraphQLSchema } from 'graphql'

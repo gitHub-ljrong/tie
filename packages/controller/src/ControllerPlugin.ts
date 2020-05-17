@@ -20,7 +20,7 @@ import { Exception } from '@tiejs/exception'
 import { paramTypes } from './constant'
 import { paramStore } from './stores/paramStore'
 import { RouteBuilder } from './RouteBuilder'
-import { InjectConfig } from '@tiejs/config'
+import { InjectConfig } from '@tiejs/common'
 
 import { InjectLogger, Logger } from '@tiejs/logger'
 

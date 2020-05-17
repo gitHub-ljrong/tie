@@ -46,7 +46,7 @@ export default class Config {
 
 ```js
 import { Controller, Get } from '@tiejs/controller'
-import { InjectConfig } from '@tiejs/config'
+import { InjectConfig } from '@tiejs/common'
 
 @Controller()
 export class HomeController {

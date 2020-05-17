@@ -1,5 +1,5 @@
 import { Injectable, IPlugin, Application, InjectApp } from '@tiejs/common'
-import { InjectConfig } from '@tiejs/config'
+import { InjectConfig } from '@tiejs/common'
 import { join } from 'path'
 import views from 'koa-views'
 
