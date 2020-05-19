@@ -1,4 +1,3 @@
-
 # TieJS
 
 ## 快速体验
@@ -13,18 +12,31 @@ npm run dev
 
 项目结构如下:
 
-```js
+```bash
 .
-├── package.json
-├── src
-│   └── home.controller.ts
+├── app.ts
+├── home.controller.ts
 └── tsconfig.json
 ```
 
 启动成功后，然后访问浏览器：http://localhost:5001
 
-这是一个最小化的 TieJS 应用，核心文件只有一个 `home.controller.ts`，代码如下:
+这是一个最小化的 TieJS 应用，，代码如下:
 
+**app.ts**
+
+```js
+import { Appliaction } from '@tiejs/core'
+import { HomeController } from './home.controller'
+
+const app = new Appliaction({
+  controllers: [HomeController],
+})
+
+app.bootstrap()
+```
+
+**hello.controller.ts**
 
 ```js
 import { Controller, Get } from '@tiejs/controller'

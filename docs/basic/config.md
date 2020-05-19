@@ -4,53 +4,66 @@ title: 配置
 sidebar_label: 配置 (Config)
 ---
 
-为了统一开发体验，TieJS 框架内置了配置管理。
+TieJS 提供了简洁的配置管理方式，回想一下 TieJS 是如何初始化应用的：
 
-## 多环境配置
+```ts
+import { Appliaction, Config } from '@tiejs/core'
+import { UserController } from './user.controller'
 
-框架支持根据环境来加载配置，，具体环境请查看运行环境配置
+const app = new Appliaction({
+  controllers: [UserController],
+})
 
-TieJS 根据环境变量 `process.env.NODE_ENV`加载配置，你可以定义多个环境的配置文件。
-
-```bash
-# config/
-config
-  ├── config.default.ts
-  ├── config.development.ts
-  ├── config.production.ts
-  └── config.test.ts
+app.bootstrap()
 ```
 
-`config.default.ts` 为默认的配置文件，所有环境都会加载这个配置文件，一般也会作为开发环境的默认配置文件。
+上面代码等价于：
 
-当指定 env 时会同时加载对应的配置文件，并覆盖默认配置文件的同名配置。如 production 环境会加载 config.production.ts 和 config.default.ts 文件，config.production.ts 会覆盖 config.default.ts 的同名配置。
+```ts
+import { Appliaction, Config } from '@tiejs/core'
+import { UserController } from './user.controller'
 
-## 编写配置
-
-配置是一个提供者，你可注入任何东西到配置中。
-
-```js
-import { Injectable, InjectApp, Application } from '@tiejs/common'
-
-@Injectable()
-export default class Config {
-  constructor(@InjectApp() private app: Application) {}
-
-  middlewares: string[] = ['error-handler']
-  appKey: string = 'azdexierxy'
-  baseDir = this.app.baseDir
+const config: Config = {
+  port: 6001, // 重构上面代码顺便更改一下默认端口号
+  controllers: [UserController],
 }
+
+const app = new Appliaction(config)
+app.bootstrap()
+```
+
+你应该发现了，TieJS 的配置是一个普通 JavaScript 对象，通过 Appliaction 传递进去并初始化。
+
+## 配置管理
+
+对于复杂的项目，需要更好地管理配置，通常你会用一个文件夹集中管理配置，然后再引入到 app.ts 中
+
+```ts
+.
+├── app.ts
+├── config
+    ├── typeorm.ts
+    ├── redis.ts
+    ├── graphql.ts
+    ├── middlewares.ts
+    ├── plugins.ts
+    └── index.ts
 ```
 
 ## 使用配置
 
+Tiejs 提供装饰器 `@InjectConfig` 让你可以在任何地方使用配置，比如在 Controller、Resolver、Service、Middleware、Plugin 中等等。
+
+举个例子，我们在 Controller 中通过 `@InjectConfig` 获取整个配置:
+
 ```js
+import { Config } from '@tiejs/core'
 import { Controller, Get } from '@tiejs/controller'
 import { InjectConfig } from '@tiejs/common'
 
 @Controller()
 export class HomeController {
-  constructor(@InjectConfig() private config: any) {}
+  constructor(@InjectConfig() private config: Config) {}
 
   @Get('/')
   index() {
@@ -58,3 +71,22 @@ export class HomeController {
   }
 }
 ```
+
+`@InjectConfig` 支持 Lodash.get like 获取配置，例如 `@InjectConfig('typeorm')`、 `@InjectConfig('auth.key')`:
+
+```js
+import { Resolver, Query } from 'type-graphql'
+import { InjectConfig } from '@tiejs/common'
+
+@Resolver()
+export class HomeResolver {
+  constructor(@InjectConfig('auth') private authConfig: AuthConfig) {}
+
+  @Query('/')
+  index() {
+    return this.authConfig
+  }
+}
+```
+
+上面是在 Controller 和 Resolver 中获取配置，在开发插件时，你可以也要获取插件，同样你也可以用 `@InjectConfig` 获取到。

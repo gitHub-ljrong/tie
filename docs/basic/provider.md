@@ -84,7 +84,6 @@ export class UserController {
 <!--user.resolver.ts-->
 
 ```js
-
 import { Resolver, Query, Arg, Mutation } from 'type-graphql'
 import { User } from './user.type'
 import { UserService } from './user.service'
@@ -155,23 +154,6 @@ export class UserService {
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
-
-## 配置(Config)
-
-中间件也是 Provider，详细使用方法请看 [配置](/docs/basic/config)。
-
-```js
-import { Injectable, InjectApp, Application } from '@tiejs/common'
-
-@Injectable()
-export default class Config {
-  constructor(@InjectApp() private app: Application) {}
-
-  middlewares: string[] = ['error-handler']
-  appKey: string = 'azdexierxy'
-  baseDir = this.app.baseDir
-}
-```
 
 ## 插件(Plugin)
 

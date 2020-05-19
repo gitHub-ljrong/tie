@@ -29,7 +29,6 @@ npm run dev
 <!--DOCUSAURUS_CODE_TABS-->
 
 <!--app.ts-->
-
 ```js
 import { Appliaction } from '@tiejs/core'
 import { HomeController } from './home.controller'

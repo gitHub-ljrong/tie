@@ -19,7 +19,7 @@ const myLogger = async (ctx, next) => {
 
 **TieJS 中间件：**
 
-TieJS 中间件文件默认的命名格式必须为 `xxx.middleware.ts`，每个中间件都有个名字，比如中间件 `logger.middleware.ts` 名字为 `logger`。
+TieJS 中间件文件是一个 `Provider`, 必须实现一个 `use`方法：
 
 ```js
 // logger.middleware.ts
@@ -36,41 +36,36 @@ export default class LoggerMiddleware {
 
 ## 使用中间件
 
-插件配置文件为 `config/middleware.ts`:
+你可以使用 Koa 中间件，也可以使用 Provider 形式的中间件，中间件的执行顺序根据配置的顺序。
 
-### 本地中间件
-
-你可以在配置文件配置中间件，中间件的执行顺序根据配置的顺序:
-
-```js
-import { MiddlewareConfig } from '@tiejs/common'
-
-const config: MiddlewareConfig = [
-  {
-    name: 'logger',
-  },
-]
-
-export default config
-```
-
-### 第三方中间件
-
-也可以使用第三方中间件:
+配置文件 `config/middlewares.ts`:
 
 ```js
 import { MiddlewareConfig } from '@tiejs/common'
 import cors from 'cors'
+import { LoggerMiddleware } from './LoggerMiddleware'
 
-const config: MiddlewareConfig = [
+export const middlewares: MiddlewareConfig = [
   {
     name: 'logger',
+    use: LoggerMiddleware,
   },
   {
     name: 'cors',
     use: cors(),
   },
 ]
+```
 
-export default config
+使用中间件配置：
+
+```ts
+import { Appliaction, Config } from '@tiejs/core'
+import { middlewares } from middlewares
+
+const app = new Appliaction({
+  middlewares,
+})
+
+app.bootstrap()
 ```

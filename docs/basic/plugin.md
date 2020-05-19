@@ -4,23 +4,21 @@ title: 插件
 sidebar_label: 插件 (Plugin)
 ---
 
-插件是 TieJS 最核心功能。
+TieJS 拥有强大的插件系统，利用插件可以更好地让业务逻辑复用，插件是 TieJS 最核心功能。
 
 ## 插件配置
 
-插件配置文件为 `config/config/plugin.ts`:
+插件配置文件为 `config/plugins.ts`:
 
 ```js
 import { PluginConfig } from '@tiejs/common'
 
-const config: PluginConfig = [
+export const configs: PluginConfig = [
   {
     package: '@tiejs/typeorm'
     enable: true,
   }
 ]
-
-export default config
 ```
 
 ## 插件开发
@@ -37,10 +35,10 @@ export default class LoggerPlugin implements IPlugin {
   constructor(@InjectApp() private app: Application) {
     let { middlewareConfig } = this.app
     middlewareConfig.unshift({
-      name: 'logger', 
+      name: 'logger',
 
       // LoggerMiddleware 是一个中间件提供者(Provider)
-      use: LoggerMiddleware 
+      use: LoggerMiddleware
     })
   }
 
@@ -65,4 +63,33 @@ export default class LoggerPlugin implements IPlugin {
     console.log('server start')
   }
 }
+```
+
+## 内置插件
+
+TieJS 内置了一下插件：
+
+```js
+;[
+  {
+    name: 'controller',
+    package: '@tiejs/controller',
+    enable: true,
+  },
+  {
+    name: 'graphql',
+    package: '@tiejs/graphql',
+    enable: true,
+  },
+  {
+    name: 'logger',
+    package: '@tiejs/logger',
+    enable: true,
+  },
+  {
+    name: 'view',
+    package: '@tiejs/view',
+    enable: true,
+  },
+]
 ```

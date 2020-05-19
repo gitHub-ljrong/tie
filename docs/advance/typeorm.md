@@ -46,14 +46,12 @@ npm i @tiejs/typeorm
 ```js
 import { PluginConfig } from '@tiejs/common'
 
-export const config: PluginConfig = [
+export const configs: PluginConfig = [
   {
     package: '@tiejs/typeorm',
     enable: true,
   },
 ]
-
-export default config
 ```
 
 ## 配置数据库连接
@@ -61,28 +59,23 @@ export default config
 在配置文件 `config/config.default.ts` 配置数据库连接：
 
 ```js
-import { Injectable } from '@tiejs/common'
-
-@Injectable()
-export default class Config {
-  typeorm = {
-    type: 'mysql',
-    host: '127.0.01',
-    port: 3306,
-    username: 'TODO',
-    password: 'TODO',
-    database: 'TODO',
-    synchronize: false,
-    logging: true,
-    entities: ['entity/**/*.entity.ts'],
-    migrations: ['/migration/**/*.ts'],
-    subscribers: ['/subscriber/**/*.ts'],
-    cli: {
-      entitiesDir: 'entity',
-      migrationsDir: 'migration',
-      subscribersDir: 'subscriber',
-    },
-  }
+const typeorm = {
+  type: 'mysql',
+  host: '127.0.01',
+  port: 3306,
+  username: 'TODO',
+  password: 'TODO',
+  database: 'TODO',
+  synchronize: false,
+  logging: true,
+  entities: ['entity/**/*.entity.ts'],
+  migrations: ['/migration/**/*.ts'],
+  subscribers: ['/subscriber/**/*.ts'],
+  cli: {
+    entitiesDir: 'entity',
+    migrationsDir: 'migration',
+    subscribersDir: 'subscriber',
+  },
 }
 ```
 
