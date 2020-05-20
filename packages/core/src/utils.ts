@@ -8,7 +8,13 @@ export function getPluginConfig(pluginConfig: PluginConfig = []) {
   for (const item of defaultPlugins) {
     const find = pluginConfig.find(i => i.name === item.name)
     if (find) continue
-    pluginConfig.unshift(item)
+
+    // controller and graphql plugin should be tail
+    if (['controller', 'graphql'].includes(item.name)) {
+      pluginConfig.push(item)
+    } else {
+      pluginConfig.unshift(item)
+    }
   }
 
   return pluginConfig
