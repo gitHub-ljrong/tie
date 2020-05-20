@@ -10,7 +10,7 @@ import { Config } from './types'
 
 const { cyan } = chalk
 
-export class Appliaction extends Koa {
+export class Application extends Koa {
   private t0 = Date.now()
 
   server: Server | null = null

@@ -1,2 +1,2 @@
-export { Appliaction } from './App'
+export { Application } from './App'
 export * from './types'
