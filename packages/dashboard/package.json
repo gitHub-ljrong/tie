@@ -35,9 +35,9 @@
     "pea-plugin-modal": "^0.1.0",
     "pea-plugin-rest": "^0.1.0",
     "pea-plugin-router": "^0.1.0",
-    "tsnl": "^1.2.0",
-    "type-graphql": "^0.17.5",
-    "typescript": "^3.4.5"
+    "tsnl": "^1.4.0",
+    "type-graphql": "^1.0.0-rc.2",
+    "typescript": "^3.9.3"
   },
   "dependencies": {
     "@tiejs/common": "^1.0.0-y.0",

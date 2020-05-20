@@ -32,11 +32,11 @@
     "@tiejs/common": "^1.0.0-y.0",
     "@tiejs/logger": "^1.0.0-y.0",
     "mysql": "^2.18.1",
-    "typeorm": "^0.2.24",
+    "typeorm": "^0.2.25",
     "typeorm-typedi-extensions": "^0.2.3"
   },
   "devDependencies": {
-    "tsnl": "1.3.0",
-    "typescript": "^3.9.2"
+    "tsnl": "1.4.0",
+    "typescript": "^3.9.3"
   }
 }
