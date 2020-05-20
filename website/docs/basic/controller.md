@@ -34,10 +34,10 @@ npm run dev
 <!--app.ts-->
 
 ```js
-import { Appliaction } from '@tiejs/core'
+import { Application } from '@tiejs/core'
 import { HomeController } from './home.controller'
 
-const app = new Appliaction({
+const app = new Application({
   controllers: [HomeController],
 })
 
@@ -103,10 +103,10 @@ export class HomeController {
 <!--app.ts-->
 
 ```js
-import { Appliaction } from '@tiejs/core'
+import { Application } from '@tiejs/core'
 import { UserController } from './user/user.controller'
 
-const app = new Appliaction({
+const app = new Application({
   controllers: [UserController],
 })
 

@@ -7,10 +7,10 @@ sidebar_label: 配置 (Config)
 TieJS 提供了简洁的配置管理方式，回想一下 TieJS 是如何初始化应用的：
 
 ```ts
-import { Appliaction, Config } from '@tiejs/core'
+import { Application, Config } from '@tiejs/core'
 import { UserController } from './user.controller'
 
-const app = new Appliaction({
+const app = new Application({
   controllers: [UserController],
 })
 
@@ -20,7 +20,7 @@ app.bootstrap()
 上面代码等价于：
 
 ```ts
-import { Appliaction, Config } from '@tiejs/core'
+import { Application, Config } from '@tiejs/core'
 import { UserController } from './user.controller'
 
 const config: Config = {
@@ -28,11 +28,11 @@ const config: Config = {
   controllers: [UserController],
 }
 
-const app = new Appliaction(config)
+const app = new Application(config)
 app.bootstrap()
 ```
 
-你应该发现了，TieJS 的配置是一个普通 JavaScript 对象，通过 Appliaction 传递进去并初始化。
+你应该发现了，TieJS 的配置是一个普通 JavaScript 对象，通过 Application 传递进去并初始化。
 
 ## 配置管理
 

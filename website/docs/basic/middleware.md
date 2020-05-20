@@ -60,10 +60,10 @@ export const middlewares: MiddlewareConfig = [
 使用中间件配置：
 
 ```ts
-import { Appliaction, Config } from '@tiejs/core'
+import { Application, Config } from '@tiejs/core'
 import { middlewares } from middlewares
 
-const app = new Appliaction({
+const app = new Application({
   middlewares,
 })
 
