@@ -52,10 +52,10 @@ export class HomeController {
 
 ## 文档
 
-官方文档 [tie.js.org](https://tie.js.org/).
+官方文档 [tie.js.org](https://tiejs.now.sh/).
 
-入门教程 [快速开始](https://tie.js.org/docs/intro/quick-start).
+入门教程 [快速开始](https://tiejs.now.sh/docs/intro/quick-start).
 
 ## License
 
-[MIT License](https://github.com/tie-team/tie/blob/master/LICENSE)
+[MIT License](https://github.com/tiejs/tie/blob/master/LICENSE)

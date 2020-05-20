@@ -1,7 +1,7 @@
 module.exports = {
   title: 'TieJS',
   tagline: 'A Node.js Framework based on Koa and TypeScript',
-  url: 'https://tie.js.org',
+  url: 'https://tiejs.now.sh',
   baseUrl: '/',
   favicon: 'img/favicon.ico',
   organizationName: 'tiejs',
