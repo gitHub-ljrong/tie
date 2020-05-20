@@ -1,6 +1,6 @@
 {
   "name": "@tiejs/common",
-  "version": "1.0.0-y.0",
+  "version": "1.0.0-1.0.0-alpha.2.0",
   "description": "Tie.js common",
   "main": "dist/index.js",
   "scripts": {
