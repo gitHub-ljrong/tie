@@ -14,14 +14,15 @@ export class DevDashboardResolver {
     return {
       baseDir: this.app.baseDir,
       env: this.app.env || 'development',
-      pluginStore: this.app.pluginConfig,
+      pluginStore: this.app.pluginStore,
       middlewareStore: this.getMiddlewareConfig(),
       routerStore: this.getRouterStore(),
     }
   }
 
   private getMiddlewareConfig() {
-    return this.app.middlewareConfig.map(item => ({
+    const { middlewares = [] } = this.app.config
+    return middlewares.map(item => ({
       ...item,
       name: item.name || '',
       use: item.use ? item.use.toString() : '',
