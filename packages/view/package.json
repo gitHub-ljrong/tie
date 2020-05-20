@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "@tiejs/common": "^1.0.0-1.0.0-alpha.2.0",
+    "handlebars": "^4.7.6",
     "koa-views": "^6.2.2"
   }
 }
