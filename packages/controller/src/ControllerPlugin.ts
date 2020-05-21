@@ -22,7 +22,7 @@ import { paramStore } from './stores/paramStore'
 import { RouteBuilder } from './RouteBuilder'
 import { InjectConfig } from '@tiejs/common'
 
-import { InjectLogger, Logger } from '@tiejs/logger'
+import { formatError } from './utils/formatError'
 
 interface Arg {
   value: any
@@ -33,11 +33,7 @@ interface Arg {
 export class ControllerPlugin implements IPlugin {
   private routes: RouteItem[] = []
 
-  constructor(
-    @InjectApp() private app: Application,
-    @InjectConfig('body') private body: Options,
-    @InjectLogger('@tiejs/controller') private logger: Logger,
-  ) {
+  constructor(@InjectApp() private app: Application, @InjectConfig('body') private body: Options) {
     this.app.use(bodyParser(this.body))
   }
 
@@ -59,6 +55,7 @@ export class ControllerPlugin implements IPlugin {
         const validationErrors = await getValidationErrors(args)
 
         if (validationErrors.length) {
+          // TODO: handle detail
           return next(
             new Exception({
               type: 'ValidationError',
@@ -82,8 +79,9 @@ export class ControllerPlugin implements IPlugin {
           // render result
           if (result) ctx.body = result
         } catch (error) {
-          this.logger.error(error)
-          await next()
+          const { status, body } = formatError(error)
+          ctx.response.status = status
+          ctx.body = body
         }
       })
     }
