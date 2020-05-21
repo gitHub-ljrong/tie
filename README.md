@@ -52,7 +52,7 @@ export class HomeController {
 
 ## 文档
 
-官方文档 [tie.js.org](https://tiejs.now.sh/).
+官方文档 [tiejs.now.sh](https://tiejs.now.sh/).
 
 入门教程 [快速开始](https://tiejs.now.sh/docs/intro/quick-start).
 
