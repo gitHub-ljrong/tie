@@ -1,6 +1,6 @@
 export interface Options {
-  code?: string // error code
-  type?: string // error type，分类
+  code?: string // business error code
+  type?: string // error type
   message?: string // error message
   origin?: any // origin error message
 }
@@ -17,12 +17,12 @@ export class Exception extends Error {
 
   constructor(options: ExceptionOptions) {
     super()
-    this.status = options.status || 600
+    this.status = options.status || 500
     this.response = {
       message: options.message || '',
       code: options.code || 'UnknownError',
-      origin: options.origin || '',
       type: options.type,
+      origin: options.origin || '',
     }
   }
 
