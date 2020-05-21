@@ -8,6 +8,7 @@ module.exports = {
       'basic/config',
       'basic/middleware',
       'basic/plugin',
+      'basic/exception',
     ],
     进阶: [
       'advance/development',
