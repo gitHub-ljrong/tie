@@ -5,7 +5,8 @@
 使用 `tie-cli` 初始化应用 (选择 minimal-controller)：
 
 ```bash
-npx tie-cli myapp # 选择 minimal-controller
+npm i -g tie-cli
+tie create myapp #  选择 minimal-controller
 cd myapp
 npm run dev
 ```
