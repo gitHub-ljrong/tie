@@ -4,8 +4,8 @@
   "description": "",
   "scripts": {
     "dev": "lerna run --parallel --stream dev",
-    "build": "lerna run --parallel --stream build",
-    "test": "lerna run --parallel --stream test"
+    "test": "lerna run --parallel --stream test",
+    "publish": "lerna publish --force-publish"
   },
   "husky": {
     "hooks": {
