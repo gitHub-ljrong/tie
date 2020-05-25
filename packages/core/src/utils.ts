@@ -9,13 +9,17 @@ export function getPluginConfig(pluginConfig: PluginConfig = []) {
     const find = pluginConfig.find(i => i.name === item.name)
     if (find) continue
 
-    // controller and graphql plugin should be tail
-    if (['controller', 'graphql'].includes(item.name)) {
-      pluginConfig.push(item)
-    } else {
-      pluginConfig.unshift(item)
-    }
+    pluginConfig.unshift(item)
   }
+
+  /** controller and graphql plugin should be tail */
+  const controllerIndex = pluginConfig.findIndex(item => item.name === 'controller')
+  const controller = pluginConfig.splice(controllerIndex, 1)[0]
+  pluginConfig.push(controller)
+
+  const graphqlIndex = pluginConfig.findIndex(item => item.name === 'graphql')
+  const graphql = pluginConfig.splice(graphqlIndex, 1)[0]
+  pluginConfig.push(graphql)
 
   return pluginConfig
 }
