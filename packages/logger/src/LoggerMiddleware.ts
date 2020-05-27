@@ -16,7 +16,7 @@ export class LoggerMiddleware implements IMiddleware {
         })
       }
     }
-    next()
+    await next()
   }
 }
 
