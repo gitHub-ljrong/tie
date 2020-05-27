@@ -1,5 +1,5 @@
 module.exports = {
-  someSidebar: {
+  docs: {
     简介: ['intro/quick-start', 'intro/about'],
     基础: [
       'basic/controller',
@@ -17,5 +17,9 @@ module.exports = {
       'advance/plugin',
       'advance/typeorm',
     ],
+  },
+
+  framework: {
+    core: ['framework/core'],
   },
 }

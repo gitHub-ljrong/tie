@@ -4,6 +4,9 @@ title: 快速上手
 sidebar_label: 快速上手
 ---
 
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+
 使用 `tie-cli` 来初始化 tie 项目:
 
 ```bash
@@ -17,8 +20,8 @@ npm run dev
 
 ```bash
 .
-├── app.ts
 ├── home.controller.ts
+├── package.json
 └── tsconfig.json
 ```
 
@@ -26,23 +29,16 @@ npm run dev
 
 这是一个最小化的 TieJS 应用，核心文件只有一个 `home.controller.ts`:
 
-<!--DOCUSAURUS_CODE_TABS-->
+<Tabs
+defaultValue="a"
+values={[
+{ label: 'home.controller.ts', value: 'a', },
+{ label: 'package.json', value: 'b', },
+]
+}>
+<TabItem value="a">
 
-<!--app.ts-->
-```js
-import { Application } from '@tiejs/core'
-import { HomeController } from './home.controller'
-
-const app = new Application({
-  controllers: [HomeController],
-})
-
-app.bootstrap()
-```
-
-<!--home.controller.ts-->
-
-```js
+```ts
 import { Controller, Get } from '@tiejs/controller'
 
 @Controller()
@@ -54,7 +50,8 @@ export class HomeController {
 }
 ```
 
-<!--package.json-->
+</TabItem>
+<TabItem value="b">
 
 ```json
 {
@@ -66,10 +63,10 @@ export class HomeController {
   },
   "dependencies": {
     "@tiejs/core": "^1.0.0",
-    "@tiejs/controller": "^1.0.0",
     "tie-cli": "0.0.4"
   }
 }
 ```
 
-<!--END_DOCUSAURUS_CODE_TABS-->
+</TabItem>
+</Tabs>

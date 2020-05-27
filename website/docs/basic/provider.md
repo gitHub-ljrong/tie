@@ -14,11 +14,8 @@ TieJS 框架最核心的特性是使用依赖注入 (Dependency injection) 组�
 
 服务是业务逻辑的抽象，通常你会在 Controller 或 Resolver 中通过**依赖注入**的方式调用 Service，TieJS 使用 **依赖注入** 的方式组织代码，这是非常重要特性，因为它使代码有更好的可读性，也更易于进行单元测试。
 
-<!--DOCUSAURUS_CODE_TABS-->
 
-<!--user.service.ts-->
-
-```js
+```ts
 import { Injectable } from '@tiejs/common'
 import { User } from './user.type'
 import { CreateUserInput } from './createUser.input'
@@ -52,75 +49,12 @@ export class UserService {
 }
 ```
 
-<!--user.controller.ts-->
-
-```js
-import { Controller, Get, Params, Post, Body } from '@tiejs/controller'
-import { User } from './user.type'
-import { UserService } from './user.service'
-import { CreateUserInput } from './createUser.input'
-
-@Controller()
-export class UserController {
-  constructor(private userService: UserService) {}
-
-  @Get('/users/:name')
-  async user(@Params('name') name: string): Promise<User> {
-    return await this.userService.getUser(name)
-  }
-
-  @Get('/users')
-  async users(): Promise<User[]> {
-    return await this.userService.queryUser()
-  }
-
-  @Post('/users')
-  async createUser(@Body() input: CreateUserInput): Promise<User> {
-    return await this.userService.createUser(input)
-  }
-}
-```
-
-<!--user.resolver.ts-->
-
-```js
-import { Resolver, Query, Arg, Mutation } from 'type-graphql'
-import { User } from './user.type'
-import { UserService } from './user.service'
-import { CreateUserInput } from './createUser.input'
-
-@Resolver(() => User)
-export class UserResolver {
-  constructor(private userService: UserService) {}
-
-  @Query(() => User, { nullable: true, description: 'get user by name' })
-  async user(@Arg('name') name: string): Promise<User> {
-    return await this.userService.getUser(name)
-  }
-
-  @Query(() => [User], { description: 'query user' })
-  async users(): Promise<User[]> {
-    return await this.userService.queryUser()
-  }
-
-  @Mutation(() => User)
-  async createUser(@Arg('input') input: CreateUserInput): Promise<User> {
-    return await this.userService.createUser(input)
-  }
-}
-```
-
-<!--END_DOCUSAURUS_CODE_TABS-->
-
 ## 存储库(Repository)
 
 对于小型项目，你可能在会直接在 Controller 或者 Service 中操作数据库，对于大型项目，为了项目的分层更清晰，TieJS 推荐抽象一层 **存储库(Repository)** 来操作数据库，通常你会在 Service 中调用 Repository。
 
-<!--DOCUSAURUS_CODE_TABS-->
 
-<!--user.repository.ts-->
-
-```js
+```ts
 import { Injectable } from '@tiejs/common'
 import { InjectRepository } from '@tiejs/typeorm'
 import { Repository } from 'typeorm'
@@ -136,24 +70,6 @@ export class UserRepository {
   }
 }
 ```
-
-<!--user.service.ts-->
-
-```js
-import { Injectable } from '@tiejs/common'
-import { UserRepository } from './user.repositorys'
-
-@Injectable()
-export class UserService {
-  constructor(private userRepository: UserRepository) {}
-
-  async queryUser(): Promise<User[]> {
-    return this.userRepository.findAll()
-  }
-}
-```
-
-<!--END_DOCUSAURUS_CODE_TABS-->
 
 ## 插件(Plugin)
 

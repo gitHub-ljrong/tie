@@ -25,6 +25,13 @@ module.exports = {
           position: 'left',
           label: '文档',
         },
+
+        // {
+        //   to: 'docs/framework/core',
+        //   activeBasePath: 'docs',
+        //   position: 'left',
+        //   label: '设计',
+        // },
         // { to: 'blog', label: 'Blog', position: 'left' },
         {
           href: 'https://www.github.com/tiejs/tie',

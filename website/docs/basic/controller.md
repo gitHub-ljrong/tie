@@ -4,6 +4,9 @@ title: 控制器
 sidebar_label: 控制器 (Controller)
 ---
 
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+
 ## 基本用法
 
 Controller 功能 在 TieJS 中是开箱即用的，下面我们使用 CLI 工具 `tie-cli` 快速体验。
@@ -20,8 +23,8 @@ npm run dev
 
 ```bash
 .
-├── app.ts
 ├── home.controller.ts
+├── package.json
 └── tsconfig.json
 ```
 
@@ -29,24 +32,16 @@ npm run dev
 
 代码如下:
 
-<!--DOCUSAURUS_CODE_TABS-->
+<Tabs
+defaultValue="a"
+values={[
+{ label: 'home.controller.ts', value: 'a', },
+{ label: 'package.json', value: 'b', },
+]
+}>
+<TabItem value="a">
 
-<!--app.ts-->
-
-```js
-import { Application } from '@tiejs/core'
-import { HomeController } from './home.controller'
-
-const app = new Application({
-  controllers: [HomeController],
-})
-
-app.bootstrap()
-```
-
-<!--home.controller.ts-->
-
-```js
+```ts
 import { Controller, Get } from '@tiejs/controller'
 
 @Controller()
@@ -58,7 +53,8 @@ export class HomeController {
 }
 ```
 
-<!--package.json-->
+</TabItem>
+<TabItem value="b">
 
 ```json
 {
@@ -76,7 +72,8 @@ export class HomeController {
 }
 ```
 
-<!--END_DOCUSAURUS_CODE_TABS-->
+</TabItem>
+</Tabs>
 
 ## 常用功能
 
@@ -87,7 +84,6 @@ export class HomeController {
 ```bash
 .
 ├── package.json
-├── app.ts
 ├── user
 │   ├── createUser.input.ts
 │   ├── user.resolver.ts
@@ -98,24 +94,18 @@ export class HomeController {
 
 项目代码如下：
 
-<!--DOCUSAURUS_CODE_TABS-->
+<Tabs
+defaultValue="a"
+values={[
+{ label: 'user.controller.ts', value: 'a', },
+{ label: 'user.service.ts', value: 'b', },
+{ label: 'user.type.ts', value: 'c', },
+{ label: 'createUser.input.ts', value: 'd', },
+]
+}>
+<TabItem value="a">
 
-<!--app.ts-->
-
-```js
-import { Application } from '@tiejs/core'
-import { UserController } from './user/user.controller'
-
-const app = new Application({
-  controllers: [UserController],
-})
-
-app.bootstrap()
-```
-
-<!--user.controller.ts-->
-
-```js
+```ts
 import { Controller, Get, Params, Post, Body } from '@tiejs/controller'
 import { User } from './user.type'
 import { UserService } from './user.service'
@@ -140,13 +130,12 @@ export class UserController {
     return await this.userService.createUser(input)
   }
 }
-
-
 ```
 
-<!--user.service.ts-->
+</TabItem>
+<TabItem value="b">
 
-```js
+```ts
 import { Injectable } from '@tiejs/common'
 import { User } from './user.type'
 import { CreateUserInput } from './createUser.input'
@@ -168,7 +157,7 @@ export class UserService {
   }
 
   async getUser(name: string): Promise<User> {
-    const user = this.users.find(user => user.name === name)
+    const user = this.users.find((user) => user.name === name)
     if (!user) throw new Error('未找到用户')
     return user
   }
@@ -178,44 +167,30 @@ export class UserService {
     return user
   }
 }
-
 ```
 
-<!--user.type.ts-->
+</TabItem>
 
-```js
+<TabItem value="c">
+
+```ts
 export class User {
   name: string
   age: number
 }
 ```
 
-<!--createUser.input.ts-->
+</TabItem>
 
-```js
+<TabItem value="d">
+
+```ts
 export class CreateUserInput {
   name: string
   age: number
 }
 ```
 
-<!--package.json-->
+</TabItem>
 
-```json
-{
-  "name": "myapp",
-  "scripts": {
-    "dev": "tie dev",
-    "build": "tie build",
-    "test": "tie test"
-  },
-  "dependencies": {
-    "@tiejs/common": "^1.0.0",
-    "@tiejs/core": "^1.0.0",
-    "@tiejs/controller": "^1.0.0",
-    "tie-cli": "0.0.4"
-  }
-}
-```
-
-<!--END_DOCUSAURUS_CODE_TABS-->
+</Tabs>

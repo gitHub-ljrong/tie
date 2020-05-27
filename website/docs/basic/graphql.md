@@ -4,6 +4,9 @@ title: GraphQL
 sidebar_label: GraphQL
 ---
 
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+
 TieJS 是默认支持 GraphQL 的，你不需任何额外的配置，对于无历史包袱的新项目，非常推荐使用 GraphQL 来开发 API。
 
 ## 基本用法
@@ -22,8 +25,8 @@ npm run dev
 
 ```js
 .
-├── app.ts
 ├── hello.resolver.ts
+├── package.json
 └── tsconfig.json
 ```
 
@@ -31,24 +34,16 @@ npm run dev
 
 这是一个最小化的 Tie GraphQL 应用，核心文件只有一个 `hello.resolver.ts`，代码如下:
 
-<!--DOCUSAURUS_CODE_TABS-->
+<Tabs
+defaultValue="a"
+values={[
+{ label: 'home.resolver.ts', value: 'a', },
+{ label: 'package.json', value: 'b', },
+]
+}>
+<TabItem value="a">
 
-<!--app.ts-->
-
-```js
-import { Application } from '@tiejs/core'
-import { HelloResolver } from './hello.resolver'
-
-const app = new Application({
-  resolvers: [HelloResolver],
-})
-
-app.bootstrap()
-```
-
-<!--hello.resolver.ts-->
-
-```js
+```ts
 import { Resolver, Query } from 'type-graphql'
 
 @Resolver(() => String)
@@ -60,7 +55,8 @@ export class HelloResolver {
 }
 ```
 
-<!--package.json-->
+</TabItem>
+<TabItem value="b">
 
 ```json
 {
@@ -71,15 +67,14 @@ export class HelloResolver {
     "test": "tie test"
   },
   "dependencies": {
-    "@tiejs/common": "^1.0.0",
     "@tiejs/core": "^1.0.0",
-    "@tiejs/graphql": "^1.0.0",
     "tie-cli": "0.0.4"
   }
 }
 ```
 
-<!--END_DOCUSAURUS_CODE_TABS-->
+</TabItem>
+</Tabs>
 
 在 TieJS 中，`xxx.resolver.ts` 是 GraphQL 的端点文件，类似 MVC 架构中的 Controller。
 
@@ -104,11 +99,18 @@ TieJS 中内置了 GraphQL 插件 `@tiejs/graphql`，Tie 的 GraphQL 插件基�
 
 项目代码如下：
 
-<!--DOCUSAURUS_CODE_TABS-->
-<!--user.resolver.ts-->
+<Tabs
+defaultValue="a"
+values={[
+{ label: 'user.resolver.ts', value: 'a', },
+{ label: 'user.service.ts', value: 'b', },
+{ label: 'user.type.ts', value: 'c', },
+{ label: 'createUser.input.ts', value: 'd', },
+]
+}>
+<TabItem value="a">
 
-```js
-
+```ts
 import { Resolver, Query, Arg, Mutation } from 'type-graphql'
 import { User } from './user.type'
 import { UserService } from './user.service'
@@ -133,12 +135,12 @@ export class UserResolver {
     return await this.userService.createUser(input)
   }
 }
-
 ```
 
-<!--user.service.ts-->
+</TabItem>
+<TabItem value="b">
 
-```js
+```ts
 import { Injectable } from '@tiejs/common'
 import { User } from './user.type'
 import { CreateUserInput } from './createUser.input'
@@ -173,9 +175,12 @@ export class UserService {
 
 ```
 
-<!--user.type.ts-->
+</TabItem>
 
-```js
+<TabItem value="c">
+
+
+```ts
 import { Field, ObjectType, Int } from 'type-graphql'
 
 @ObjectType({ description: 'user' })
@@ -188,9 +193,11 @@ export class User {
 }
 ```
 
-<!--createUser.input.ts-->
+</TabItem>
 
-```js
+<TabItem value="d">
+
+```ts
 import { InputType, Field } from 'type-graphql'
 
 @InputType()
@@ -202,30 +209,12 @@ export class CreateUserInput {
   age: number
 }
 ```
+</TabItem>
 
-<!--package.json-->
-
-```json
-{
-  "name": "myapp",
-  "scripts": {
-    "dev": "tie dev",
-    "build": "tie build",
-    "test": "tie test"
-  },
-  "dependencies": {
-    "@tiejs/common": "^0.2.2",
-    "@tiejs/core": "^0.2.2",
-    "@tiejs/graphql": "^0.2.2",
-    "tie-cli": "0.0.4"
-  }
-}
-```
-
-<!--END_DOCUSAURUS_CODE_TABS-->
+</Tabs>
 
 使用`npm run dev`启动成功后，然后访问浏览器：http://localhost:5001/graphql，你就可以在 GraphQL Playground 中体验 Query 和 Mutation 了。
 
 ## 更多功能
 
-上面说了 Tie 的 GraphQL 插件基于 [TypeGraphQL](https://github.com/MichalLytek/type-graphql)，再次建议详细阅读 [TypeGraphQL](https://github.com/MichalLytek/type-graphql) 文档。
+上面说了 TieJS 的 GraphQL 插件基于 [TypeGraphQL](https://github.com/MichalLytek/type-graphql)，再次建议详细阅读 [TypeGraphQL](https://github.com/MichalLytek/type-graphql) 文档。
