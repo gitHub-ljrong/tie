@@ -6,6 +6,7 @@ import {
   Container,
   Context,
   InjectApp,
+  NextFunction,
 } from '@tiejs/common'
 
 import { validateOrReject, ValidationError } from 'class-validator'
@@ -50,7 +51,7 @@ export class ControllerPlugin implements IPlugin {
       const { method, path, instance, fn, target, propertyKey, view } = route
 
       router[method](path, async (ctx: Context, next: any) => {
-        const args = getArgs(ctx, target, propertyKey)
+        const args = getArgs(ctx, next, target, propertyKey)
 
         const validationErrors = await getValidationErrors(args)
 
@@ -90,7 +91,7 @@ export class ControllerPlugin implements IPlugin {
   }
 }
 
-function getVaue(ctx: Context, paramType: string, paramName: string) {
+function getVaue(ctx: Context, next: NextFunction, paramType: string, paramName: string) {
   const ValueMaps = {
     [paramTypes.Query]: () => (paramName ? ctx.query[paramName] : { ...ctx.query }),
     [paramTypes.Body]: () => (paramName ? ctx.request.body[paramName] : ctx.request.body),
@@ -102,6 +103,7 @@ function getVaue(ctx: Context, paramType: string, paramName: string) {
     [paramTypes.Method]: () => ctx.method,
     [paramTypes.Session]: () => ctx.req, // TODO: session
     [paramTypes.Ctx]: () => ctx,
+    [paramTypes.Next]: () => next,
     [paramTypes.Req]: () => ctx.req,
     [paramTypes.Res]: () => ctx.res,
     [paramTypes.Header]: () => ctx.headers,
@@ -109,7 +111,7 @@ function getVaue(ctx: Context, paramType: string, paramName: string) {
   return (ValueMaps as any)[paramType]()
 }
 
-function getArgs(ctx: Context, target: Object, propertyKey: string): Arg[] {
+function getArgs(ctx: Context, next: NextFunction, target: Object, propertyKey: string): Arg[] {
   const args: Arg[] = []
 
   const ParamTypes = paramStore.getParamTypes(target, propertyKey)
@@ -124,11 +126,18 @@ function getArgs(ctx: Context, target: Object, propertyKey: string): Arg[] {
     if (paramMetadata) {
       for (const paramName of Object.keys(paramMetadata)) {
         let shouldValidate = false
-        let value = getVaue(ctx, type, paramName)
+        let value = getVaue(ctx, next, type, paramName)
         const index = paramMetadata[paramName]
         const paramType = ParamTypes[index]
 
-        const builtinTypes = [paramTypes.Ctx, paramTypes.Req, paramTypes.Res, paramTypes.Method]
+        const builtinTypes = [
+          paramTypes.Ctx,
+          paramTypes.Req,
+          paramTypes.Res,
+          paramTypes.Method,
+          paramTypes.Next,
+        ]
+
         try {
           if (!builtinTypes.includes(type)) {
             shouldValidate = true
