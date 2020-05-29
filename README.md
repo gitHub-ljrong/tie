@@ -1,6 +1,6 @@
 # TieJS
 
-## 快速体验
+## 快速开始
 
 使用 `tie-cli` 初始化应用 (选择 minimal-controller)：
 
@@ -15,29 +15,16 @@ npm run dev
 
 ```bash
 .
-├── app.ts
 ├── home.controller.ts
+├── package.json
 └── tsconfig.json
 ```
 
 启动成功后，然后访问浏览器：http://localhost:5001
 
-这是一个最小化的 TieJS 应用，，代码如下:
+这是一个最小化的 TieJS 应用，代码如下:
 
-**app.ts**
-
-```js
-import { Application } from '@tiejs/core'
-import { HomeController } from './home.controller'
-
-const app = new Application({
-  controllers: [HomeController],
-})
-
-app.bootstrap()
-```
-
-**hello.controller.ts**
+**home.controller.ts**
 
 ```js
 import { Controller, Get } from '@tiejs/controller'
@@ -48,7 +35,7 @@ export class HomeController {
   index() {
     return 'Hi Tie'
   }
-}
+}https://github.com/tiejs/tie
 ```
 
 ## 文档
