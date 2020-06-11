@@ -1,7 +1,7 @@
 {
   "name": "@tiejs/schedule",
   "version": "0.0.0",
-  "description": "Schedule plugin Tie -> TieJSJS",
+  "description": "Schedule plugin TieJS",
   "main": "dist/index.js",
   "scripts": {
     "dev": "tsnl dev",

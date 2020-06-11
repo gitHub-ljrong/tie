@@ -2,7 +2,7 @@ import { Injectable, IPlugin, Container, InjectApp, Application } from '@tiejs/c
 import cron from 'node-cron'
 import { methodStore } from './methodStore'
 import { getClassMethodNames } from './utils/getClassMethodNames'
-import { MethodStoreValue, CronJob } from './types'
+import { MethodStoreValue, CronJob, ScheduleConfig } from './types'
 
 @Injectable()
 export class SchedulePlugin implements IPlugin {
@@ -78,7 +78,13 @@ export class SchedulePlugin implements IPlugin {
   }
 
   async appDidReady(app: Application) {
-    const { schedules = [] } = app.config
+    const scheduleConfig: ScheduleConfig = app.config.schedule
+    let { schedules = [], enable } = scheduleConfig
+
+    if (!Reflect.has(scheduleConfig, 'enable')) enable = true // 默认 enable 为 true
+
+    if (!enable) return // enable = false 时，不执行定时任务
+
     for (const ScheduleClass of schedules) {
       let instance = Container.get<any>(ScheduleClass)
       const methodNames = getClassMethodNames(ScheduleClass)

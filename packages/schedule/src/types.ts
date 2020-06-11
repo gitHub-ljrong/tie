@@ -1,3 +1,9 @@
+export interface ScheduleConfig {
+  enable?: boolean
+  schedules?: any[]
+  patterns?: string | string[]
+}
+
 export interface ClassType<T = any> {
   new (...args: any[]): T
 }
@@ -42,7 +48,6 @@ export interface MethodStoreValue {
   target: Object
   propertyKey: any
 }
-
 
 export interface TimerOptions {
   /**
