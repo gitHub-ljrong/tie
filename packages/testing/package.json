@@ -1,7 +1,7 @@
 {
   "name": "@tiejs/testing",
   "version": "1.1.0",
-  "description": "Test toolkit for Tie",
+  "description": "Test toolkit Tie -> TieJS",
   "main": "dist/index.js",
   "scripts": {
     "dev": "tsnl dev",

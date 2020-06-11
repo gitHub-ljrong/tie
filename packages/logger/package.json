@@ -1,7 +1,7 @@
 {
   "name": "@tiejs/logger",
   "version": "1.1.0",
-  "description": "Logger for Tie",
+  "description": "Logger Tie -> TieJS",
   "main": "dist/index.js",
   "scripts": {
     "dev": "tsnl dev",

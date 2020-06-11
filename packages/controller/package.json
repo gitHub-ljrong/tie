@@ -1,7 +1,7 @@
 {
   "name": "@tiejs/controller",
   "version": "1.1.0",
-  "description": "Controller plugin for TieJS",
+  "description": "Controller plugin Tie -> TieJSJS",
   "main": "dist/index.js",
   "scripts": {
     "dev": "tsnl dev",
