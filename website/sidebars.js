@@ -11,6 +11,7 @@ module.exports = {
       'basic/exception',
     ],
     进阶: [
+      'advance/schedule',
       'advance/development',
       'advance/testing',
       'advance/validation',

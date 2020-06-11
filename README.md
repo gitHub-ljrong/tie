@@ -35,7 +35,7 @@ export class HomeController {
   index() {
     return 'Hi Tie'
   }
-}https://github.com/tiejs/tie
+}
 ```
 
 ## 文档
