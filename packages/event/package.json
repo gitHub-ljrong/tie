@@ -1,6 +1,6 @@
 {
   "name": "@tiejs/event",
-  "version": "0.0.0",
+  "version": "1.2.0",
   "description": "Event plugin TieJS",
   "main": "dist/index.js",
   "scripts": {
@@ -29,7 +29,7 @@
     "**/*.d.ts"
   ],
   "dependencies": {
-    "@tiejs/common": "^1.1.0",
+    "@tiejs/common": "^1.2.0",
     "eventemitter3": "^4.0.4"
   },
   "devDependencies": {
