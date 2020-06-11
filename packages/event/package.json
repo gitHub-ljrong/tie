@@ -1,0 +1,39 @@
+{
+  "name": "@tiejs/event",
+  "version": "0.0.0",
+  "description": "Event plugin TieJS",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "tsnl dev",
+    "build": "tsnl build",
+    "test": "tsnl test",
+    "lint": "tsnl lint",
+    "lint:fix": "tsnt lint --fix"
+  },
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "eslintConfig": {
+    "extends": "tie-app"
+  },
+  "prettier": {
+    "semi": false,
+    "tabWidth": 2,
+    "singleQuote": true,
+    "trailingComma": "all",
+    "printWidth": 100
+  },
+  "files": [
+    "**/*.js",
+    "**/*.d.ts"
+  ],
+  "dependencies": {
+    "@tiejs/common": "^1.1.0",
+    "eventemitter3": "^4.0.4"
+  },
+  "devDependencies": {
+    "tsnl": "1.4.0",
+    "typescript": "^3.9.3"
+  }
+}
