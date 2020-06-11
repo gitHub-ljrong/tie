@@ -7,6 +7,7 @@ import {
   Context,
   InjectApp,
   NextFunction,
+  InjectConfig,
 } from '@tiejs/common'
 
 import { validateOrReject, ValidationError } from 'class-validator'
@@ -21,7 +22,6 @@ import { Exception } from '@tiejs/exception'
 import { paramTypes } from './constant'
 import { paramStore } from './stores/paramStore'
 import { RouteBuilder } from './RouteBuilder'
-import { InjectConfig } from '@tiejs/common'
 
 import { formatError } from './utils/formatError'
 
