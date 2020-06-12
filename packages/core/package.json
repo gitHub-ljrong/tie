@@ -32,9 +32,11 @@
   "dependencies": {
     "@tiejs/common": "^1.2.0",
     "@tiejs/controller": "^1.2.0",
+    "@tiejs/event": "^1.2.0",
     "@tiejs/exception": "^1.2.0",
     "@tiejs/graphql": "^1.2.0",
     "@tiejs/logger": "^1.2.0",
+    "@tiejs/schedule": "^1.2.0",
     "@tiejs/view": "^1.2.0",
     "chalk": "^4.0.0",
     "fs-jetpack": "^2.4.0",

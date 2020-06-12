@@ -21,4 +21,14 @@ export const defaultPlugins: PluginConfig = [
     package: '@tiejs/graphql',
     enable: true,
   },
+  {
+    name: 'schedule',
+    package: '@tiejs/schedule',
+    enable: true,
+  },
+  {
+    name: 'event',
+    package: '@tiejs/event',
+    enable: true,
+  },
 ]
