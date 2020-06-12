@@ -1,6 +1,6 @@
 {
   "name": "@tiejs/controller",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Controller plugin Tie -> TieJSJS",
   "main": "dist/index.js",
   "scripts": {
@@ -31,9 +31,9 @@
   ],
   "dependencies": {
     "@koa/router": "^8.0.8",
-    "@tiejs/common": "^1.2.0",
+    "@tiejs/common": "^1.3.0",
     "@tiejs/exception": "^1.2.0",
-    "@tiejs/logger": "^1.2.0",
+    "@tiejs/logger": "^1.3.0",
     "body-parser": "^1.19.0",
     "class-transformer": "^0.2.3",
     "class-validator": "^0.12.2",
