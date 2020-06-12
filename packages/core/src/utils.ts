@@ -1,5 +1,20 @@
-import { defaultPlugins } from './defaultPlugins'
 import { PluginConfig } from '@tiejs/common'
+import { defaultPlugins } from './defaultPlugins'
+
+function sortPlugins(pluginConfig: PluginConfig) {
+  const tails = ['controller', 'graphql', 'event', 'schedule']
+  let head: PluginConfig = []
+  let tail: PluginConfig = []
+
+  for (const item of pluginConfig) {
+    if (tails.includes(item.name)) {
+      tail.push(item)
+    } else {
+      head.push(item)
+    }
+  }
+  return [...head, ...tail]
+}
 
 export function getPluginConfig(pluginConfig: PluginConfig = []) {
   if (!pluginConfig.length) return defaultPlugins
@@ -12,14 +27,6 @@ export function getPluginConfig(pluginConfig: PluginConfig = []) {
     pluginConfig.unshift(item)
   }
 
-  /** controller and graphql plugin should be tail */
-  const controllerIndex = pluginConfig.findIndex(item => item.name === 'controller')
-  const controller = pluginConfig.splice(controllerIndex, 1)[0]
-  pluginConfig.push(controller)
-
-  const graphqlIndex = pluginConfig.findIndex(item => item.name === 'graphql')
-  const graphql = pluginConfig.splice(graphqlIndex, 1)[0]
-  pluginConfig.push(graphql)
-
+  pluginConfig = sortPlugins(pluginConfig)
   return pluginConfig
 }
