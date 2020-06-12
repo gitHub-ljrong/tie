@@ -14,9 +14,8 @@ export class EventPlugin implements IPlugin {
   }
 
   async appDidReady(app: Application) {
-    const eventConfig: EventConfig = app.config.event
+    const eventConfig: EventConfig = app.config.event || {}
     let { events = [], enable } = eventConfig
-    console.log('events-----------:', events)
 
     if (!Reflect.has(eventConfig, 'enable')) enable = true // 默认 enable 为 true
     if (!enable) return // enable = false 时，不执行定时任务

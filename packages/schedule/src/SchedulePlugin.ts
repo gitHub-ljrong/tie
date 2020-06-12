@@ -78,7 +78,7 @@ export class SchedulePlugin implements IPlugin {
   }
 
   async appDidReady(app: Application) {
-    const scheduleConfig: ScheduleConfig = app.config.schedule
+    const scheduleConfig: ScheduleConfig = app.config.schedule || {}
     let { schedules = [], enable } = scheduleConfig
 
     if (!Reflect.has(scheduleConfig, 'enable')) enable = true // 默认 enable 为 true
