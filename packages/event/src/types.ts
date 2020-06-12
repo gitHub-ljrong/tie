@@ -1,3 +1,7 @@
+export interface Emitter {
+  emit: (name: string, ...args: any[]) => Promise<any>
+}
+
 export interface EventConfig {
   enable?: boolean
   events?: any[]
@@ -18,4 +22,8 @@ export interface MethodStoreValue {
   fn: any
   target: Object
   propertyKey: any
+}
+
+export interface EventStore {
+  [key: string]: (...args: any[]) => any
 }

@@ -1,8 +1,8 @@
 import { Injectable, IPlugin, Container, InjectApp, Application } from '@tiejs/common'
-import EventEmitter from 'eventemitter3'
 import { methodStore } from './methodStore'
 import { getClassMethodNames } from './utils/getClassMethodNames'
 import { EventConfig } from './types'
+import { eventEmitter } from './eventEmitter'
 
 @Injectable()
 export class EventPlugin implements IPlugin {
@@ -10,7 +10,7 @@ export class EventPlugin implements IPlugin {
     const { config } = this.app
 
     // TODO: 是不是不应该挂载在 config
-    if (!config.eventEmitter) config.eventEmitter = new EventEmitter()
+    if (!config.eventEmitter) config.eventEmitter = eventEmitter
   }
 
   async appDidReady(app: Application) {
@@ -27,9 +27,10 @@ export class EventPlugin implements IPlugin {
       for (const methodName of methodNames) {
         const fn = instance[methodName]
         const value = methodStore.get(fn)
+        console.log('value:', value)
         // only @on() decorator
         if (value) {
-          app.config.eventEmitter.on(value.name, fn.bind(instance))
+          eventEmitter.eventStore[value.name] = fn.bind(instance)
         }
       }
     }
