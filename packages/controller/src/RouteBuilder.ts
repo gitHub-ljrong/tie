@@ -1,15 +1,16 @@
-import { Container, RouteItem, Injectable, InjectApp, Application } from '@tiejs/common'
+import { Container, RouteItem, Injectable, InjectConfig } from '@tiejs/common'
 import { controllerStore } from './stores/controllerStore'
 import { actionStore } from './stores/actionStore'
 import { getClassMethodNames } from './utils/getClassMethodNames'
+import { ControllerConfig } from './interfaces/ControllerConfig'
 
 @Injectable()
 export class RouteBuilder {
-  constructor(@InjectApp() private app: Application) {}
+  constructor(@InjectConfig('controller') private controllerConfig: ControllerConfig) {}
 
   buildRoutes(): RouteItem[] {
     const routes: RouteItem[] = []
-    const { controllers = [] } = this.app.config
+    const { controllers = [] } = this.controllerConfig
     for (const ControllerClass of controllers) {
       const basePath = controllerStore.get(ControllerClass)
       let instance = Container.get<any>(ControllerClass)
