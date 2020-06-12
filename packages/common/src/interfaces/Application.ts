@@ -8,10 +8,9 @@ import { PluginConfig } from './PluginConfig'
 
 export interface Config {
   port?: number
-  resolvers?: any[]
-  controllers?: any[]
   middlewares?: MiddlewareConfig
   plugins?: PluginConfig
+  debug?: boolean
   [key: string]: any
 }
 
