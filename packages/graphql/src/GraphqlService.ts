@@ -43,11 +43,7 @@ export class GraphqlService {
       const server = new ApolloServer(apolloConfig)
       const { path, cors } = this.config
 
-      server.applyMiddleware({
-        app: this.app as any,
-        path,
-        cors,
-      })
+      server.applyMiddleware({ app: this.app as any, path, cors })
 
       this.logger.info('GraphQL server started')
       return server

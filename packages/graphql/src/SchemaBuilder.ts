@@ -1,4 +1,4 @@
-import { Injectable, Container, InjectApp, Application } from '@tiejs/common'
+import { Injectable, Container } from '@tiejs/common'
 import { InjectLogger, Logger } from '@tiejs/logger'
 import { InjectConfig } from '@tiejs/common'
 
@@ -16,7 +16,6 @@ export class SchemaBuilder {
   constructor(
     @InjectLogger('@tiejs/graphql') private logger: Logger,
     @InjectConfig('graphql') private graphqlqlConfig: GraphqlConfig,
-    @InjectApp() private app: Application,
   ) {
     this.config = { ...defaultConfig, ...this.graphqlqlConfig }
   }
@@ -49,7 +48,8 @@ export class SchemaBuilder {
       },
     ]
 
-    const { resolvers = [] as any } = this.app.config
+    const { resolvers = [] as any } = this.config
+
     if (!resolvers.length) {
       this.logger.warn('No Resolver found!')
       return null
