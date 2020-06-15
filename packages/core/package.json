@@ -30,14 +30,14 @@
     "dist"
   ],
   "dependencies": {
-    "@tiejs/common": "^1.3.0",
-    "@tiejs/controller": "^1.3.0",
+    "@tiejs/common": "^1.4.0",
+    "@tiejs/controller": "^1.4.0",
     "@tiejs/event": "^1.4.0",
-    "@tiejs/exception": "^1.2.0",
-    "@tiejs/graphql": "^1.3.0",
-    "@tiejs/logger": "^1.3.0",
-    "@tiejs/schedule": "^1.3.0",
-    "@tiejs/view": "^1.3.0",
+    "@tiejs/exception": "^1.4.0",
+    "@tiejs/graphql": "^1.4.0",
+    "@tiejs/logger": "^1.4.0",
+    "@tiejs/schedule": "^1.4.0",
+    "@tiejs/view": "^1.4.0",
     "@types/lodash.set": "^4.3.6",
     "chalk": "^4.0.0",
     "fs-jetpack": "^2.4.0",
@@ -52,5 +52,6 @@
     "tslib": "^1.11.0",
     "tsnl": "1.4.0",
     "typescript": "^3.9.3"
-  }
+  },
+  "gitHead": "6daa5805553c29d216754e66ae931c55314ee978"
 }

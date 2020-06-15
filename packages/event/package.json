@@ -29,12 +29,13 @@
     "**/*.d.ts"
   ],
   "dependencies": {
-    "@tiejs/common": "^1.3.0",
+    "@tiejs/common": "^1.4.0",
     "is-promise": "^4.0.0"
   },
   "devDependencies": {
     "tsnl": "1.4.0",
     "typedi": "^0.8.0",
     "typescript": "^3.9.3"
-  }
+  },
+  "gitHead": "6daa5805553c29d216754e66ae931c55314ee978"
 }
