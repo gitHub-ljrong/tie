@@ -1,6 +1,6 @@
 {
   "name": "@tiejs/core",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "Tie core",
   "main": "dist/index.js",
   "scripts": {
@@ -32,7 +32,7 @@
   "dependencies": {
     "@tiejs/common": "^1.3.0",
     "@tiejs/controller": "^1.3.0",
-    "@tiejs/event": "^1.3.0",
+    "@tiejs/event": "^1.4.0",
     "@tiejs/exception": "^1.2.0",
     "@tiejs/graphql": "^1.3.0",
     "@tiejs/logger": "^1.3.0",
