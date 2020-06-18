@@ -1,6 +1,6 @@
 {
   "name": "@tiejs/schedule",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Schedule plugin TieJS",
   "main": "dist/index.js",
   "scripts": {
@@ -29,7 +29,7 @@
     "**/*.d.ts"
   ],
   "dependencies": {
-    "@tiejs/common": "^1.4.0",
+    "@tiejs/common": "^1.4.1",
     "node-cron": "^2.0.3"
   },
   "devDependencies": {
