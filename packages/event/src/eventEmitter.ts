@@ -5,7 +5,7 @@ class EventEmitter {
   eventStore: EventStore = {}
 
   emit = async (name: string, ...args: any[]) => {
-    const result = this.eventStore[name](args)
+    const result = this.eventStore[name](...args)
     if (isPromise(result)) await result
   }
 }
