@@ -27,7 +27,6 @@ export class EventPlugin implements IPlugin {
       for (const methodName of methodNames) {
         const fn = instance[methodName]
         const value = methodStore.get(fn)
-        console.log('value:', value)
         // only @on() decorator
         if (value) {
           eventEmitter.eventStore[value.name] = fn.bind(instance)
