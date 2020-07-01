@@ -1,7 +1,7 @@
 {
   "name": "@tiejs/typeorm",
   "version": "1.4.1",
-  "description": "Typeorm plugin Tie -> TieJS",
+  "description": "Typeorm plugin for TieJS",
   "main": "dist/index.js",
   "scripts": {
     "dev": "tsnl dev",
