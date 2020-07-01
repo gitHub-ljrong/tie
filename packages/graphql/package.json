@@ -1,6 +1,6 @@
 {
   "name": "@tiejs/graphql",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "description": "Graphql plugin TieJS",
   "main": "dist/index.js",
   "scripts": {
@@ -28,8 +28,8 @@
     "dist"
   ],
   "dependencies": {
-    "@tiejs/common": "^1.4.1",
-    "@tiejs/logger": "^1.4.1",
+    "@tiejs/common": "^1.5.0",
+    "@tiejs/logger": "^1.5.0",
     "apollo-server-koa": "^2.15.1",
     "globby": "^11.0.1",
     "graphql": "^15.2.0",
