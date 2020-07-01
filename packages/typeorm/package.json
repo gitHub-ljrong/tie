@@ -37,6 +37,6 @@
   },
   "devDependencies": {
     "tsnl": "1.4.0",
-    "typescript": "^3.9.3"
+    "typescript": "^3.9.5"
   }
 }
