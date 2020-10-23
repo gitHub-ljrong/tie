@@ -45,8 +45,19 @@ export class Loader {
 
   private async applyBeforeMiddleware() {
     for (const item of this.app.middlewareStore) {
-      if (item.enable) {
+      if (!item.enable) continue
+
+      // TODO: 需优化
+      if (!item.matcher) {
         this.app.use(item.use as any)
+      } else {
+        this.app.use(async (ctx, next) => {
+          if (ctx.request.url.includes(item.matcher?.path || '')) {
+            await (item.use as any)(ctx, next)
+          } else {
+            await next()
+          }
+        })
       }
     }
   }
