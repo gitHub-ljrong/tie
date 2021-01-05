@@ -6,3 +6,5 @@ coverage/
 dist/
 build/
 .pea
+
+yarn.lock

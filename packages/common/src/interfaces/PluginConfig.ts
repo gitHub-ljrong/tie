@@ -13,4 +13,9 @@ export type PluginConfigItem = {
 
   /** plugin module, an Injectable PluginClass */
   main?: any
+
+  /**
+   * 是否应该前置
+   */
+  shoudPrepend?: boolean
 }
