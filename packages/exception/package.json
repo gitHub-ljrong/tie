@@ -10,21 +10,11 @@
     "lint": "tsnl lint",
     "lint:fix": "tsnt lint --fix"
   },
-  "eslintConfig": {
-    "extends": "tie-app"
-  },
-  "prettier": {
-    "semi": false,
-    "tabWidth": 2,
-    "singleQuote": true,
-    "trailingComma": "all",
-    "printWidth": 100
-  },
   "files": [
     "dist"
   ],
   "devDependencies": {
     "tsnl": "1.4.0",
-    "typescript": "^3.9.3"
+    "typescript": "^4.1.3"
   }
 }

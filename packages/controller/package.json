@@ -12,25 +12,11 @@
     "lint": "tsnl lint",
     "lint:fix": "tsnt lint --fix"
   },
-  "private": false,
-  "publishConfig": {
-    "access": "public"
-  },
-  "eslintConfig": {
-    "extends": "tie-app"
-  },
-  "prettier": {
-    "semi": false,
-    "tabWidth": 2,
-    "singleQuote": true,
-    "trailingComma": "all",
-    "printWidth": 100
-  },
   "files": [
     "dist"
   ],
   "dependencies": {
-    "@koa/router": "^9.3.1",
+    "@koa/router": "^10.0.0",
     "@tiejs/common": "^1.5.0",
     "@tiejs/exception": "^1.5.0",
     "@tiejs/logger": "^1.5.0",
@@ -38,22 +24,21 @@
     "class-transformer": "^0.3.1",
     "class-validator": "^0.12.2",
     "cookie": "^0.4.1",
-    "globby": "^11.0.0",
+    "globby": "^11.0.1",
     "is-class": "0.0.9",
     "is-promise": "^4.0.0",
     "koa-bodyparser": "^4.3.0",
-    "reflect-metadata": "^0.1.13",
-    "tslib": "^1.11.1"
+    "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {
     "@types/body-parser": "^1.19.0",
-    "@types/cookie": "^0.3.3",
+    "@types/cookie": "^0.4.0",
     "@types/globby": "^9.1.0",
     "@types/is-promise": "^2.1.0",
     "@types/koa-bodyparser": "^4.3.0",
-    "@types/koa__router": "^8.0.2",
+    "@types/koa__router": "^8.0.3",
     "rimraf": "^3.0.2",
     "tsnl": "1.4.0",
-    "typescript": "^3.9.7"
+    "typescript": "^4.1.3"
   }
 }

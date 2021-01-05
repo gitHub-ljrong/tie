@@ -10,20 +10,6 @@
     "lint": "tsnl lint",
     "lint:fix": "tsnt lint --fix"
   },
-  "private": false,
-  "publishConfig": {
-    "access": "public"
-  },
-  "eslintConfig": {
-    "extends": "tie-app"
-  },
-  "prettier": {
-    "semi": false,
-    "tabWidth": 2,
-    "singleQuote": true,
-    "trailingComma": "all",
-    "printWidth": 100
-  },
   "files": [
     "**/*.js",
     "**/*.d.ts"
@@ -37,6 +23,6 @@
   },
   "devDependencies": {
     "tsnl": "1.4.0",
-    "typescript": "^3.9.5"
+    "typescript": "^4.1.3"
   }
 }

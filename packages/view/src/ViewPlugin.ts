@@ -23,10 +23,11 @@ export class ViewPlugin implements IPlugin {
   async configDidLoad(app: Application) {
     const { dir, map } = this.config
 
+    // TODO: handle any
     app.use(
       views(dir, {
         map,
-      }),
+      }) as any,
     )
   }
 }
