@@ -13,7 +13,10 @@ function sortPlugins(pluginConfig: PluginConfig) {
       head.push(item)
     }
   }
-  return [...head, ...tail]
+  return [...head, ...tail].sort(a => {
+    if (a.prepend) return -1
+    return 1
+  })
 }
 
 export function getPluginConfig(pluginConfig: PluginConfig = []) {

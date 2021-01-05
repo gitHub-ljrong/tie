@@ -17,5 +17,5 @@ export type PluginConfigItem = {
   /**
    * 是否应该前置
    */
-  shoudPrepend?: boolean
+  prepend?: boolean
 }
